@@ -9,14 +9,15 @@
               android:name="com.mvasilova.cocktailrecipes.app.ui.cocktailslist.CocktailsFragment"
               android:label="CocktailsFragment"
               tools:layout="@layout/fragment_list_drinks">
+        <action android:id="@+id/action_cocktailsFragment_to_recipeInfoFragment"
+                app:destination="@id/recipeInfoFragment"/>
+    </fragment>
+    <fragment android:id="@+id/recipeInfoFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoFragment"
+              android:label="RecipeInfoFragment">
 
-        <action android:id="@+id/action_cocktailsFragment_self"
-                app:destination="@id/cocktailsFragment">
-            <argument
-                    android:name="idDrink"
-                    app:argType="string"
-                    android:defaultValue="1"/>
-        </action>
+        <argument android:name="idDrink"
+                  app:argType="string"/>
     </fragment>
 
 

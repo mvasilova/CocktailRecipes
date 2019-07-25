@@ -1,11 +1,11 @@
 package com.mvasilova.cocktailrecipes.app.ui.cocktailslist
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.mvasilova.cocktailrecipes.app.platform.BaseViewModel
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
 
-class CocktailsViewModel(val drinksRepository: DrinksRepository): ViewModel() {
+class CocktailsViewModel(drinksRepository: DrinksRepository) : BaseViewModel() {
 
     val cocktails = MutableLiveData<DrinksFilter>()
     init {//later clean subs
@@ -14,7 +14,7 @@ class CocktailsViewModel(val drinksRepository: DrinksRepository): ViewModel() {
         }, {
             //add exept
             //progressbar
-        })
+        }).addToDisposables()
     }
 
 }

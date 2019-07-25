@@ -30,7 +30,8 @@ class CocktailsFragment : Fragment(R.layout.fragment_list_drinks) {
 
     private fun onRecipeInfoFragment(id: String?) {
         if (id != null) {
-            findNavController().navigate(CocktailsFragmentDirections.actionCocktailsFragmentSelf(id))
+            val action = CocktailsFragmentDirections.actionCocktailsFragmentToRecipeInfoFragment(id)
+            findNavController().navigate(action)
         }
     }
 

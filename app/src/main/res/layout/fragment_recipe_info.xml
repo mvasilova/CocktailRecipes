@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivDrink"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNameDrink"
+            android:layout_below="@id/ivDrink"
+            tools:text="Example"
+            android:layout_centerHorizontal="true"
+            style="@style/RegularTextTitle"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/ingredients"
+              android:textAllCaps="true"
+              android:layout_centerHorizontal="true"
+              android:layout_below="@id/tvNameDrink"
+              android:id="@+id/tvTitle"
+              tools:text="example"
+              android:padding="3dp"
+              style="@style/RegularTextTitle" android:fontFamily="@font/roboto_slab_light"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvIngredients"
+            android:layout_below="@id/tvTitle"
+            tools:text="example"
+            android:padding="15dp"
+            style="@style/RegularTextBody"/>
 </RelativeLayout>
