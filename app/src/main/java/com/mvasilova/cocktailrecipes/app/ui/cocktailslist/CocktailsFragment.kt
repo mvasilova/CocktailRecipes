@@ -1,22 +1,20 @@
 package com.mvasilova.cocktailrecipes.app.ui.cocktailslist
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
-import kotlinx.android.synthetic.main.fragment_list_cocktails.*
+import kotlinx.android.synthetic.main.fragment_list_drinks.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CocktailsFragment: Fragment(R.layout.fragment_list_cocktails) {
+class CocktailsFragment : Fragment(R.layout.fragment_list_drinks) {
 
     private val cocktailsViewModel: CocktailsViewModel by viewModel()
-    private val cocktailsAdapter: CocktailsAdapter by lazy { CocktailsAdapter() }
+    private val cocktailsAdapter: CocktailsAdapter by lazy { CocktailsAdapter { onRecipeInfoFragment(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,11 +25,17 @@ class CocktailsFragment: Fragment(R.layout.fragment_list_cocktails) {
     }
 
     private fun handleCocktails(cocktails: DrinksFilter?){
-        cocktailsAdapter.collection = cocktails!!.drinks
+        cocktailsAdapter.collection = cocktails!!.drinks.takeLast(6)
+    }
+
+    private fun onRecipeInfoFragment(id: String?) {
+        if (id != null) {
+            findNavController().navigate(CocktailsFragmentDirections.actionCocktailsFragmentSelf(id))
+        }
     }
 
     private fun setupRecyclerView(){
-        rvCocktails.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        rvCocktails.layoutManager = GridLayoutManager(activity, 3)
         rvCocktails.adapter = cocktailsAdapter
     }
 

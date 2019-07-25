@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/search"
+            app:startDestination="@id/cocktailsFragment">
+
+    <fragment android:id="@+id/cocktailsFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.cocktailslist.CocktailsFragment"
+              android:label="CocktailsFragment"
+              tools:layout="@layout/fragment_list_drinks"/>
+
+</navigation>

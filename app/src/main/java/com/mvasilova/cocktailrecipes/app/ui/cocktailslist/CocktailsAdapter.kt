@@ -9,7 +9,7 @@ import com.mvasilova.cocktailrecipes.app.ext.inflate
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class CocktailsAdapter: RecyclerView.Adapter<CocktailsAdapter.ViewHolder>() {
+class CocktailsAdapter(val clickListener: (String?) -> Unit) : RecyclerView.Adapter<CocktailsAdapter.ViewHolder>() {
 
     var collection: List<DrinksFilter.Drink> = listOf()
         set(value) {
@@ -18,7 +18,7 @@ class CocktailsAdapter: RecyclerView.Adapter<CocktailsAdapter.ViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.item_list))
+        ViewHolder(parent.inflate(R.layout.item_preview_cat))
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
         viewHolder.bind(collection[position])
@@ -29,8 +29,10 @@ class CocktailsAdapter: RecyclerView.Adapter<CocktailsAdapter.ViewHolder>() {
 
         fun bind(item: DrinksFilter.Drink){
 
-            GlideApp.with(itemView.context).load(item.strDrinkThumb).into(itemView.ivImage)
+            GlideApp.with(itemView.context).load(item.strDrinkThumb).optionalCenterCrop().into(itemView.ivImage)
             itemView.tvName.text = item.strDrink
+
+            itemView.setOnClickListener { clickListener.invoke(item.idDrink) }
         }
     }
 }

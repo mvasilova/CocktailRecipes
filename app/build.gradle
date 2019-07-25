@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 def API_ENDPOINT = "API_ENDPOINT"
 android {
     compileSdkVersion 28
@@ -26,11 +28,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", API_ENDPOINT, '"https://www.thecocktaildb.com/api/json/v1/1/"'
+            buildConfigField "String", API_ENDPOINT, '"https://www.thecocktaildb.com/api/json/v2/8673533/"'
         }
         debug {
             debuggable true
-            buildConfigField "String", API_ENDPOINT, '"https://www.thecocktaildb.com/api/json/v1/1/"'
+            buildConfigField "String", API_ENDPOINT, '"https://www.thecocktaildb.com/api/json/v2/8673533/"'
         }
 
     }
@@ -42,7 +44,7 @@ dependencies {
     def anko_version = "0.10.8"
     def lifecycle_version = "2.1.0-alpha02"
     def koin_version = '2.0.1'
-    def nav_version = "2.1.0-beta02"
+    def nav_version = "2.0.0"
 
     //Support Libraries
     implementation fileTree(dir: 'libs', include: ['*.jar'])
