@@ -27,7 +27,7 @@
               android:id="@+id/tvTitle"
               tools:text="example"
               android:padding="3dp"
-              style="@style/RegularTextTitle" android:fontFamily="@font/roboto_slab_light"/>
+              style="@style/RegularTextTitle"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

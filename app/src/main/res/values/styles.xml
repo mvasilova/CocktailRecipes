@@ -6,17 +6,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/roboto_slab</item>
+        <item name="android:fontFamily">@font/sf_text_regular</item>
     </style>
 
     <style name="RegularTextTitle">
-        <item name="font">@font/roboto_slab</item>
+        <item name="font">@font/sf_text_medium</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">20sp</item>
     </style>
 
     <style name="RegularTextBody">
-        <item name="font">@font/roboto_slab_thin</item>
+        <item name="font">@font/sf_text_light</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">18sp</item>
     </style>
