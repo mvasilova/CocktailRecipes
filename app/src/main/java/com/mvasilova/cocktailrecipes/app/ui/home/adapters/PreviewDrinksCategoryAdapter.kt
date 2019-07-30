@@ -1,4 +1,4 @@
-package com.mvasilova.cocktailrecipes.app.ui.cocktailslist
+package com.mvasilova.cocktailrecipes.app.ui.home.adapters
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,8 @@ import com.mvasilova.cocktailrecipes.app.ext.inflate
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class CocktailsAdapter(val clickListener: (String?) -> Unit) : RecyclerView.Adapter<CocktailsAdapter.ViewHolder>() {
+class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
+    RecyclerView.Adapter<PreviewDrinksCategoryAdapter.ViewHolder>() {
 
     var collection: List<DrinksFilter.Drink> = listOf()
         set(value) {

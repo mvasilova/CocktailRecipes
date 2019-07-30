@@ -9,6 +9,14 @@ class DrinksRepository(val api: Api) {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
+    fun getShotsList() = api.getShotsList()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+
+    fun getBeersList() = api.getBeersList()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+
     fun getRecipeInfoDrink(idDrink: String) = api.getRecipeInfoDrink(idDrink)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

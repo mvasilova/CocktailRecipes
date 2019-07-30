@@ -3,12 +3,11 @@ package com.mvasilova.cocktailrecipes.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.setupBottomWithNavController
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,15 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        // Now that BottomNavigationBar has restored its instance state
-        // and its selectedItemId, we can proceed with setting up the
-        // BottomNavigationBar with Navigation
         setupBottomNavigationBar()
     }
 
-    /**
-     * Called on first creation and when restoring state.
-     */
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
@@ -48,14 +41,22 @@ class MainActivity : AppCompatActivity() {
             intent = intent
         )
 
-        // Whenever the selected controller changes, setup the action bar.
-        controller.observe(this, Observer { navController ->
-            setupActionBarWithNavController(navController)
-        })
+//        // Whenever the selected controller changes, setup the action bar.
+//        controller.observe(this, Observer { navController ->
+//            setupActionBarWithNavController(navController)
+//        })
         currentNavController = controller
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
     }
+
+//    override fun onBackPressed() {
+//        if (supportFragmentManager.backStackEntryCount > 1) {
+//            supportFragmentManager.popBackStack()
+//        } else {
+//            this.finish()
+//        }
+//    }
 }

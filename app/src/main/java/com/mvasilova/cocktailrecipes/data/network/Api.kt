@@ -11,6 +11,12 @@ interface Api {
     @GET("filter.php?c=Cocktail")
     fun getCocktailsList(): Single<DrinksFilter>
 
+    @GET("filter.php?c=Shot")
+    fun getShotsList(): Single<DrinksFilter>
+
+    @GET("filter.php?c=Beer")
+    fun getBeersList(): Single<DrinksFilter>
+
     @GET("lookup.php?")
     fun getRecipeInfoDrink(@Query("i") idDrink: String): Single<RecipeInfoDrink>
 }
