@@ -3,22 +3,22 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/home"
-            app:startDestination="@id/cocktailsFragment">
+            app:startDestination="@id/homeFragment">
 
-    <fragment android:id="@+id/cocktailsFragment"
-              android:name="com.mvasilova.cocktailrecipes.app.ui.cocktailslist.CocktailsFragment"
-              android:label="CocktailsFragment"
-              tools:layout="@layout/fragment_list_drinks">
-        <action android:id="@+id/action_cocktailsFragment_to_recipeInfoFragment"
-                app:destination="@id/recipeInfoFragment"/>
-    </fragment>
+    <fragment android:id="@+id/homeFragment"
+              android:label="HomeFragment"
+              tools:layout="@layout/fragment_home"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.home.HomeFragment"/>
+
+
     <fragment android:id="@+id/recipeInfoFragment"
               android:name="com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoFragment"
-              android:label="RecipeInfoFragment">
+              android:label="RecipeInfoFragment"
+              tools:layout="@layout/fragment_recipe_info">
 
         <argument android:name="idDrink"
                   app:argType="string"/>
     </fragment>
 
-
+    <action android:id="@+id/action_global_recipeInfoFragment" app:destination="@id/recipeInfoFragment"/>
 </navigation>

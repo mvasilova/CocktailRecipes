@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">CocktailRecipes</string>
     <string name="ingredients">Ingredients</string>
+    <string name="drinks_image">Drink\'s Image</string>
+    <string name="button_open_list">Button open list</string>
+    <string name="title_beers">Beers</string>
+    <string name="title_cocktails">Cocktails</string>
+    <string name="title_shots">Shots</string>
+    <string name="toast_error">An error has occurred. Please try again later</string>
+
 </resources>

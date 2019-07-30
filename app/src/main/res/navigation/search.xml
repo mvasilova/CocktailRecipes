@@ -6,7 +6,7 @@
             app:startDestination="@id/cocktailsFragment">
 
     <fragment android:id="@+id/cocktailsFragment"
-              android:name="com.mvasilova.cocktailrecipes.app.ui.cocktailslist.CocktailsFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsFragment"
               android:label="CocktailsFragment"
               tools:layout="@layout/fragment_list_drinks"/>
 
