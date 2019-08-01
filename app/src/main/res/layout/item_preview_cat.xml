@@ -12,12 +12,14 @@
             app:cardCornerRadius="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
 
         <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"/>
+                android:layout_height="140dp"
+                android:contentDescription="@string/drinks_image"/>
 
     </androidx.cardview.widget.CardView>
 

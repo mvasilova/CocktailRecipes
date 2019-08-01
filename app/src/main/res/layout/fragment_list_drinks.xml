@@ -5,7 +5,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
->
+                android:minHeight="300dp">
 
     <androidx.cardview.widget.CardView
 
@@ -13,7 +13,8 @@
             android:layout_height="wrap_content"
 
             app:cardCornerRadius="5dp"
-            app:cardBackgroundColor="@color/colorWhiteText">
+            app:cardBackgroundColor="@color/colorWhiteText"
+            app:cardElevation="0dp">
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -42,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rvDrinks"
                     android:layout_below="@id/tvNameCategory"
+
             />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

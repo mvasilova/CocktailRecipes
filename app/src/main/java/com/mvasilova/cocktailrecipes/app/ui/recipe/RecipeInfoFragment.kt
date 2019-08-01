@@ -12,7 +12,6 @@ import com.mvasilova.cocktailrecipes.app.platform.State
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
 import kotlinx.android.synthetic.main.fragment_recipe_info.*
 import org.jetbrains.anko.support.v4.longToast
-import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -41,20 +40,15 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
 
     private fun handleRecipeInfo(recipe: RecipeInfoDrink?) {
         val drink = recipe!!.drinks!![0]
-        toast(recipe.toString())
+        collapsing_toolbar.title = drink.strDrink
         GlideApp.with(this).load(drink.strDrinkThumb).optionalCenterCrop().into(ivDrink)
-        //tvNameDrink.text = drink.strDrink
         val newList = mutableListOf<String>()
         drink.ingredients.forEachIndexed { index, s ->
             val measure = if (drink.measure.getOrNull(index) != null) drink.measure.get(index) else ""
             newList.add("$measure $s".trimStart())
         }
-        //tvIngredients.text = newList.toString()
         tvIngredients.text = newList.mapIndexed { index, s -> Pair(index, s) }
             .joinToString(separator = "\n", transform = { "${it.first + 1}) ${it.second}" })
-
-
-        collapsing_toolbar.title = drink.strDrink
     }
 
     private fun setupToolbar() {
