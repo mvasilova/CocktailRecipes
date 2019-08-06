@@ -20,5 +20,13 @@
                   app:argType="string"/>
     </fragment>
 
+    <fragment android:id="@+id/drinksListFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.drinkslist.DrinksListFragment"
+              android:label="DrinksListFragment"
+              tools:layout="@layout/fragment_list">
+    </fragment>
+
     <action android:id="@+id/action_global_recipeInfoFragment" app:destination="@id/recipeInfoFragment"/>
+    <action android:id="@+id/action_global_drinksListFragment" app:destination="@id/drinksListFragment"/>
+
 </navigation>

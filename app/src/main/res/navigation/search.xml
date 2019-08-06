@@ -8,6 +8,6 @@
     <fragment android:id="@+id/cocktailsFragment"
               android:name="com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsFragment"
               android:label="CocktailsFragment"
-              tools:layout="@layout/fragment_list_drinks"/>
+              tools:layout="@layout/fragment_list_preview_cat"/>
 
 </navigation>

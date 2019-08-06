@@ -27,10 +27,8 @@
                 android:ellipsize="end"
                 android:layout_below="@id/cdImage"
                 android:layout_centerInParent="true"
-                android:textSize="16sp"
-                android:textColor="@color/colorText"
                 tools:text="Example"
                 android:padding="5dp"
-                android:fontFamily="serif"
+                style="@style/RegularTextTitle"
         />
 </RelativeLayout>

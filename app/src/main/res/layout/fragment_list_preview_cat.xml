@@ -27,8 +27,9 @@
                          android:background="@color/colorTransparent"
                          android:contentDescription="@string/button_open_list"
                          android:layout_alignParentEnd="true"
-                         android:layout_margin="5dp"
-            />
+                         android:id="@+id/buttonOpenList"
+                         android:foreground="?attr/selectableItemBackgroundBorderless"
+                         android:layout_margin="5dp"/>
 
             <TextView
                     android:id="@+id/tvNameCategory"
@@ -37,7 +38,9 @@
                     tools:text="Example"
                     style="@style/RegularTextTitle"
                     android:layout_alignParentStart="true"
-                    android:layout_margin="5dp"/>
+                    android:layout_margin="5dp"
+                    android:layout_alignStart="@id/buttonOpenList"
+            />
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -26,6 +26,7 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
 
         observe(viewModel.state, ::handleState)
         observe(viewModel.recipe, ::handleRecipeInfo)
+        observe(viewModel.isFavorite, ::handleIsFavorite)
         setupToolbar()
     }
 
@@ -37,6 +38,10 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
         }
     }
 
+    private fun handleIsFavorite(isFavorite: Boolean?) {
+        if (isFavorite == true) ivFavorite.setImageResource(R.drawable.ic_favorite_fill)
+        else ivFavorite.setImageResource(R.drawable.ic_favorite_border)
+    }
 
     private fun handleRecipeInfo(recipe: RecipeInfoDrink?) {
         val drink = recipe!!.drinks!![0]
@@ -55,6 +60,10 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
+
+        ivFavorite.setOnClickListener {
+            viewModel.changeFavorite()
+        }
     }
 
 

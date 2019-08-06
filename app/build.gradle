@@ -23,6 +23,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"]
+            }
+        }
     }
     buildTypes {
         release {
@@ -36,6 +44,7 @@ android {
         }
 
     }
+
 }
 
 dependencies {
@@ -45,6 +54,8 @@ dependencies {
     def lifecycle_version = "2.1.0-alpha02"
     def koin_version = '2.0.1'
     def nav_version = "2.0.0"
+    def room_version = "2.2.0-alpha01"
+
 
     //Support Libraries
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -99,4 +110,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
 }

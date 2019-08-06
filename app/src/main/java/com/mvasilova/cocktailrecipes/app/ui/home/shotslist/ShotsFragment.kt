@@ -2,6 +2,7 @@ package com.mvasilova.cocktailrecipes.app.ui.home.shotslist
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,12 +12,13 @@ import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.app.platform.State
 import com.mvasilova.cocktailrecipes.app.ui.home.adapters.PreviewDrinksCategoryAdapter
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
-import kotlinx.android.synthetic.main.fragment_list_drinks.*
+import kotlinx.android.synthetic.main.fragment_list_preview_cat.*
 import org.jetbrains.anko.support.v4.longToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ShotsFragment : Fragment(R.layout.fragment_list_drinks) {
+class ShotsFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
+    private lateinit var bundle: Bundle
     private val shotsViewModel: ShotsViewModel by viewModel()
     private val previewDrinksCategoryAdapter: PreviewDrinksCategoryAdapter by lazy {
         PreviewDrinksCategoryAdapter {
@@ -33,6 +35,12 @@ class ShotsFragment : Fragment(R.layout.fragment_list_drinks) {
         setupRecyclerView()
         observe(shotsViewModel.state, ::handleState)
         observe(shotsViewModel.shots, ::handleShots)
+
+        if (::bundle.isInitialized) {
+            buttonOpenList.setOnClickListener {
+                findNavController().navigate(R.id.action_global_drinksListFragment, bundle)
+            }
+        }
     }
 
     private fun handleState(state: State?) {
@@ -46,6 +54,7 @@ class ShotsFragment : Fragment(R.layout.fragment_list_drinks) {
 
     private fun handleShots(shots: DrinksFilter?) {
         previewDrinksCategoryAdapter.collection = shots!!.drinks.takeLast(6)
+        bundle = bundleOf("list" to shots.drinks)
     }
 
 

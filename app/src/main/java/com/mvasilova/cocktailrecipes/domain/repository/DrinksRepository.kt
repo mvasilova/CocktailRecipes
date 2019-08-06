@@ -1,23 +1,43 @@
 package com.mvasilova.cocktailrecipes.domain.repository
 
+import com.mvasilova.cocktailrecipes.app.ext.observeMainThread
+import com.mvasilova.cocktailrecipes.data.db.FavoriteDao
+import com.mvasilova.cocktailrecipes.data.entity.Favorite
 import com.mvasilova.cocktailrecipes.data.network.Api
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-class DrinksRepository(val api: Api) {
-    fun getCocktailsList()= api.getCocktailsList()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+class DrinksRepository(val api: Api, val favoriteDao: FavoriteDao) {
+    fun getCocktailsList() = api.getCocktailsList()
+        .observeMainThread()
 
     fun getShotsList() = api.getShotsList()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeMainThread()
 
     fun getBeersList() = api.getBeersList()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeMainThread()
 
     fun getRecipeInfoDrink(idDrink: String) = api.getRecipeInfoDrink(idDrink)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeMainThread()
+
+    fun getAllFavorite() = favoriteDao.getAll()
+        .observeMainThread()
+
+    fun insertFavorite(favorite: Favorite) = favoriteDao.insertDrink(favorite)
+        .observeMainThread()
+
+    fun deleteFavorite(idDrink: String) = favoriteDao.deleteDrink(idDrink)
+        .observeMainThread()
+
+    fun observeDrinkFavorite(drinkId: String) = favoriteDao.observeDrinkFavorite(drinkId)
+        .observeMainThread()
+        .map { it > 0 }
+
+    fun changeFavorite(favorite: Favorite) = favoriteDao.isDrinkFavorite(favorite.id)
+        .observeMainThread()
+        .map { it > 0 }
+        .flatMap {
+            if (it)
+                deleteFavorite(favorite.id)
+            else
+                insertFavorite(favorite)
+        }
 }

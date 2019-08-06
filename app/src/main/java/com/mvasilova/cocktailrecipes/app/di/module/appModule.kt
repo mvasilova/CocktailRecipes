@@ -1,9 +1,12 @@
 package com.mvasilova.cocktailrecipes.app.di.module
 
+import android.content.Context
+import androidx.room.Room
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mvasilova.cocktailrecipes.BuildConfig
+import com.mvasilova.cocktailrecipes.data.db.AppDatabase
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
 import com.mvasilova.cocktailrecipes.data.mappers.JsonDeserializerDrink
 import com.mvasilova.cocktailrecipes.data.network.Api
@@ -25,16 +28,30 @@ val appModule = module {
 
     single { buildApi(get()) }
 
-    single { DrinksRepository(get()) }
+    single { DrinksRepository(get(), get()) }
 
     single { JsonDeserializerDrink() }
 
     single { buildJson(get()) }
+
+    single { buildRoom(get()) }
+
+    single { getFavoriteDao(get()) }
 }
 
 
 private fun buildApi(retrofit: Retrofit): Api? {
     return retrofit.create(Api::class.java)
+}
+
+private fun getFavoriteDao(appDatabase: AppDatabase) = appDatabase.favoriteDao()
+
+private fun buildRoom(context: Context): AppDatabase {
+    return Room.databaseBuilder(
+        context,
+        AppDatabase::class.java, "database-drinks"
+    )
+        .build()
 }
 
 private fun buildJson(deserializerDrink: JsonDeserializerDrink) =
