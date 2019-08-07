@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.observe
@@ -46,7 +47,10 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
     private fun handleRecipeInfo(recipe: RecipeInfoDrink?) {
         val drink = recipe!!.drinks!![0]
         collapsing_toolbar.title = drink.strDrink
-        GlideApp.with(this).load(drink.strDrinkThumb).optionalCenterCrop().into(ivDrink)
+        GlideApp.with(this).load(drink.strDrinkThumb)
+            .optionalCenterCrop()
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(ivDrink)
         val newList = mutableListOf<String>()
         drink.ingredients.forEachIndexed { index, s ->
             val measure = if (drink.measure.getOrNull(index) != null) drink.measure.get(index) else ""
@@ -60,6 +64,7 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
+        toolbar.title = ""
 
         ivFavorite.setOnClickListener {
             viewModel.changeFavorite()

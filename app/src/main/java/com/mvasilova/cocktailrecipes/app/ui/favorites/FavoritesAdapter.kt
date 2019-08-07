@@ -1,4 +1,4 @@
-package com.mvasilova.cocktailrecipes.app.ui.home.adapters
+package com.mvasilova.cocktailrecipes.app.ui.favorites
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,20 +7,20 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.inflate
-import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
+import com.mvasilova.cocktailrecipes.data.entity.Favorite
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
-    RecyclerView.Adapter<PreviewDrinksCategoryAdapter.ViewHolder>() {
+class FavoritesAdapter(val clickListener: (String?) -> Unit) :
+    RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
-    var collection: List<DrinksFilter.Drink> = listOf()
+    var collection: List<Favorite> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.item_preview_cat))
+        ViewHolder(parent.inflate(R.layout.item_list))
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
         viewHolder.bind(collection[position])
@@ -29,16 +29,16 @@ class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: DrinksFilter.Drink){
+        fun bind(item: Favorite) {
 
             GlideApp.with(itemView.context)
-                .load(item.strDrinkThumb)
+                .load(item.drinkThumb)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .optionalCenterCrop()
                 .into(itemView.ivImage)
-            itemView.tvName.text = item.strDrink
+            itemView.tvName.text = item.name
 
-            itemView.setOnClickListener { clickListener.invoke(item.idDrink) }
+            itemView.setOnClickListener { clickListener.invoke(item.id) }
         }
     }
 }

@@ -6,13 +6,6 @@ import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 
 class DrinksListViewModel : ViewModel() {
 
-    var drinks = MutableLiveData<List<DrinksFilter>>()
-
-
-    init {
-
-
-    }
-
+    var drinks = MutableLiveData<List<DrinksFilter.Drink>>()
 
 }

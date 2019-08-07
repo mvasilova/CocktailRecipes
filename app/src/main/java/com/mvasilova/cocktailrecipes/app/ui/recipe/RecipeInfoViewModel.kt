@@ -1,6 +1,5 @@
 package com.mvasilova.cocktailrecipes.app.ui.recipe
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.mvasilova.cocktailrecipes.app.platform.BaseViewModel
 import com.mvasilova.cocktailrecipes.app.platform.State
@@ -15,7 +14,7 @@ class RecipeInfoViewModel(
 ) : BaseViewModel() {
 
     val recipe = MutableLiveData<RecipeInfoDrink>()
-    val isFavorite = MutableLiveData<Boolean>()
+    val isFavorite = drinksRepository.observeDrinkFavorite(idDrink)
 
     init {
         drinksRepository.getRecipeInfoDrink(idDrink)
@@ -26,15 +25,6 @@ class RecipeInfoViewModel(
             }, {
                 state.value = State.Error(it)
             }).addToDisposables()
-
-
-        drinksRepository.observeDrinkFavorite(idDrink).subscribe {
-            isFavorite.value = it
-        }.addToDisposables()
-
-        drinksRepository.getAllFavorite().subscribe {
-            Log.d("testdb", it.toString())
-        }.addToDisposables()
     }
 
     fun changeFavorite() {
@@ -47,7 +37,7 @@ class RecipeInfoViewModel(
                 recipeInfoDrink.drinks[0].strDrinkThumb!!
             )
 
-            drinksRepository.changeFavorite(favorite).subscribe()
+            drinksRepository.actionFavorite(favorite).subscribe()
         }
 
     }

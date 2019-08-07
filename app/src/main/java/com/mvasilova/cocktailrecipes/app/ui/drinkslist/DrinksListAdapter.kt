@@ -1,4 +1,4 @@
-package com.mvasilova.cocktailrecipes.app.ui.home.adapters
+package com.mvasilova.cocktailrecipes.app.ui.drinkslist
 
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +10,8 @@ import com.mvasilova.cocktailrecipes.app.ext.inflate
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
-    RecyclerView.Adapter<PreviewDrinksCategoryAdapter.ViewHolder>() {
+class DrinksListAdapter(val clickListener: (String?) -> Unit) :
+    RecyclerView.Adapter<DrinksListAdapter.ViewHolder>() {
 
     var collection: List<DrinksFilter.Drink> = listOf()
         set(value) {
@@ -20,7 +20,7 @@ class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.item_preview_cat))
+        ViewHolder(parent.inflate(R.layout.item_list))
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
         viewHolder.bind(collection[position])
@@ -29,7 +29,7 @@ class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: DrinksFilter.Drink){
+        fun bind(item: DrinksFilter.Drink) {
 
             GlideApp.with(itemView.context)
                 .load(item.strDrinkThumb)

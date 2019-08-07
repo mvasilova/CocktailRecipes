@@ -7,5 +7,7 @@
     <string name="title_cocktails">Cocktails</string>
     <string name="title_shots">Shots</string>
     <string name="toast_error">An error has occurred. Please try again later</string>
-
+    <string name="favorites">Favorites</string>
+    <string name="home">Home</string>
+    <string name="drinks">Drinks</string>
 </resources>

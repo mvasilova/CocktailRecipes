@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/favorites"
+            app:startDestination="@id/favoritesFragment">
+
+    <fragment android:id="@+id/favoritesFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.favorites.FavoritesFragment"
+              android:label="FavoritesFragment"
+              tools:layout="@layout/fragment_list"/>
+
+    <fragment android:id="@+id/recipeInfoFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoFragment"
+              android:label="RecipeInfoFragment"
+              tools:layout="@layout/fragment_recipe_info">
+
+        <argument android:name="idDrink"
+                  app:argType="string"/>
+    </fragment>
+
+    <action android:id="@+id/action_global_recipeInfoFragment" app:destination="@id/recipeInfoFragment"/>
+</navigation>

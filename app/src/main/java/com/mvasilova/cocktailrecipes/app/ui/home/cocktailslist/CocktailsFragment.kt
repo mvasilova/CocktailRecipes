@@ -20,13 +20,7 @@ class CocktailsFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private lateinit var bundle: Bundle
     private val cocktailsViewModel: CocktailsViewModel by viewModel()
-    private val previewDrinksCategoryAdapter: PreviewDrinksCategoryAdapter by lazy {
-        PreviewDrinksCategoryAdapter {
-            onRecipeInfoFragment(
-                it
-            )
-        }
-    }
+    private val previewDrinksCategoryAdapter by lazy { PreviewDrinksCategoryAdapter(::onRecipeInfoFragment) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,7 +49,7 @@ class CocktailsFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private fun handleCocktails(cocktails: DrinksFilter?) {
         previewDrinksCategoryAdapter.collection = cocktails!!.drinks.takeLast(6)
-        bundle = bundleOf("list" to cocktails.drinks)
+        bundle = bundleOf("list" to cocktails.drinks, "title" to getString(R.string.title_cocktails))
     }
 
     private fun onRecipeInfoFragment(id: String?) {

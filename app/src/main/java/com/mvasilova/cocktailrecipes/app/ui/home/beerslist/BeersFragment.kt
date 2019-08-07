@@ -20,13 +20,8 @@ class BeersFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private lateinit var bundle: Bundle
     private val beersViewModel: BeersViewModel by viewModel()
-    private val previewDrinksCategoryAdapter: PreviewDrinksCategoryAdapter by lazy {
-        PreviewDrinksCategoryAdapter {
-            onRecipeInfoFragment(
-                it
-            )
-        }
-    }
+    private val previewDrinksCategoryAdapter by lazy { PreviewDrinksCategoryAdapter(::onRecipeInfoFragment) }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,8 +31,9 @@ class BeersFragment : Fragment(R.layout.fragment_list_preview_cat) {
         observe(beersViewModel.state, ::handleState)
         observe(beersViewModel.beers, ::handleBeers)
 
-        if (::bundle.isInitialized) {
-            buttonOpenList.setOnClickListener {
+
+        buttonOpenList.setOnClickListener {
+            if (::bundle.isInitialized) {
                 findNavController().navigate(R.id.action_global_drinksListFragment, bundle)
             }
         }
@@ -52,8 +48,8 @@ class BeersFragment : Fragment(R.layout.fragment_list_preview_cat) {
     }
 
     private fun handleBeers(beers: DrinksFilter?) {
-        previewDrinksCategoryAdapter.collection = beers!!.drinks.takeLast(6)
-        bundle = bundleOf("list" to beers.drinks)
+        previewDrinksCategoryAdapter.collection = beers!!.drinks.take(6)
+        bundle = bundleOf("list" to beers.drinks, "title" to getString(R.string.title_beers))
     }
 
 

@@ -10,11 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="Drinks"
+            app:title="@string/home"
             android:background="@color/colorPrimary"/>
 
-    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-                                           android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedSV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical">

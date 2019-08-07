@@ -20,13 +20,7 @@ class ShotsFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private lateinit var bundle: Bundle
     private val shotsViewModel: ShotsViewModel by viewModel()
-    private val previewDrinksCategoryAdapter: PreviewDrinksCategoryAdapter by lazy {
-        PreviewDrinksCategoryAdapter {
-            onRecipeInfoFragment(
-                it
-            )
-        }
-    }
+    private val previewDrinksCategoryAdapter by lazy { PreviewDrinksCategoryAdapter(::onRecipeInfoFragment) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,8 +30,8 @@ class ShotsFragment : Fragment(R.layout.fragment_list_preview_cat) {
         observe(shotsViewModel.state, ::handleState)
         observe(shotsViewModel.shots, ::handleShots)
 
-        if (::bundle.isInitialized) {
-            buttonOpenList.setOnClickListener {
+        buttonOpenList.setOnClickListener {
+            if (::bundle.isInitialized) {
                 findNavController().navigate(R.id.action_global_drinksListFragment, bundle)
             }
         }
@@ -54,7 +48,7 @@ class ShotsFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private fun handleShots(shots: DrinksFilter?) {
         previewDrinksCategoryAdapter.collection = shots!!.drinks.takeLast(6)
-        bundle = bundleOf("list" to shots.drinks)
+        bundle = bundleOf("list" to shots.drinks, "title" to getString(R.string.title_shots))
     }
 
 

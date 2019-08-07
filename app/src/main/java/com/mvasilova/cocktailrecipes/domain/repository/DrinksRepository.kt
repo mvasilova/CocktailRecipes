@@ -1,5 +1,6 @@
 package com.mvasilova.cocktailrecipes.domain.repository
 
+import androidx.lifecycle.Transformations
 import com.mvasilova.cocktailrecipes.app.ext.observeMainThread
 import com.mvasilova.cocktailrecipes.data.db.FavoriteDao
 import com.mvasilova.cocktailrecipes.data.entity.Favorite
@@ -19,7 +20,6 @@ class DrinksRepository(val api: Api, val favoriteDao: FavoriteDao) {
         .observeMainThread()
 
     fun getAllFavorite() = favoriteDao.getAll()
-        .observeMainThread()
 
     fun insertFavorite(favorite: Favorite) = favoriteDao.insertDrink(favorite)
         .observeMainThread()
@@ -27,11 +27,10 @@ class DrinksRepository(val api: Api, val favoriteDao: FavoriteDao) {
     fun deleteFavorite(idDrink: String) = favoriteDao.deleteDrink(idDrink)
         .observeMainThread()
 
-    fun observeDrinkFavorite(drinkId: String) = favoriteDao.observeDrinkFavorite(drinkId)
-        .observeMainThread()
-        .map { it > 0 }
+    fun observeDrinkFavorite(drinkId: String) =
+        Transformations.map(favoriteDao.observeDrinkFavorite(drinkId)) { it > 0 }
 
-    fun changeFavorite(favorite: Favorite) = favoriteDao.isDrinkFavorite(favorite.id)
+    fun actionFavorite(favorite: Favorite) = favoriteDao.isDrinkFavorite(favorite.id)
         .observeMainThread()
         .map { it > 0 }
         .flatMap {

@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
 
             app:cardCornerRadius="5dp"
-            app:cardBackgroundColor="@color/colorWhiteText"
+            app:cardBackgroundColor="@color/colorWhite"
             app:cardElevation="0dp">
         <RelativeLayout
                 android:layout_width="match_parent"
