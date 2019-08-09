@@ -33,4 +33,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="RegularMessageBody">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorPaleText</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
