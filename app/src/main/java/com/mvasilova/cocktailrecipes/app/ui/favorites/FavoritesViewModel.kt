@@ -9,15 +9,15 @@ import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
 class FavoritesViewModel(drinksRepository: DrinksRepository) : ViewModel() {
 
     val favoritesDB = drinksRepository.getAllFavorite()
-
     val favorites = MutableLiveData<List<Favorite>>()
     val mediator = MediatorLiveData<List<Favorite>>()
     var sourceList: List<Favorite> = listOf()
+    var query = ""
 
     init {
         mediator.addSource(favoritesDB) {
             sourceList = it ?: listOf()
-            favorites.value = it ?: listOf()
+            filterBySearch(query)
         }
     }
 
