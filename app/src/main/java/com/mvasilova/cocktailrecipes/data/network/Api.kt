@@ -19,4 +19,7 @@ interface Api {
 
     @GET("lookup.php?")
     fun getRecipeInfoDrink(@Query("i") idDrink: String): Single<RecipeInfoDrink>
+
+    @GET("search.php?")
+    fun getSearchByNameList(@Query("s") nameDrink: String): Single<DrinksFilter>
 }

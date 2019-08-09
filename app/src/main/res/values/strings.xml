@@ -10,4 +10,7 @@
     <string name="favorites">Favorites</string>
     <string name="home">Home</string>
     <string name="drinks">Drinks</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="drinks_not_found">Drinks not found. Please try again.</string>
+    <string name="find_drinks">Here you can find drinks by name.</string>
 </resources>

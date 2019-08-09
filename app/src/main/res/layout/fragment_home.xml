@@ -4,14 +4,24 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/colorBackground">
+>
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/home"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary" android:id="@+id/toolbar">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:id="@+id/ivSearch"
+                android:contentDescription="@string/drinks_image"
+                android:foreground="?selectableItemBackgroundBorderless"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedSV"

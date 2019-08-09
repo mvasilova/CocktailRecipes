@@ -4,6 +4,7 @@ import com.mvasilova.cocktailrecipes.app.ui.drinkslist.DrinksListViewModel
 import com.mvasilova.cocktailrecipes.app.ui.favorites.FavoritesViewModel
 import com.mvasilova.cocktailrecipes.app.ui.home.beerslist.BeersViewModel
 import com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsViewModel
+import com.mvasilova.cocktailrecipes.app.ui.home.searchbyname.SearchByNameViewModel
 import com.mvasilova.cocktailrecipes.app.ui.home.shotslist.ShotsViewModel
 import com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,7 +19,5 @@ val viewModelModule = module {
     viewModel { (idDrink: String) -> RecipeInfoViewModel(get(), idDrink) }
     viewModel { DrinksListViewModel() }
     viewModel { FavoritesViewModel(get()) }
-
-
-
+    viewModel { SearchByNameViewModel(get()) }
 }

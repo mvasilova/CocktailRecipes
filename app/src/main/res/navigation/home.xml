@@ -26,7 +26,14 @@
               tools:layout="@layout/fragment_list">
     </fragment>
 
+    <fragment android:id="@+id/searchByNameFragment"
+              android:name="com.mvasilova.cocktailrecipes.app.ui.home.searchbyname.SearchByNameFragment"
+              android:label="SearchByNameFragment"
+              tools:layout="@layout/fragment_list"/>
+
     <action android:id="@+id/action_global_recipeInfoFragment" app:destination="@id/recipeInfoFragment"/>
     <action android:id="@+id/action_global_drinksListFragment" app:destination="@id/drinksListFragment"/>
+    <action android:id="@+id/action_global_searchByNameFragment" app:destination="@id/searchByNameFragment"/>
+
 
 </navigation>

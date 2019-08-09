@@ -23,4 +23,21 @@
             android:id="@+id/progressBar"
             android:layout_centerInParent="true"
             android:visibility="gone"/>
+    <TextView
+            android:textAppearance="@style/RegularTextTitle"
+            android:text="@string/drinks_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMessage"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+    <!--<TextView-->
+    <!--android:textAppearance="@style/RegularTextTitle"-->
+    <!--android:text="@string/find_drinks"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/tvFindDrinks"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:visibility="gone" />-->
 </RelativeLayout>
