@@ -3,6 +3,7 @@ package com.mvasilova.cocktailrecipes.app.ui.home.searchbyname
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -70,6 +71,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_list) {
         searchView = SearchView((context as MainActivity).supportActionBar?.themedContext ?: context)
         menu.findItem(R.id.action_search).apply {
             actionView = searchView
+            setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
             this.expandActionView()
         }
 
