@@ -5,7 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -45,6 +46,16 @@
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@drawable/ic_share"
+                        android:layout_gravity="end"
+                        android:layout_margin="10dp"
+                        android:id="@+id/ivShare"
+                        android:contentDescription="@string/share"
+                        android:foreground="?selectableItemBackgroundBorderless"
+                />
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/ic_favorite_border"
                         android:layout_gravity="end"
                         android:layout_margin="10dp"
@@ -52,6 +63,7 @@
                         android:contentDescription="@string/drinks_image"
                         android:foreground="?selectableItemBackgroundBorderless"
                 />
+
             </androidx.appcompat.widget.Toolbar>
 
 
@@ -63,39 +75,51 @@
             android:layout_height="match_parent"
             android:layout_below="@id/app_bar_layout"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ScrollingActivity"
+            tools:context=".ScrollingActivity">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/colorWhite">
 
-    >
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        >
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/ingredients"
-                      android:textAllCaps="true"
-                      android:layout_centerHorizontal="true"
-                      android:id="@+id/tvTitle"
-                      tools:text="example"
-                      android:padding="3dp"
-                      style="@style/RegularTextTitle"/>
+            <TextView
+                    android:id="@+id/tvTitleIng"
+                    style="@style/InfoRecipeTitle"/>
+
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvIngredients"
-                    android:layout_below="@id/tvTitle"
+                    android:layout_below="@id/tvTitleIng"
                     tools:text="example"
-                    android:padding="15dp"
+                    android:layout_margin="10dp"
                     style="@style/RegularTextBody"/>
             <TextView
+                    android:id="@+id/tvTitleIns"
+                    android:layout_below="@id/tvIngredients"
+                    style="@style/InfoRecipeTitle"/>
+            <TextView
+                    android:id="@+id/tvInstructions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvIngredients"
+                    android:layout_below="@id/tvTitleIns"
                     tools:text="example"
-                    android:textSize="40sp"
-                    android:padding="15dp"
+                    android:layout_margin="10dp"
+                    style="@style/RegularTextBody"/>
+            <TextView
+                    android:id="@+id/tvTitleGlass"
+                    android:layout_below="@id/tvInstructions"
+                    style="@style/InfoRecipeTitle"/>
+            <TextView
+                    android:id="@+id/tvGlass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvTitleGlass"
+                    tools:text="example"
+                    android:layout_margin="10dp"
                     style="@style/RegularTextBody"/>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
 
     <ProgressBar
             style="?android:attr/progressBarStyle"
@@ -103,7 +127,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
             android:layout_gravity="center"
-            android:visibility="gone"
-    />
+            android:visibility="gone"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

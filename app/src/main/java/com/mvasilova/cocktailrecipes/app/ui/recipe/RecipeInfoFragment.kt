@@ -1,5 +1,6 @@
 package com.mvasilova.cocktailrecipes.app.ui.recipe
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
 
     private val args: RecipeInfoFragmentArgs by navArgs()
     private val viewModel: RecipeInfoViewModel by viewModel { parametersOf(args.idDrink) }
+    private lateinit var text: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,12 +54,25 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(ivDrink)
         val newList = mutableListOf<String>()
+
         drink.ingredients.forEachIndexed { index, s ->
-            val measure = if (drink.measure.getOrNull(index) != null) drink.measure.get(index) else ""
+            val measure = if (drink.measure.getOrNull(index) != null) drink.measure[index] else ""
             newList.add("$measure $s".trimStart())
         }
-        tvIngredients.text = newList.mapIndexed { index, s -> Pair(index, s) }
-            .joinToString(separator = "\n", transform = { "${it.first + 1}) ${it.second}" })
+
+        val ingredients = newList.mapIndexed { index, s -> Pair(index, s) }
+            .joinToString(separator = "\n", transform = { "${resources.getString(R.string.dot)} ${it.second}" })
+
+        tvTitleIng.text = getString(R.string.ingredients)
+        tvTitleIns.text = getString(R.string.instructions)
+        tvTitleGlass.text = getString(R.string.glass)
+        tvIngredients.text = ingredients
+        tvInstructions.text = drink.strInstructions
+        tvGlass.text = drink.strGlass
+
+        text = "${drink.strDrink}\n${getString(R.string.ingredients)}:\n$ingredients\n\n" +
+                "${getString(R.string.instructions)}:\n${drink.strInstructions}\n\n${getString(R.string.glass)}:\n${drink.strGlass}" +
+                "\n\n${resources.getString(R.string.intent_text)} "
     }
 
     private fun setupToolbar() {
@@ -69,7 +84,16 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
         ivFavorite.setOnClickListener {
             viewModel.changeFavorite()
         }
-    }
 
+        ivShare.setOnClickListener {
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, text)
+                type = "text/plain"
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
+        }
+    }
 
 }
