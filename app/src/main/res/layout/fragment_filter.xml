@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/filter"
+            android:background="@color/colorPrimary" android:id="@+id/toolbar"/>
+
+    <LinearLayout
+            android:id="@+id/filterByAlcoholic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:orientation="vertical">
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/alcoholic"
+                  android:textAppearance="@style/RegularTextTitle"
+                  android:layout_gravity="center_vertical"
+                  android:layout_margin="15dp"
+                  android:drawableLeft="@drawable/ic_alcoholic"
+                  android:drawablePadding="10dp"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/filterByCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:orientation="vertical">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/category"
+                  android:textAppearance="@style/RegularTextTitle"
+                  android:layout_gravity="center_vertical"
+                  android:layout_margin="15dp"
+                  android:drawableLeft="@drawable/ic_category"
+                  android:drawablePadding="10dp"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/filterByGlass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:orientation="vertical">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/glass"
+                  android:textAppearance="@style/RegularTextTitle"
+                  android:layout_gravity="center_vertical"
+                  android:layout_margin="15dp"
+                  android:drawableLeft="@drawable/ic_glass"
+                  android:drawablePadding="10dp"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/filterByIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:orientation="vertical">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/ingredients"
+                  android:textAppearance="@style/RegularTextTitle"
+                  android:layout_gravity="center_vertical"
+                  android:layout_margin="15dp"
+                  android:drawableLeft="@drawable/ic_ingredients"
+                  android:drawablePadding="10dp"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+</LinearLayout>

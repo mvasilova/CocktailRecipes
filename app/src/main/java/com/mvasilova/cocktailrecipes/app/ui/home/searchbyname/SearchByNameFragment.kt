@@ -133,7 +133,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_list) {
 
     private fun setupToolbar() {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
         toolbar.title = arguments?.getString("title")
     }

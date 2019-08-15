@@ -5,6 +5,7 @@ import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface Api {
 
@@ -22,4 +23,7 @@ interface Api {
 
     @GET("search.php?")
     fun getSearchByNameList(@Query("s") nameDrink: String): Single<DrinksFilter>
+
+    @GET("list.php?")
+    fun getFilterList(@QueryMap info: Map<String, String>): Single<DrinksFilter>
 }

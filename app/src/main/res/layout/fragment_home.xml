@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/colorBackground"
 >
 
     <androidx.appcompat.widget.Toolbar
@@ -36,17 +37,17 @@
                     android:name="com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cocktailsFragment"/>
+                    android:id="@+id/cocktailsFragment" tools:layout="@layout/fragment_list_preview_cat"/>
             <fragment
                     android:name="com.mvasilova.cocktailrecipes.app.ui.home.shotslist.ShotsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/shotsFragment"/>
+                    android:id="@+id/shotsFragment" tools:layout="@layout/fragment_list_preview_cat"/>
             <fragment
                     android:name="com.mvasilova.cocktailrecipes.app.ui.home.beerslist.BeersFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/beersFragment"/>
+                    android:id="@+id/beersFragment" tools:layout="@layout/fragment_list_preview_cat"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

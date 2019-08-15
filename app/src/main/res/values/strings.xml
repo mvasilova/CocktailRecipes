@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">CocktailRecipes</string>
-    <string name="ingredients">Ingredients</string>
     <string name="drinks_image">Drink\'s Image</string>
     <string name="button_open_list">Button open list</string>
     <string name="title_beers">Beers</string>
@@ -13,4 +12,15 @@
     <string name="search_by_name">Search by name</string>
     <string name="drinks_not_found">Drinks not found. Please try again.</string>
     <string name="find_drinks">Here you can find drinks by name.</string>
+    <string name="filter">Filter by…</string>
+    <string name="alcoholic">Alcoholic</string>
+    <string name="category">Category</string>
+    <string name="glass">Glass</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="dot">•</string>
+    <string name="share">Share</string>
+    <string name="intent_text">I would like to share this with you. Here you can download this app from Play Store
+        *url*
+    </string>
 </resources>
