@@ -41,7 +41,8 @@
                     app:navigationIcon="?homeAsUpIndicator"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    android:background="@drawable/shape_toolbar">
 
                 <ImageView
                         android:layout_width="wrap_content"
