@@ -24,6 +24,9 @@ interface Api {
     @GET("search.php?")
     fun getSearchByNameList(@Query("s") nameDrink: String): Single<DrinksFilter>
 
+    @GET("recent.php")
+    fun getRecentDrinks(): Single<DrinksFilter>
+
     @GET("list.php?")
     fun getFilterList(@QueryMap info: Map<String, String>): Single<DrinksFilter>
 }

@@ -8,11 +8,12 @@ import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.inflate
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
-import kotlinx.android.synthetic.main.item_list.view.*
+import kotlinx.android.synthetic.main.item_preview_cat.view.*
 
 class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
     RecyclerView.Adapter<PreviewDrinksCategoryAdapter.ViewHolder>() {
 
+    var titleIsVisible: Boolean = false
     var collection: List<DrinksFilter.Drink> = listOf()
         set(value) {
             field = value
@@ -36,6 +37,8 @@ class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .optionalCenterCrop()
                 .into(itemView.ivImage)
+
+            itemView.tvName.visibility = if (titleIsVisible) View.VISIBLE else View.GONE
             itemView.tvName.text = item.strDrink
 
             itemView.setOnClickListener { clickListener.invoke(item.idDrink) }
