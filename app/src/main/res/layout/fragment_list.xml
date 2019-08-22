@@ -29,5 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvMessage"
             android:layout_centerInParent="true"
+            android:drawableTop="@drawable/ic_drinks"
+            android:drawablePadding="10dp"
             android:visibility="gone"/>
 </RelativeLayout>

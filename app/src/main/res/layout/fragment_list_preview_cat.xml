@@ -4,21 +4,19 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:minHeight="300dp">
+        android:padding="5dp">
 
     <androidx.cardview.widget.CardView
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            app:cardCornerRadius="5dp"
             app:cardBackgroundColor="@color/colorWhite"
+            android:minHeight="300dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="0dp">
+
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
 
             <ImageButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
@@ -39,15 +37,12 @@
                     style="@style/RegularTextTitle"
                     android:layout_alignParentStart="true"
                     android:layout_margin="5dp"
-                    android:layout_alignStart="@id/buttonOpenList"
-            />
+                    android:layout_alignStart="@id/buttonOpenList" />
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/rvDrinks"
-                    android:layout_below="@id/tvNameCategory"
-
-            />
+                    android:layout_below="@id/tvNameCategory" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -57,5 +52,5 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
             android:layout_centerInParent="true"
-            tools:visibility="gone"/>
+            android:visibility="gone" />
 </RelativeLayout>
