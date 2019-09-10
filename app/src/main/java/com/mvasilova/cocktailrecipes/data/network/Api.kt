@@ -27,6 +27,9 @@ interface Api {
     @GET("recent.php")
     fun getRecentDrinks(): Single<DrinksFilter>
 
+    @GET("popular.php")
+    fun getPopularDrinks(): Single<DrinksFilter>
+
     @GET("list.php?")
     fun getFilterList(@QueryMap info: Map<String, String>): Single<DrinksFilter>
 }

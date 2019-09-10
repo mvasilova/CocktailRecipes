@@ -19,6 +19,9 @@ class DrinksRepository(private val api: Api, private val favoriteDao: FavoriteDa
     fun getRecentDrinks() = api.getRecentDrinks()
         .observeMainThread()
 
+    fun getPopularDrinks() = api.getPopularDrinks()
+        .observeMainThread()
+
     fun getRecipeInfoDrink(idDrink: String) = api.getRecipeInfoDrink(idDrink)
         .observeMainThread()
 

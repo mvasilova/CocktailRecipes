@@ -32,12 +32,15 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical">
 
-            <fragment
-                    android:id="@+id/recentDrinksFragment"
-                    android:name="com.mvasilova.cocktailrecipes.app.ui.home.recentdrinks.RecentDrinksFragment"
+            <FrameLayout
+                    android:id="@+id/horizontalRecentDrinks"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:layout="@layout/fragment_list_preview_horizontal" />
+                    android:layout_height="wrap_content" />
+
+            <FrameLayout
+                    android:id="@+id/horizontalPopularDrinks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             <fragment
                     android:name="com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsFragment"
                     android:layout_width="match_parent"
