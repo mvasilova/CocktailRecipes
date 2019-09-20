@@ -56,7 +56,7 @@ class PreviewDrinksFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private fun handleDrinks(drinks: DrinksFilter?) {
         previewDrinksCategoryAdapter.collection = drinks!!.drinks.takeLast(6)
-        bundle = bundleOf("list" to drinks.drinks, "title" to getString(R.string.title_cocktails))
+        bundle = bundleOf("list" to drinks.drinks, "title" to tvNameCategory.text)
     }
 
     private fun onRecipeInfoFragment(id: String?) {

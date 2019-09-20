@@ -10,6 +10,7 @@ import com.mvasilova.cocktailrecipes.app.ui.home.previewdrinks.CategoriesPreview
 import com.mvasilova.cocktailrecipes.app.ui.home.previewdrinks.PreviewDrinksViewModel
 import com.mvasilova.cocktailrecipes.app.ui.home.searchbyname.SearchByNameViewModel
 import com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoViewModel
+import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -20,7 +21,14 @@ val viewModelModule = module {
     viewModel { (type: TypeDrinksFilters) -> FilterByParametersViewModel(type, get()) }
 
     viewModel { (idDrink: String) -> RecipeInfoViewModel(get(), idDrink) }
-    viewModel { DrinksListViewModel() }
+    viewModel { (list: List<Drink>, type: String, name: String) ->
+        DrinksListViewModel(
+            list,
+            type,
+            name,
+            get()
+        )
+    }
     viewModel { FavoritesViewModel(get()) }
     viewModel { SearchByNameViewModel(get()) }
 }

@@ -9,19 +9,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.mvasilova.cocktailrecipes.HomeDirections
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.MainActivity
 import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
 class DrinksListFragment : Fragment(R.layout.fragment_list) {
 
-    private val drinksListViewModel: DrinksListViewModel by viewModel()
+    private val args: DrinksListFragmentArgs by navArgs()
+    private val listDrinks by lazy { arguments?.getSerializable("list") as? List<Drink> }
+    private val drinksListViewModel: DrinksListViewModel by viewModel {
+        parametersOf(listDrinks, args.type, args.name)
+    }
+
     private val drinksListAdapter by lazy { DrinksListAdapter(::onRecipeInfoFragment) }
     lateinit var searchView: SearchView
     private var query: String = ""
@@ -29,9 +35,6 @@ class DrinksListFragment : Fragment(R.layout.fragment_list) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        val list = arguments?.getSerializable("list") as List<Drink>
-        drinksListViewModel.drinks.value = list
-        drinksListViewModel.sourceList = list
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,9 +65,9 @@ class DrinksListFragment : Fragment(R.layout.fragment_list) {
 
     private fun onRecipeInfoFragment(id: String?) {
         if (id != null) {
-            val action = HomeDirections.actionGlobalRecipeInfoFragment(id)
+            val action =
+                DrinksListFragmentDirections.actionDrinksListFragmentToRecipeInfoFragment(id)
             findNavController().navigate(action)
-
         }
     }
 
@@ -77,7 +80,7 @@ class DrinksListFragment : Fragment(R.layout.fragment_list) {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
-        toolbar.title = arguments?.getString("title")
+        toolbar.title = arguments?.getString("title") ?: args.name
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

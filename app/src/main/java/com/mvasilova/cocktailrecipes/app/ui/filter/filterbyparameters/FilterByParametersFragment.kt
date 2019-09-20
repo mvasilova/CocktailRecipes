@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvasilova.cocktailrecipes.R
@@ -31,6 +32,7 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
     private val filterByParametersAdapter by lazy {
         FilterByParametersAdapter(::onDrinksListFragment)
     }
+
     lateinit var searchView: SearchView
     private var query: String = ""
 
@@ -96,8 +98,12 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
     }
 
     private fun onDrinksListFragment(nameFilter: String?) {
-        // val action = HomeDirections.actionGlobalDrinksListFragment()
-        // findNavController().navigate(action)
+        val action =
+            FilterByParametersFragmentDirections.actionFilterByParametersFragmentToDrinksListFragment(
+                args.type.param,
+                nameFilter!!
+            )
+        findNavController().navigate(action)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
