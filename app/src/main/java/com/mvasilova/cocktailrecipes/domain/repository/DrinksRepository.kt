@@ -7,13 +7,9 @@ import com.mvasilova.cocktailrecipes.data.entity.Favorite
 import com.mvasilova.cocktailrecipes.data.network.Api
 
 class DrinksRepository(private val api: Api, private val favoriteDao: FavoriteDao) {
-    fun getCocktailsList() = api.getCocktailsList()
-        .observeMainThread()
 
-    fun getShotsList() = api.getShotsList()
-        .observeMainThread()
-
-    fun getBeersList() = api.getBeersList()
+    fun getFilterDrinksList(type: String, name: String) =
+        api.getFilterDrinksList(mapOf(type to name))
         .observeMainThread()
 
     fun getRecentDrinks() = api.getRecentDrinks()

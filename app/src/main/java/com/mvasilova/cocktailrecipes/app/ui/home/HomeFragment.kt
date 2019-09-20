@@ -9,6 +9,8 @@ import com.mvasilova.cocktailrecipes.HomeDirections
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ui.home.horizontalpreview.HorizontalPreviewFragment
 import com.mvasilova.cocktailrecipes.app.ui.home.horizontalpreview.TypePreviewDrinks
+import com.mvasilova.cocktailrecipes.app.ui.home.previewdrinks.CategoriesPreviewDrinks
+import com.mvasilova.cocktailrecipes.app.ui.home.previewdrinks.PreviewDrinksFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -17,8 +19,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
-        setupPopularDrinksFragment()
-        setupRecentDrinksFragment()
+
+        setupPreviewDrinksFragment(
+            HorizontalPreviewFragment.newInstance(TypePreviewDrinks.POPULAR),
+            R.id.horizontalPopularDrinks
+        )
+
+        setupPreviewDrinksFragment(
+            HorizontalPreviewFragment.newInstance(TypePreviewDrinks.RECENT),
+            R.id.horizontalRecentDrinks
+        )
+
+        setupPreviewDrinksFragment(
+            PreviewDrinksFragment.newInstance(CategoriesPreviewDrinks.COCKTAILS),
+            R.id.previewCocktails
+        )
+
+        setupPreviewDrinksFragment(
+            PreviewDrinksFragment.newInstance(CategoriesPreviewDrinks.SHOTS),
+            R.id.previewShots
+        )
+
+        setupPreviewDrinksFragment(
+            PreviewDrinksFragment.newInstance(CategoriesPreviewDrinks.BEERS),
+            R.id.previewBeers
+        )
     }
 
 
@@ -31,26 +56,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    fun setupPopularDrinksFragment() {
-        val fragment = HorizontalPreviewFragment.newInstance(TypePreviewDrinks.POPULAR)
-        if (childFragmentManager.findFragmentById(R.id.horizontalPopularDrinks) == null) {
+    fun setupPreviewDrinksFragment(fragment: Fragment, resId: Int) {
+        if (childFragmentManager.findFragmentById(resId) == null) {
             childFragmentManager
                 .beginTransaction()
-                .replace(R.id.horizontalPopularDrinks, fragment, null)
+                .replace(resId, fragment, null)
                 .addToBackStack(null)
                 .commit()
         }
     }
-
-    fun setupRecentDrinksFragment() {
-        val fragment = HorizontalPreviewFragment.newInstance(TypePreviewDrinks.RECENT)
-        if (childFragmentManager.findFragmentById(R.id.horizontalRecentDrinks) == null) {
-            childFragmentManager
-                .beginTransaction()
-                .replace(R.id.horizontalRecentDrinks, fragment, null)
-                .addToBackStack(null)
-                .commit()
-        }
-    }
-
 }

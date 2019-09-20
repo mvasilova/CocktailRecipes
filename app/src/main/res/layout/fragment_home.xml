@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/colorBackground"
->
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="@string/home"
-            android:background="@color/colorPrimary" android:id="@+id/toolbar">
+            app:title="@string/home">
+
         <ImageView
+                android:id="@+id/ivSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search"
                 android:layout_gravity="end"
                 android:layout_margin="10dp"
-                android:id="@+id/ivSearch"
                 android:contentDescription="@string/drinks_image"
-                android:foreground="?selectableItemBackgroundBorderless"/>
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_search" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedSV"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <FrameLayout
                     android:id="@+id/horizontalRecentDrinks"
@@ -41,21 +44,22 @@
                     android:id="@+id/horizontalPopularDrinks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            <fragment
-                    android:name="com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsFragment"
+
+            <FrameLayout
+                    android:id="@+id/previewCocktails"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cocktailsFragment" tools:layout="@layout/fragment_list_preview_cat"/>
-            <fragment
-                    android:name="com.mvasilova.cocktailrecipes.app.ui.home.shotslist.ShotsFragment"
+                    android:layout_height="wrap_content" />
+
+            <FrameLayout
+                    android:id="@+id/previewShots"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/shotsFragment" tools:layout="@layout/fragment_list_preview_cat"/>
-            <fragment
-                    android:name="com.mvasilova.cocktailrecipes.app.ui.home.beerslist.BeersFragment"
+                    android:layout_height="wrap_content" />
+
+            <FrameLayout
+                    android:id="@+id/previewBeers"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/beersFragment" tools:layout="@layout/fragment_list_preview_cat"/>
+                    android:layout_height="wrap_content" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

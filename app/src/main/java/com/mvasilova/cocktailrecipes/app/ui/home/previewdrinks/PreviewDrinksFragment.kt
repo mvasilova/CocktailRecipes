@@ -1,4 +1,4 @@
-package com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist
+package com.mvasilova.cocktailrecipes.app.ui.home.previewdrinks
 
 import android.os.Bundle
 import android.view.View
@@ -11,24 +11,31 @@ import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.app.platform.State
 import com.mvasilova.cocktailrecipes.app.ui.home.adapters.PreviewDrinksCategoryAdapter
+import com.mvasilova.cocktailrecipes.app.ui.home.previewdrinks.CategoriesPreviewDrinks.*
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.fragment_list_preview_cat.*
 import org.jetbrains.anko.support.v4.longToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-class CocktailsFragment : Fragment(R.layout.fragment_list_preview_cat) {
+class PreviewDrinksFragment : Fragment(R.layout.fragment_list_preview_cat) {
 
     private lateinit var bundle: Bundle
-    private val cocktailsViewModel: CocktailsViewModel by viewModel()
+    private val category by lazy { arguments?.getSerializable(ARGUMENT_CATEGORY) }
+    private val previewDrinksViewModel: PreviewDrinksViewModel by viewModel {
+        parametersOf(
+            category
+        )
+    }
     private val previewDrinksCategoryAdapter by lazy { PreviewDrinksCategoryAdapter(::onRecipeInfoFragment) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tvNameCategory.text = getString(R.string.title_cocktails)
+        setupTitle()
         setupRecyclerView()
-        observe(cocktailsViewModel.state, ::handleState)
-        observe(cocktailsViewModel.cocktails, ::handleCocktails)
+        observe(previewDrinksViewModel.state, ::handleState)
+        observe(previewDrinksViewModel.drinks, ::handleDrinks)
 
 
         buttonOpenList.setOnClickListener {
@@ -47,9 +54,9 @@ class CocktailsFragment : Fragment(R.layout.fragment_list_preview_cat) {
         }
     }
 
-    private fun handleCocktails(cocktails: DrinksFilter?) {
-        previewDrinksCategoryAdapter.collection = cocktails!!.drinks.takeLast(6)
-        bundle = bundleOf("list" to cocktails.drinks, "title" to getString(R.string.title_cocktails))
+    private fun handleDrinks(drinks: DrinksFilter?) {
+        previewDrinksCategoryAdapter.collection = drinks!!.drinks.takeLast(6)
+        bundle = bundleOf("list" to drinks.drinks, "title" to getString(R.string.title_cocktails))
     }
 
     private fun onRecipeInfoFragment(id: String?) {
@@ -60,9 +67,28 @@ class CocktailsFragment : Fragment(R.layout.fragment_list_preview_cat) {
         }
     }
 
+    private fun setupTitle() {
+        when (category) {
+            COCKTAILS -> tvNameCategory.text = getString(R.string.title_cocktails)
+            SHOTS -> tvNameCategory.text = getString(R.string.title_shots)
+            BEERS -> tvNameCategory.text = getString(R.string.title_beers)
+        }
+    }
+
     private fun setupRecyclerView() {
         rvDrinks.layoutManager = GridLayoutManager(activity, 3)
         rvDrinks.adapter = previewDrinksCategoryAdapter
     }
 
+    companion object {
+        const val ARGUMENT_CATEGORY = "category"
+
+        fun newInstance(category: CategoriesPreviewDrinks) =
+            PreviewDrinksFragment().apply {
+                arguments = bundleOf(ARGUMENT_CATEGORY to category)
+            }
+    }
+
 }
+
+enum class CategoriesPreviewDrinks { COCKTAILS, SHOTS, BEERS }
