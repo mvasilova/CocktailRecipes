@@ -52,7 +52,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_list) {
         when (state) {
             State.Loading -> tvMessage.apply {
                 visibility = View.VISIBLE
-                text = getString(R.string.drinks_not_found)
+                text = getString(R.string.not_found)
             }
             State.Loaded -> tvMessage.visibility = View.GONE
             is State.Error -> longToast(getString(R.string.toast_error))

@@ -50,7 +50,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_list) {
 
     private fun handleFavorites(favorite: List<Favorite>?) {
         if (favorite.isNullOrEmpty()) {
-            tvMessage.text = getString(R.string.drinks_not_found)
+            tvMessage.text = getString(R.string.not_found)
             tvMessage.visibility = View.VISIBLE
             favoritesAdapter.collection = favorite ?: listOf()
 

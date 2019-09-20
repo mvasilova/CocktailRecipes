@@ -12,7 +12,7 @@
     <string name="home">Home</string>
     <string name="drinks">Drinks</string>
     <string name="search_by_name">Search by name</string>
-    <string name="drinks_not_found">Drinks not found. Please try again.</string>
+    <string name="not_found">Not found. Please try again.</string>
     <string name="find_drinks">Here you can find drinks by name.</string>
     <string name="filter">Filter by…</string>
     <string name="alcoholic">Alcoholic</string>
@@ -25,4 +25,9 @@
     <string name="intent_text">I would like to share this with you. Here you can download this app from Play Store
         *url*
     </string>
+    <string name="filter_by_alcohol">Filter by alcohol</string>
+    <string name="filter_by_category">Filter by category</string>
+    <string name="filter_by_glass">Filter by glass</string>
+    <string name="multi_filter_by_ingredients">Multi-Filter by ingredients</string>
+    <string name="action_search">Search</string>
 </resources>

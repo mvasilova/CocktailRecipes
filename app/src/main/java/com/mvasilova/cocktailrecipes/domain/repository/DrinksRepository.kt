@@ -28,6 +28,9 @@ class DrinksRepository(private val api: Api, private val favoriteDao: FavoriteDa
     fun getSearchByNameList(nameDrink: String) = api.getSearchByNameList(nameDrink)
         .observeMainThread()
 
+    fun getFiltersList(type: String) = api.getFiltersList(mapOf(type to "list"))
+        .observeMainThread()
+
     fun getAllFavorite() = favoriteDao.getAll()
 
     private fun insertFavorite(favorite: Favorite) = favoriteDao.insertDrink(favorite)

@@ -1,7 +1,9 @@
 package com.mvasilova.cocktailrecipes.data.network
 
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
+import com.mvasilova.cocktailrecipes.data.entity.FiltersList
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -31,5 +33,5 @@ interface Api {
     fun getPopularDrinks(): Single<DrinksFilter>
 
     @GET("list.php?")
-    fun getFilterList(@QueryMap info: Map<String, String>): Single<DrinksFilter>
+    fun getFiltersList(@QueryMap(encoded = true) type: Map<String, String>): Observable<FiltersList>
 }

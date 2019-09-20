@@ -2,6 +2,8 @@ package com.mvasilova.cocktailrecipes.app.di.module
 
 import com.mvasilova.cocktailrecipes.app.ui.drinkslist.DrinksListViewModel
 import com.mvasilova.cocktailrecipes.app.ui.favorites.FavoritesViewModel
+import com.mvasilova.cocktailrecipes.app.ui.filter.filterbyparameters.FilterByParametersViewModel
+import com.mvasilova.cocktailrecipes.app.ui.filter.filterbyparameters.TypeDrinksFilters
 import com.mvasilova.cocktailrecipes.app.ui.home.beerslist.BeersViewModel
 import com.mvasilova.cocktailrecipes.app.ui.home.cocktailslist.CocktailsViewModel
 import com.mvasilova.cocktailrecipes.app.ui.home.horizontalpreview.HorizontalPreviewViewModel
@@ -18,6 +20,8 @@ val viewModelModule = module {
     viewModel { ShotsViewModel(get()) }
     viewModel { BeersViewModel(get()) }
     viewModel { (type: TypePreviewDrinks) -> HorizontalPreviewViewModel(type, get()) }
+    viewModel { (type: TypeDrinksFilters) -> FilterByParametersViewModel(type, get()) }
+
 
     viewModel { (idDrink: String) -> RecipeInfoViewModel(get(), idDrink) }
     viewModel { DrinksListViewModel() }

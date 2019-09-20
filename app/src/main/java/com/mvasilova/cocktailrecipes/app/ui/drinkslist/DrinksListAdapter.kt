@@ -8,7 +8,7 @@ import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.inflate
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
-import kotlinx.android.synthetic.main.item_list.view.*
+import kotlinx.android.synthetic.main.item_drinks_list.view.*
 
 class DrinksListAdapter(val clickListener: (String?) -> Unit) :
     RecyclerView.Adapter<DrinksListAdapter.ViewHolder>() {
@@ -20,7 +20,7 @@ class DrinksListAdapter(val clickListener: (String?) -> Unit) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.item_list))
+        ViewHolder(parent.inflate(R.layout.item_drinks_list))
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
         viewHolder.bind(collection[position])

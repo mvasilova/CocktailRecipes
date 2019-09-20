@@ -50,7 +50,7 @@ class DrinksListFragment : Fragment(R.layout.fragment_list) {
 
     private fun handleDrinks(drinks: List<Drink>?) {
         if (drinks.isNullOrEmpty()) {
-            tvMessage.text = getString(R.string.drinks_not_found)
+            tvMessage.text = getString(R.string.not_found)
             tvMessage.visibility = View.VISIBLE
             drinksListAdapter.collection = drinks ?: listOf()
 
