@@ -61,7 +61,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             childFragmentManager
                 .beginTransaction()
                 .replace(resId, fragment, null)
-                .addToBackStack(null)
                 .commit()
         }
     }
