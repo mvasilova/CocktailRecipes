@@ -24,6 +24,9 @@
               android:name="com.mvasilova.cocktailrecipes.app.ui.drinkslist.DrinksListFragment"
               android:label="DrinksListFragment"
               tools:layout="@layout/fragment_list">
+        <action
+                android:id="@+id/action_drinksListFragment_to_recipeInfoFragment"
+                app:destination="@id/recipeInfoFragment" />
     </fragment>
 
     <fragment android:id="@+id/searchByNameFragment"

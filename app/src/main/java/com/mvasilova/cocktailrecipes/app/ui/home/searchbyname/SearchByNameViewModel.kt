@@ -18,7 +18,7 @@ class SearchByNameViewModel(val drinksRepository: DrinksRepository) : BaseViewMo
                     drinks.value = it.drinks
                 } else {
                     state.value = State.Loaded
-                    drinks.value = it.drinks
+                    drinks.value = it.drinks.sortedBy { it.strDrink }
                 }
             }, {
                 state.value = State.Error(it)
