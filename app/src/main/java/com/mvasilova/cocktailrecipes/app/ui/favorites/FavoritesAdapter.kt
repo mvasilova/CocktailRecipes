@@ -7,6 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.inflate
+import com.mvasilova.cocktailrecipes.app.platform.BaseViewHolder
 import com.mvasilova.cocktailrecipes.data.entity.Favorite
 import kotlinx.android.synthetic.main.item_drinks_list.view.*
 
@@ -27,18 +28,19 @@ class FavoritesAdapter(val clickListener: (String?) -> Unit) :
 
     override fun getItemCount() = collection.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(override val containerView: View) :
+        BaseViewHolder<Favorite>(containerView) {
 
-        fun bind(item: Favorite) {
+        override fun bind(item: Favorite) {
 
-            GlideApp.with(itemView.context)
+            GlideApp.with(containerView.context)
                 .load(item.drinkThumb)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .optionalCenterCrop()
-                .into(itemView.ivImage)
-            itemView.tvName.text = item.name
+                .into(containerView.ivImage)
+            containerView.tvName.text = item.name
 
-            itemView.setOnClickListener { clickListener.invoke(item.id) }
+            containerView.setOnClickListener { clickListener.invoke(item.id) }
         }
     }
 }

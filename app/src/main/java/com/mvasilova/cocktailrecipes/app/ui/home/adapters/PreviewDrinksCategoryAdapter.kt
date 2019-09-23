@@ -7,6 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.inflate
+import com.mvasilova.cocktailrecipes.app.platform.BaseViewHolder
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.item_preview_cat.view.*
 
@@ -28,20 +29,21 @@ class PreviewDrinksCategoryAdapter(val clickListener: (String?) -> Unit) :
 
     override fun getItemCount() = collection.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(override val containerView: View) :
+        BaseViewHolder<DrinksFilter.Drink>(containerView) {
 
-        fun bind(item: DrinksFilter.Drink){
+        override fun bind(item: DrinksFilter.Drink) {
 
-            GlideApp.with(itemView.context)
+            GlideApp.with(containerView.context)
                 .load(item.strDrinkThumb)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .optionalCenterCrop()
-                .into(itemView.ivImage)
+                .into(containerView.ivImage)
 
-            itemView.tvName.visibility = if (titleIsVisible) View.VISIBLE else View.GONE
-            itemView.tvName.text = item.strDrink
+            containerView.tvName.visibility = if (titleIsVisible) View.VISIBLE else View.GONE
+            containerView.tvName.text = item.strDrink
 
-            itemView.setOnClickListener { clickListener.invoke(item.idDrink) }
+            containerView.setOnClickListener { clickListener.invoke(item.idDrink) }
         }
     }
 }

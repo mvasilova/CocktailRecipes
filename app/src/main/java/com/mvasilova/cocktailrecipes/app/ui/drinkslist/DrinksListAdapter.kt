@@ -7,6 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.ext.inflate
+import com.mvasilova.cocktailrecipes.app.platform.BaseViewHolder
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.item_drinks_list.view.*
 
@@ -27,18 +28,19 @@ class DrinksListAdapter(val clickListener: (String?) -> Unit) :
 
     override fun getItemCount() = collection.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(override val containerView: View) :
+        BaseViewHolder<DrinksFilter.Drink>(containerView) {
 
-        fun bind(item: DrinksFilter.Drink) {
+        override fun bind(item: DrinksFilter.Drink) {
 
-            GlideApp.with(itemView.context)
+            GlideApp.with(containerView.context)
                 .load(item.strDrinkThumb)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .optionalCenterCrop()
-                .into(itemView.ivImage)
-            itemView.tvName.text = item.strDrink
+                .into(containerView.ivImage)
+            containerView.tvName.text = item.strDrink
 
-            itemView.setOnClickListener { clickListener.invoke(item.idDrink) }
+            containerView.setOnClickListener { clickListener.invoke(item.idDrink) }
         }
     }
 }

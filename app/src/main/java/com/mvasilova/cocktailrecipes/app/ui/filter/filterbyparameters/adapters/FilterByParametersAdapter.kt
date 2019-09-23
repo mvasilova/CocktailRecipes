@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.inflate
+import com.mvasilova.cocktailrecipes.app.platform.BaseViewHolder
 import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
 import kotlinx.android.synthetic.main.item_filters_list.view.*
 
@@ -25,21 +26,22 @@ class FilterByParametersAdapter(val clickListener: (String?) -> Unit) :
 
     override fun getItemCount() = collection.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(override val containerView: View) :
+        BaseViewHolder<Filter>(containerView) {
 
-        fun bind(item: Filter) {
+        override fun bind(item: Filter) {
 
 
             if (item.isMultiChoice) {
-                itemView.checkbox.visibility = View.VISIBLE
+                containerView.checkbox.visibility = View.VISIBLE
             } else {
-                itemView.checkbox.visibility = View.GONE
+                containerView.checkbox.visibility = View.GONE
             }
 
-            item.isChecked = itemView.checkbox.isChecked
+            item.isChecked = containerView.checkbox.isChecked
 
-            itemView.tvNameFilter.text = item.name
-            itemView.setOnClickListener { clickListener.invoke(item.name) }
+            containerView.tvNameFilter.text = item.name
+            containerView.setOnClickListener { clickListener.invoke(item.name) }
         }
     }
 }
