@@ -49,6 +49,19 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
         observe(filterByParametersViewModel.state, ::handleState)
         observe(filterByParametersViewModel.filters, ::handleFilters)
 
+        btnSearch.setOnClickListener {
+            filterByParametersViewModel.filterBySearch("")
+
+            if (filterByParametersAdapter.collection.any { it.isChecked }) {
+                onDrinksListFragment(filterByParametersAdapter
+                    .collection
+                    .filter { it.isChecked }
+                    .map { it.name }
+                    .joinToString(separator = ","))
+            } else {
+                longToast(getString(R.string.toast_select_ingredients))
+            }
+        }
     }
 
     override fun onPause() {

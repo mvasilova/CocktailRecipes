@@ -31,17 +31,21 @@ class FilterByParametersAdapter(val clickListener: (String?) -> Unit) :
 
         override fun bind(item: Filter) {
 
-
             if (item.isMultiChoice) {
                 containerView.checkbox.visibility = View.VISIBLE
+                containerView.isEnabled = false
             } else {
                 containerView.checkbox.visibility = View.GONE
+                containerView.isEnabled = true
+            }
+            containerView.checkbox.setOnCheckedChangeListener { _, isChecked ->
+                item.isChecked = isChecked
             }
 
-            item.isChecked = containerView.checkbox.isChecked
-
-            containerView.tvNameFilter.text = item.name
             containerView.setOnClickListener { clickListener.invoke(item.name) }
+
+            containerView.checkbox.isChecked = item.isChecked
+            containerView.tvNameFilter.text = item.name
         }
     }
 }

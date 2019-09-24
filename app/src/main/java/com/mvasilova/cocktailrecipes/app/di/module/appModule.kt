@@ -7,8 +7,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mvasilova.cocktailrecipes.BuildConfig
 import com.mvasilova.cocktailrecipes.data.db.AppDatabase
+import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
 import com.mvasilova.cocktailrecipes.data.mappers.JsonDeserializerDrink
+import com.mvasilova.cocktailrecipes.data.mappers.JsonDeserializerListDrink
 import com.mvasilova.cocktailrecipes.data.network.Api
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
 import okhttp3.OkHttpClient
@@ -32,7 +34,9 @@ val appModule = module {
 
     single { JsonDeserializerDrink() }
 
-    single { buildJson(get()) }
+    single { JsonDeserializerListDrink() }
+
+    single { buildJson(get(), get()) }
 
     single { buildRoom(get()) }
 
@@ -54,9 +58,11 @@ private fun buildRoom(context: Context): AppDatabase {
         .build()
 }
 
-private fun buildJson(deserializerDrink: JsonDeserializerDrink) =
-    GsonBuilder()
+private fun buildJson(deserializerDrink: JsonDeserializerDrink,
+                      jsonDeserializerListDrink: JsonDeserializerListDrink) =
+        GsonBuilder()
         .registerTypeAdapter(RecipeInfoDrink.Drink::class.java, deserializerDrink)
+        .registerTypeAdapter(DrinksFilter::class.java, jsonDeserializerListDrink)
         .create()
 
 

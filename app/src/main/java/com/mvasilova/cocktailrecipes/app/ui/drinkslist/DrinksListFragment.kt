@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.MainActivity
 import com.mvasilova.cocktailrecipes.app.ext.observe
+import com.mvasilova.cocktailrecipes.app.platform.State
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.jetbrains.anko.support.v4.longToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -43,6 +45,7 @@ class DrinksListFragment : Fragment(R.layout.fragment_list) {
         setupToolbar()
         setupRecyclerView()
 
+        observe(drinksListViewModel.state, ::handleState)
         observe(drinksListViewModel.drinks, ::handleDrinks)
     }
 
@@ -56,10 +59,17 @@ class DrinksListFragment : Fragment(R.layout.fragment_list) {
             tvMessage.text = getString(R.string.not_found)
             tvMessage.visibility = View.VISIBLE
             drinksListAdapter.collection = drinks ?: listOf()
-
         } else {
             tvMessage.visibility = View.GONE
             drinksListAdapter.collection = drinks
+        }
+    }
+
+    private fun handleState(state: State?) {
+        when (state) {
+            State.Loading -> progressBar.visibility = View.VISIBLE
+            State.Loaded -> progressBar.visibility = View.GONE
+            is State.Error -> longToast(getString(R.string.toast_error))
         }
     }
 
