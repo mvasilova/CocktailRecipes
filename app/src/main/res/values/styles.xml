@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded.Shadow">
         <item name="android:shadowDy">0</item>
         <item name="android:shadowDx">0</item>

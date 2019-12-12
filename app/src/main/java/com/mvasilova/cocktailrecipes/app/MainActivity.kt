@@ -16,10 +16,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
         setContentView(R.layout.container)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
-        } // Else, need to wait for onRestoreInstanceState
+        }
         
     }
 
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         val navGraphIds = listOf(R.navigation.home, R.navigation.filter, R.navigation.favorites)
 
-        // Setup the bottom navigation view with a list of navigation graphs
         val controller = bottomNavigationView.setupBottomWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = supportFragmentManager,
@@ -41,10 +41,6 @@ class MainActivity : AppCompatActivity() {
             intent = intent
         )
 
-//        // Whenever the selected controller changes, setup the action bar.
-//        controller.observe(this, Observer { navController ->
-//            setupActionBarWithNavController(navController)
-//        })
         currentNavController = controller
     }
 
@@ -52,11 +48,4 @@ class MainActivity : AppCompatActivity() {
         return currentNavController?.value?.navigateUp() ?: false
     }
 
-//    override fun onBackPressed() {
-//        if (supportFragmentManager.backStackEntryCount > 1) {
-//            supportFragmentManager.popBackStack()
-//        } else {
-//            this.finish()
-//        }
-//    }
 }
