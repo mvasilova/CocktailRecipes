@@ -11,9 +11,7 @@
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
+                style="@style/Toolbar"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -24,18 +22,14 @@
 
         <Button
                 android:id="@+id/btnSearch"
+                style="@style/Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/bg_button"
                 android:text="@string/action_search"
-                android:textAppearance="@style/RegularWhiteTextTitle"
                 android:visibility="gone" />
     </LinearLayout>
 
     <ProgressBar
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,11 +37,6 @@
 
     <TextView
             android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableTop="@drawable/ic_drinks"
-            android:drawablePadding="10dp"
-            android:textAppearance="@style/RegularMessageBody"
+            style="@style/RegularTextBody.Message.LabelNotFound"
             android:visibility="gone" />
 </FrameLayout>

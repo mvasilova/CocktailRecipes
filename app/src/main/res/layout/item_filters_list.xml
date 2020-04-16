@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
         android:foreground="?selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
@@ -15,8 +16,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="15dp"
-                android:text="fbdhjfbjsd"
+                android:layout_margin="@dimen/default_margin_15"
+                tools:text="Example"
                 android:textAppearance="@style/RegularTextTitle" />
 
         <View
@@ -28,8 +29,8 @@
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|right"
-                android:layout_margin="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="@dimen/default_margin_15"
                 android:visibility="gone" />
 
     </LinearLayout>

@@ -63,15 +63,15 @@ class RecipeInfoFragment : Fragment(R.layout.fragment_recipe_info) {
         val ingredients = newList.mapIndexed { index, s -> Pair(index, s) }
             .joinToString(separator = "\n", transform = { "${resources.getString(R.string.dot)} ${it.second}" })
 
-        tvTitleIng.text = getString(R.string.ingredients)
+        tvTitleIng.text = getString(R.string.filter_ingredients)
         tvTitleIns.text = getString(R.string.instructions)
-        tvTitleGlass.text = getString(R.string.glass)
+        tvTitleGlass.text = getString(R.string.filter_glass)
         tvIngredients.text = ingredients
         tvInstructions.text = drink.strInstructions
         tvGlass.text = drink.strGlass
 
-        text = "${drink.strDrink}\n${getString(R.string.ingredients)}:\n$ingredients\n\n" +
-                "${getString(R.string.instructions)}:\n${drink.strInstructions}\n\n${getString(R.string.glass)}:\n${drink.strGlass}" +
+        text = "${drink.strDrink}\n${getString(R.string.filter_ingredients)}:\n$ingredients\n\n" +
+                "${getString(R.string.instructions)}:\n${drink.strInstructions}\n\n${getString(R.string.filter_glass)}:\n${drink.strGlass}" +
                 "\n\n${getString(R.string.drinks_image)}:\n${drink.strDrinkThumb}" +
                 "\n\n${resources.getString(R.string.intent_text)} "
     }

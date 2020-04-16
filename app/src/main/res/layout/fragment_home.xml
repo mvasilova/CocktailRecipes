@@ -8,20 +8,14 @@
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            style="@style/Toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/home">
 
         <ImageView
                 android:id="@+id/ivSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="10dp"
+                style="@style/ImageViewIcon"
                 android:contentDescription="@string/drinks_image"
-                android:foreground="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_search" />
     </androidx.appcompat.widget.Toolbar>
 

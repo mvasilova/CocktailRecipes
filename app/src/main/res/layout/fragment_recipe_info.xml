@@ -1,69 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:fitsSystemWindows="true"
+            android:layout_height="@dimen/app_bar_height"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:contentScrim="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:fitsSystemWindows="true"
-                app:expandedTitleGravity="bottom"
                 app:collapsedTitleGravity="left"
-                app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded.Shadow">
+                app:contentScrim="@color/colorPrimary"
+                app:expandedTitleGravity="bottom"
+                app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded.Shadow"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+                    android:id="@+id/ivDrink"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/ivDrink"
                     android:background="@color/colorWhite"
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="parallax"
-                    android:contentDescription="@string/drinks_image"/>
+                    android:contentDescription="@string/drinks_image"
+                    app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    app:navigationIcon="?homeAsUpIndicator"
                     android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/shape_toolbar"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    android:background="@drawable/shape_toolbar">
+                    app:navigationIcon="?homeAsUpIndicator"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_share"
-                        android:layout_gravity="end"
-                        android:layout_margin="10dp"
                         android:id="@+id/ivShare"
+                        style="@style/ImageViewIcon"
                         android:contentDescription="@string/share"
-                        android:foreground="?selectableItemBackgroundBorderless"
-                />
+                        android:src="@drawable/ic_share" />
+
                 <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_favorite_border"
-                        android:layout_gravity="end"
-                        android:layout_margin="10dp"
                         android:id="@+id/ivFavorite"
+                        style="@style/ImageViewIcon"
                         android:contentDescription="@string/drinks_image"
-                        android:foreground="?selectableItemBackgroundBorderless"
-                />
+                        android:src="@drawable/ic_favorite_border" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -74,60 +61,65 @@
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/app_bar_layout"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ScrollingActivity">
-        <RelativeLayout
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/colorWhite">
+                android:layout_margin="@dimen/default_margin_10"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
 
             <TextView
                     android:id="@+id/tvTitleIng"
-                    style="@style/InfoRecipeTitle"/>
+                    style="@style/RegularTextBody.Message.InfoRecipeTitle"
+                    android:layout_gravity="center"
+                    tools:text="example" />
 
             <TextView
+                    android:id="@+id/tvIngredients"
+                    style="@style/RegularTextBody"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvIngredients"
-                    android:layout_below="@id/tvTitleIng"
-                    tools:text="example"
                     android:layout_margin="10dp"
-                    style="@style/RegularTextBody"/>
+                    tools:text="example" />
+
             <TextView
                     android:id="@+id/tvTitleIns"
-                    android:layout_below="@id/tvIngredients"
-                    style="@style/InfoRecipeTitle"/>
+                    style="@style/RegularTextBody.Message.InfoRecipeTitle"
+                    android:layout_gravity="center"
+                    tools:text="example" />
+
             <TextView
                     android:id="@+id/tvInstructions"
+                    style="@style/RegularTextBody"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvTitleIns"
-                    tools:text="example"
                     android:layout_margin="10dp"
-                    style="@style/RegularTextBody"/>
+                    tools:text="example" />
+
             <TextView
                     android:id="@+id/tvTitleGlass"
-                    android:layout_below="@id/tvInstructions"
-                    style="@style/InfoRecipeTitle"/>
+                    style="@style/RegularTextBody.Message.InfoRecipeTitle"
+                    android:layout_gravity="center"
+                    tools:text="example" />
+
             <TextView
                     android:id="@+id/tvGlass"
+                    style="@style/RegularTextBody"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvTitleGlass"
-                    tools:text="example"
                     android:layout_margin="10dp"
-                    style="@style/RegularTextBody"/>
-        </RelativeLayout>
+                    tools:text="example" />
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
     <ProgressBar
-            style="?android:attr/progressBarStyle"
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
             android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -55,9 +55,7 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
             if (filterByParametersAdapter.collection.any { it.isChecked }) {
                 onDrinksListFragment(filterByParametersAdapter
                     .collection
-                    .filter { it.isChecked }
-                    .map { it.name }
-                    .joinToString(separator = ","))
+                    .filter { it.isChecked }.joinToString(separator = ",") { it.name })
             } else {
                 longToast(getString(R.string.toast_select_ingredients))
             }
@@ -84,7 +82,7 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
             filterByParametersAdapter.collection = filters ?: listOf()
         } else {
             tvMessage.visibility = View.GONE
-            filterByParametersAdapter.collection = filters
+            filterByParametersAdapter.collection = filters.sortedByDescending { it.isChecked }
         }
     }
 

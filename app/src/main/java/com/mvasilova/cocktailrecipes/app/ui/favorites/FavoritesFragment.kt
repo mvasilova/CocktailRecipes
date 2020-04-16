@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoritesFragment : Fragment(R.layout.fragment_list) {
 
-    protected val favoritesViewModel: FavoritesViewModel by viewModel()
+    private val favoritesViewModel: FavoritesViewModel by viewModel()
     private val favoritesAdapter by lazy { FavoritesAdapter(::onRecipeInfoFragment) }
     lateinit var searchView: SearchView
     private var query: String = ""

@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.mvasilova.cocktailrecipes.data.entity.Favorite
 
-@Database(entities = arrayOf(Favorite::class), version = 1)
+@Database(entities = [Favorite::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDao
 }
