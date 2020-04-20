@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/filterFragment"
-            android:name="com.mvasilova.cocktailrecipes.app.ui.filter.FilterFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.filter.FilterFragment"
             android:label="FilterFragment"
             tools:layout="@layout/fragment_filter">
         <action
@@ -17,11 +17,11 @@
 
     <fragment
             android:id="@+id/filterByParametersFragment"
-            android:name="com.mvasilova.cocktailrecipes.app.ui.filter.filterbyparameters.FilterByParametersFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.FilterByParametersFragment"
             android:label="FilterByParametersFragment">
         <argument
                 android:name="type"
-                app:argType="com.mvasilova.cocktailrecipes.app.ui.filter.filterbyparameters.TypeDrinksFilters" />
+                app:argType="com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.TypeDrinksFilters" />
         <action
                 android:id="@+id/action_filterByParametersFragment_to_drinksListFragment"
                 app:destination="@id/drinksListFragment" />
@@ -29,7 +29,7 @@
 
     <fragment
             android:id="@+id/drinksListFragment"
-            android:name="com.mvasilova.cocktailrecipes.app.ui.drinkslist.DrinksListFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.drinkslist.DrinksListFragment"
             android:label="DrinksListFragment">
 
         <argument
@@ -48,7 +48,7 @@
 
     <fragment
             android:id="@+id/recipeInfoFragment"
-            android:name="com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.recipe.RecipeInfoFragment"
             android:label="RecipeInfoFragment"
             tools:layout="@layout/fragment_recipe_info">
 

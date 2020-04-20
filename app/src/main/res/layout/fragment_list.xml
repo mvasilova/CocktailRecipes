@@ -11,14 +11,15 @@
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                style="@style/Toolbar"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                style="@style/Toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:padding="@dimen/default_margin_6" />
 
         <Button
                 android:id="@+id/btnSearch"

@@ -3,8 +3,8 @@ package com.mvasilova.cocktailrecipes.data.network
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import com.mvasilova.cocktailrecipes.data.entity.FiltersList
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap

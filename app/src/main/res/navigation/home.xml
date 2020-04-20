@@ -8,11 +8,11 @@
     <fragment android:id="@+id/homeFragment"
               android:label="HomeFragment"
               tools:layout="@layout/fragment_home"
-              android:name="com.mvasilova.cocktailrecipes.app.ui.home.HomeFragment"/>
+              android:name="com.mvasilova.cocktailrecipes.presentation.home.HomeFragment"/>
 
 
     <fragment android:id="@+id/recipeInfoFragment"
-              android:name="com.mvasilova.cocktailrecipes.app.ui.recipe.RecipeInfoFragment"
+              android:name="com.mvasilova.cocktailrecipes.presentation.recipe.RecipeInfoFragment"
               android:label="RecipeInfoFragment"
               tools:layout="@layout/fragment_recipe_info">
 
@@ -21,7 +21,7 @@
     </fragment>
 
     <fragment android:id="@+id/drinksListFragment"
-              android:name="com.mvasilova.cocktailrecipes.app.ui.drinkslist.DrinksListFragment"
+              android:name="com.mvasilova.cocktailrecipes.presentation.drinkslist.DrinksListFragment"
               android:label="DrinksListFragment"
               tools:layout="@layout/fragment_list">
         <action
@@ -30,7 +30,7 @@
     </fragment>
 
     <fragment android:id="@+id/searchByNameFragment"
-              android:name="com.mvasilova.cocktailrecipes.app.ui.home.searchbyname.SearchByNameFragment"
+              android:name="com.mvasilova.cocktailrecipes.presentation.home.searchbyname.SearchByNameFragment"
               android:label="SearchByNameFragment"
               tools:layout="@layout/fragment_list"/>
 

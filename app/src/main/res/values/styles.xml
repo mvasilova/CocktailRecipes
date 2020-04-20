@@ -17,6 +17,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@color/colorPrimary</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded.Shadow">
@@ -37,12 +38,6 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_margin">@dimen/default_margin_15</item>
         <item name="android:drawablePadding">@dimen/default_margin_10</item>
-    </style>
-
-    <style name="RegularTextTitle.CategoryTitle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/default_margin_5</item>
     </style>
 
     <style name="RegularTextBody" parent="Widget.MaterialComponents.TextView">
@@ -73,7 +68,7 @@
 
     <style name="Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/default_margin_5</item>
+        <item name="android:layout_margin">@dimen/default_margin_6</item>
         <item name="android:background">@drawable/bg_button</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/font_16</item>
@@ -85,13 +80,13 @@
         <item name="android:minHeight">@dimen/card_min_height</item>
         <item name="cardBackgroundColor">@color/colorWhite</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardElevation">@dimen/card_elevation_5</item>
     </style>
 
     <style name="ScrollingPagerIndicator.Custom">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/default_margin_5</item>
+        <item name="android:layout_margin">@dimen/default_margin_10</item>
         <item name="spi_dotColor">@color/colorPaleAccent</item>
         <item name="spi_dotSelectedColor">@color/colorAccent</item>
         <item name="spi_dotSelectedSize">@dimen/dot_selected_size</item>

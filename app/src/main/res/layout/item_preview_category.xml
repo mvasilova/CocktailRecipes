@@ -3,18 +3,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cdImage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin_6"
+        android:layout_margin="@dimen/default_margin_4"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardElevation="@dimen/card_elevation_2">
+        app:cardElevation="@dimen/card_elevation_0">
 
     <ImageView
             android:id="@+id/ivImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drinks_image_height_220"
-            android:contentDescription="@string/drinks_image" />
+            android:layout_height="@dimen/drinks_image_height_140"
+            android:contentDescription="@string/drinks_image"
+            android:minWidth="@dimen/drinks_image_min_width" />
 
     <TextView
             android:id="@+id/tvName"
@@ -27,5 +28,4 @@
             android:padding="@dimen/default_margin_6"
             android:textAlignment="center"
             tools:text="Example" />
-
 </androidx.cardview.widget.CardView>

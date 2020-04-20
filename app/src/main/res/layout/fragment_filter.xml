@@ -8,7 +8,6 @@
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             style="@style/Toolbar"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/filter" />
 
     <LinearLayout

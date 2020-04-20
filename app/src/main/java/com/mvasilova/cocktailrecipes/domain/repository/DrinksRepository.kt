@@ -1,50 +1,22 @@
 package com.mvasilova.cocktailrecipes.domain.repository
 
-import androidx.lifecycle.Transformations
-import com.mvasilova.cocktailrecipes.app.ext.observeMainThread
-import com.mvasilova.cocktailrecipes.data.db.FavoriteDao
-import com.mvasilova.cocktailrecipes.data.entity.Favorite
-import com.mvasilova.cocktailrecipes.data.network.Api
+import androidx.lifecycle.LiveData
+import com.mvasilova.cocktailrecipes.data.db.entities.Favorite
+import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
+import com.mvasilova.cocktailrecipes.data.entity.FiltersList
+import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
-class DrinksRepository(private val api: Api, private val favoriteDao: FavoriteDao) {
-
-    fun getFilterDrinksList(type: String, name: String) =
-        api.getFilterDrinksList(mapOf(type to name))
-        .observeMainThread()
-
-    fun getRecentDrinks() = api.getRecentDrinks()
-        .observeMainThread()
-
-    fun getPopularDrinks() = api.getPopularDrinks()
-        .observeMainThread()
-
-    fun getRecipeInfoDrink(idDrink: String) = api.getRecipeInfoDrink(idDrink)
-        .observeMainThread()
-
-    fun getSearchByNameList(nameDrink: String) = api.getSearchByNameList(nameDrink)
-        .observeMainThread()
-
-    fun getFiltersList(type: String) = api.getFiltersList(mapOf(type to "list"))
-        .observeMainThread()
-
-    fun getAllFavorite() = favoriteDao.getAll()
-
-    private fun insertFavorite(favorite: Favorite) = favoriteDao.insertDrink(favorite)
-        .observeMainThread()
-
-    private fun deleteFavorite(idDrink: String) = favoriteDao.deleteDrink(idDrink)
-        .observeMainThread()
-
-    fun observeDrinkFavorite(drinkId: String) =
-        Transformations.map(favoriteDao.observeDrinkFavorite(drinkId)) { it > 0 }
-
-    fun actionFavorite(favorite: Favorite) = favoriteDao.isDrinkFavorite(favorite.id)
-        .observeMainThread()
-        .map { it > 0 }
-        .flatMap {
-            if (it)
-                deleteFavorite(favorite.id)
-            else
-                insertFavorite(favorite)
-        }
+interface DrinksRepository {
+    fun getFilterDrinksList(type: String, name: String): Single<DrinksFilter>
+    fun getRecentDrinks(): Single<DrinksFilter>
+    fun getPopularDrinks(): Single<DrinksFilter>
+    fun getRecipeInfoDrink(idDrink: String): Single<RecipeInfoDrink>
+    fun getSearchByNameList(nameDrink: String): Single<DrinksFilter>
+    fun getFiltersList(type: String): Observable<FiltersList>
+    fun getAllFavorite(): LiveData<List<Favorite>>
+    fun observeDrinkFavorite(drinkId: String): LiveData<Boolean>
+    fun actionFavorite(favorite: Favorite): Completable
 }
