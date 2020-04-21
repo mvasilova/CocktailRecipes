@@ -1,11 +1,12 @@
 package com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters
 
 import androidx.lifecycle.MutableLiveData
+import com.mvasilova.cocktailrecipes.app.ext.handleState
 import com.mvasilova.cocktailrecipes.app.platform.BaseViewModel
-import com.mvasilova.cocktailrecipes.app.platform.State
 import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
+import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters
+import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
-import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.TypeDrinksFilters.*
 import io.reactivex.rxjava3.core.Observable
 
 class FilterByParametersViewModel(
@@ -15,15 +16,13 @@ class FilterByParametersViewModel(
 
     val filters = MutableLiveData<List<Filter>>()
     var sourceList: List<Filter> = listOf()
-    var query = ""
 
     init {
         loadFilters()
     }
 
     fun loadFilters() {
-        drinksRepository.getFiltersList(type.param)
-            .doOnSubscribe { state.value = State.Loading }
+        drinksRepository.getFiltersList(type.param).handleState(state)
             .flatMap { Observable.fromIterable(it.drinks) }
             .map {
                 when (type) {
@@ -39,13 +38,10 @@ class FilterByParametersViewModel(
                     sortBy { it.name }
                 }.filter { it.name.isNotEmpty() }
             }
-            .subscribe({
-                state.value = State.Loaded
+            .subscribe { it ->
                 sourceList = it
                 filters.value = it
-            }, {
-                state.value = State.Error(it)
-            }).addToDisposables()
+            }.addToDisposables()
     }
 
     fun filterBySearch(query: String) {

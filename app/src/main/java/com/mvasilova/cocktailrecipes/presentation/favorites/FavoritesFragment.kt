@@ -70,19 +70,21 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
     }
 
     private fun handleFavorites(favorite: List<Favorite>?) {
-        tvMessage.text = getString(R.string.not_found)
-        tvMessage.isVisible = favorite.isNullOrEmpty()
+        favorite?.let { list ->
+            tvMessage.text = getString(R.string.not_found)
+            tvMessage.isVisible = favorite.isNullOrEmpty()
 
-        val list = mutableListOf<DisplayableItem>()
-        favorite?.groupBy { it.name.orEmpty().first().toUpperCase() }?.forEach {
-            list.add(AlphabetLetter(it.key.toString()))
-            it.value.forEach { favorite ->
-                val drink = convertFavoriteToDrink(favorite)
-                drink.isFavorite = true
-                list.add(drink)
+            val items = mutableListOf<DisplayableItem>()
+            list.groupBy { it.name.orEmpty().first().toUpperCase() }.forEach {
+                items.add(AlphabetLetter(it.key.toString()))
+                it.value.forEach { favorite ->
+                    val drink = convertFavoriteToDrink(favorite)
+                    drink.isFavorite = true
+                    items.add(drink)
+                }
             }
+            favoritesAdapter.setData(items)
         }
-        favoritesAdapter.setData(list)
     }
 
     private fun setupRecyclerView() {

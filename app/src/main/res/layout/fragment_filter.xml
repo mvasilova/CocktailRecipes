@@ -10,80 +10,9 @@
             style="@style/Toolbar"
             app:title="@string/filter" />
 
-    <LinearLayout
-            android:id="@+id/filterByAlcoholic"
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:orientation="vertical">
-
-        <TextView
-                style="@style/RegularTextTitle.FilterName"
-                android:drawableStart="@drawable/ic_alcoholic"
-                android:text="@string/filter_alcoholic" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/view_height"
-                android:layout_gravity="bottom"
-                android:background="?android:attr/listDivider" />
-    </LinearLayout>
-
-    <LinearLayout
-            android:id="@+id/filterByCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:orientation="vertical">
-
-        <TextView
-                style="@style/RegularTextTitle.FilterName"
-                android:drawableStart="@drawable/ic_category"
-                android:text="@string/filter_category" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/view_height"
-                android:layout_gravity="bottom"
-                android:background="?android:attr/listDivider" />
-    </LinearLayout>
-
-    <LinearLayout
-            android:id="@+id/filterByGlass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:orientation="vertical">
-
-        <TextView
-                style="@style/RegularTextTitle.FilterName"
-                android:drawableStart="@drawable/ic_glass"
-                android:text="@string/filter_glass" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/view_height"
-                android:layout_gravity="bottom"
-                android:background="?android:attr/listDivider" />
-    </LinearLayout>
-
-    <LinearLayout
-            android:id="@+id/filterByIngredients"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:orientation="vertical">
-
-        <TextView
-                style="@style/RegularTextTitle.FilterName"
-                android:drawableStart="@drawable/ic_ingredients"
-                android:text="@string/filter_ingredients" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/view_height"
-                android:layout_gravity="bottom"
-                android:background="?android:attr/listDivider" />
-    </LinearLayout>
+            android:layout_height="match_parent" />
 
 </LinearLayout>

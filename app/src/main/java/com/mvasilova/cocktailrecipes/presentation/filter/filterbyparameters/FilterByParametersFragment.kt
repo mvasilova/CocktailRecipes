@@ -7,16 +7,22 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.R
+import com.mvasilova.cocktailrecipes.app.ext.dpToPx
 import com.mvasilova.cocktailrecipes.app.ext.observe
+import com.mvasilova.cocktailrecipes.app.ext.setData
+import com.mvasilova.cocktailrecipes.app.ext.setDividerItemDecoration
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
 import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
+import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.presentation.MainActivity
-import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.TypeDrinksFilters.*
-import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.adapters.FilterByParametersAdapter
+import com.mvasilova.cocktailrecipes.presentation.delegates.itemFilterName
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.jetbrains.anko.support.v4.longToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,8 +36,11 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
     private val args: FilterByParametersFragmentArgs by navArgs()
 
-    private val filterByParametersAdapter by lazy {
-        FilterByParametersAdapter(::onDrinksListFragment)
+    val filtersAdapter by lazy {
+        ListDelegationAdapter(
+            itemFilterName() {
+                onDrinksListFragment(it.name)
+            })
     }
 
     lateinit var searchView: SearchView
@@ -51,11 +60,11 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
         btnSearch.setOnClickListener {
             screenViewModel.filterBySearch("")
+            val items = filtersAdapter.items as? List<Filter>
 
-            if (filterByParametersAdapter.collection.any { it.isChecked }) {
-                onDrinksListFragment(filterByParametersAdapter
-                    .collection
-                    .filter { it.isChecked }.joinToString(separator = ",") { it.name })
+            if (items?.any { it.isChecked } == true) {
+                onDrinksListFragment(items.filter { it.isChecked }
+                    .joinToString(separator = ",") { it.name })
             } else {
                 longToast(getString(R.string.toast_select_ingredients))
             }
@@ -68,20 +77,18 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
     }
 
     private fun handleFilters(filters: List<Filter>?) {
-        if (filters.isNullOrEmpty()) {
+        filters?.let { list ->
             tvMessage.text = getString(R.string.not_found)
-            tvMessage.visibility = View.VISIBLE
-            filterByParametersAdapter.collection = filters ?: listOf()
-        } else {
-            tvMessage.visibility = View.GONE
-            filterByParametersAdapter.collection = filters.sortedByDescending { it.isChecked }
+            tvMessage.isVisible = list.isNullOrEmpty()
+            filtersAdapter.setData(list.sortedByDescending { it.isChecked })
         }
     }
 
-
     private fun setupRecyclerView() {
         rvDrinks.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvDrinks.adapter = filterByParametersAdapter
+        rvDrinks.adapter = filtersAdapter
+        rvDrinks.setDividerItemDecoration()
+        rvDrinks.setPadding(0.dpToPx)
     }
 
     private fun setupToolbar() {
@@ -100,11 +107,11 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
         }
     }
 
-    private fun onDrinksListFragment(nameFilter: String?) {
+    private fun onDrinksListFragment(nameFilter: String) {
         val action =
             FilterByParametersFragmentDirections.actionFilterByParametersFragmentToDrinksListFragment(
                 args.type.param,
-                nameFilter!!
+                nameFilter
             )
         findNavController().navigate(action)
     }

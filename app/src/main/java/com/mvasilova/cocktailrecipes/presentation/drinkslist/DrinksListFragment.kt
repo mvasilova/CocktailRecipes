@@ -77,15 +77,17 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
     }
 
     private fun handleDrinks(drinks: List<Drink>?) {
-        tvMessage.text = getString(R.string.not_found)
-        tvMessage.isVisible = drinks.isNullOrEmpty()
+        drinks?.let { list ->
+            tvMessage.text = getString(R.string.not_found)
+            tvMessage.isVisible = list.isNullOrEmpty()
 
-        val list = mutableListOf<DisplayableItem>()
-        drinks?.groupBy { it.strDrink.orEmpty().first().toUpperCase() }?.forEach {
-            list.add(AlphabetLetter(it.key.toString()))
-            list.addAll(it.value)
+            val items = mutableListOf<DisplayableItem>()
+            list.groupBy { it.strDrink.orEmpty().first().toUpperCase() }.forEach {
+                items.add(AlphabetLetter(it.key.toString()))
+                items.addAll(it.value)
+            }
+            drinksListAdapter.setData(items)
         }
-        drinksListAdapter.setData(list)
     }
 
     private fun handleFavorites(list: List<Favorite>?) {

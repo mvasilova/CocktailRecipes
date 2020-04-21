@@ -21,7 +21,7 @@
             android:label="FilterByParametersFragment">
         <argument
                 android:name="type"
-                app:argType="com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.TypeDrinksFilters" />
+                app:argType="com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters" />
         <action
                 android:id="@+id/action_filterByParametersFragment_to_drinksListFragment"
                 app:destination="@id/drinksListFragment" />

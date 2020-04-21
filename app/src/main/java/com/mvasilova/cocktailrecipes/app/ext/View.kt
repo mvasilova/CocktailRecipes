@@ -4,9 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
+import com.mvasilova.cocktailrecipes.app.view.DividerItemDecoration
 import com.mvasilova.cocktailrecipes.presentation.delegates.AlphabetLetter
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
@@ -25,4 +29,15 @@ fun GridLayoutManager.setCustomSpanSizeLookup(
                 }
             }
         }
+}
+
+fun RecyclerView.setDividerItemDecoration() {
+    addItemDecoration(
+        DividerItemDecoration(
+            ContextCompat.getColor(
+                context,
+                R.color.colorView
+            ), 1.dpToPx, 10f.dpToPx, 10f.dpToPx
+        )
+    )
 }
