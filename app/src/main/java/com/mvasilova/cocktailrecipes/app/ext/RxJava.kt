@@ -24,3 +24,6 @@ fun <T> Single<T>.handleState(state: MutableLiveData<State>): Single<T> =
     doOnSubscribe { state.value = State.Loading }
         .doOnError { state.value = State.Error(it) }
         .doAfterSuccess { state.value = State.Loaded }
+
+fun Completable.handleError(state: MutableLiveData<State>): Completable =
+    doOnError { state.value = State.Error(it) }

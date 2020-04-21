@@ -16,6 +16,12 @@
             android:layout_height="@dimen/drinks_image_height_220"
             android:contentDescription="@string/drinks_image" />
 
+    <ImageView
+            android:id="@+id/ivFavorite"
+            style="@style/ImageViewIcon"
+            android:contentDescription="@string/drinks_image"
+            android:src="@drawable/ic_favorite_border" />
+
     <TextView
             android:id="@+id/tvName"
             style="@style/RegularTextBody"

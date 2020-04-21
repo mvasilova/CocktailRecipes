@@ -21,7 +21,7 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
         }
     }
 
-    protected fun handleState(state: State?) {
+    protected open fun handleState(state: State?) {
         when (state) {
             State.Loading -> progressBar?.isVisible = true
             State.Loaded -> progressBar?.isVisible = false

@@ -7,28 +7,29 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvasilova.cocktailrecipes.R
-import com.mvasilova.cocktailrecipes.presentation.MainActivity
 import com.mvasilova.cocktailrecipes.app.ext.observe
-import com.mvasilova.cocktailrecipes.app.platform.State
+import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
+import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
+import com.mvasilova.cocktailrecipes.presentation.MainActivity
 import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.adapters.FilterByParametersAdapter
-import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.jetbrains.anko.support.v4.longToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
+class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
-    private val args: FilterByParametersFragmentArgs by navArgs()
-    private val filterByParametersViewModel: FilterByParametersViewModel by viewModel {
+    override val screenViewModel by viewModel<FilterByParametersViewModel>() {
         parametersOf(args.type)
     }
+
+    private val args: FilterByParametersFragmentArgs by navArgs()
+
     private val filterByParametersAdapter by lazy {
         FilterByParametersAdapter(::onDrinksListFragment)
     }
@@ -46,11 +47,10 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
 
         setupToolbar()
         setupRecyclerView()
-        observe(filterByParametersViewModel.state, ::handleState)
-        observe(filterByParametersViewModel.filters, ::handleFilters)
+        observe(screenViewModel.filters, ::handleFilters)
 
         btnSearch.setOnClickListener {
-            filterByParametersViewModel.filterBySearch("")
+            screenViewModel.filterBySearch("")
 
             if (filterByParametersAdapter.collection.any { it.isChecked }) {
                 onDrinksListFragment(filterByParametersAdapter
@@ -65,14 +65,6 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
     override fun onPause() {
         super.onPause()
         query = searchView.query.toString()
-    }
-
-    private fun handleState(state: State?) {
-        when (state) {
-            State.Loading -> progressBar.visibility = View.VISIBLE
-            State.Loaded -> progressBar.visibility = View.GONE
-            is State.Error -> longToast(getString(R.string.toast_error))
-        }
     }
 
     private fun handleFilters(filters: List<Filter>?) {
@@ -134,18 +126,17 @@ class FilterByParametersFragment : Fragment(R.layout.fragment_list) {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                filterByParametersViewModel.filterBySearch(query)
+                screenViewModel.filterBySearch(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                filterByParametersViewModel.filterBySearch(newText)
+                screenViewModel.filterBySearch(newText)
                 return false
             }
         })
 
-        if (query.isEmpty()) {
-        } else {
+        if (query.isNotEmpty()) {
             searchView.setQuery(query, true)
             searchView.isIconified = false
         }

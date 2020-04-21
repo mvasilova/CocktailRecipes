@@ -13,14 +13,19 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.R
-import com.mvasilova.cocktailrecipes.presentation.MainActivity
 import com.mvasilova.cocktailrecipes.app.ext.observe
+import com.mvasilova.cocktailrecipes.app.ext.setCustomSpanSizeLookup
 import com.mvasilova.cocktailrecipes.app.ext.setData
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
+import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
+import com.mvasilova.cocktailrecipes.data.db.entities.Favorite
+import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
+import com.mvasilova.cocktailrecipes.presentation.MainActivity
+import com.mvasilova.cocktailrecipes.presentation.delegates.AlphabetLetter
 import com.mvasilova.cocktailrecipes.presentation.delegates.PreviewCategory
+import com.mvasilova.cocktailrecipes.presentation.delegates.itemAlphabet
 import com.mvasilova.cocktailrecipes.presentation.delegates.itemDrinksList
 import com.mvasilova.cocktailrecipes.presentation.home.HomeFragment.Companion.PREVIEW_CATEGORY_KEY
-import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -37,11 +42,14 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
 
     val drinksListAdapter by lazy {
         ListDelegationAdapter(
-            itemDrinksList {
+            itemDrinksList({
                 val action =
                     DrinksListFragmentDirections.actionDrinksListFragmentToRecipeInfoFragment(it)
                 findNavController().navigate(action)
-            }
+            }, {
+                screenViewModel.changeFavorite(it)
+            }),
+            itemAlphabet()
         )
     }
 
@@ -60,6 +68,7 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
         setupRecyclerView()
 
         observe(screenViewModel.drinks, ::handleDrinks)
+        observe(screenViewModel.favorites, ::handleFavorites)
     }
 
     override fun onPause() {
@@ -70,11 +79,24 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
     private fun handleDrinks(drinks: List<Drink>?) {
         tvMessage.text = getString(R.string.not_found)
         tvMessage.isVisible = drinks.isNullOrEmpty()
-        drinksListAdapter.setData(drinks)
+
+        val list = mutableListOf<DisplayableItem>()
+        drinks?.groupBy { it.strDrink.orEmpty().first().toUpperCase() }?.forEach {
+            list.add(AlphabetLetter(it.key.toString()))
+            list.addAll(it.value)
+        }
+        drinksListAdapter.setData(list)
+    }
+
+    private fun handleFavorites(list: List<Favorite>?) {
+        screenViewModel.updateItems(list)
     }
 
     private fun setupRecyclerView() {
         rvDrinks.layoutManager = GridLayoutManager(activity, 2)
+        (rvDrinks.layoutManager as? GridLayoutManager)?.setCustomSpanSizeLookup(
+            drinksListAdapter, 2, 1
+        )
         rvDrinks.adapter = drinksListAdapter
     }
 

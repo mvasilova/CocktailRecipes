@@ -6,7 +6,7 @@ import com.mvasilova.cocktailrecipes.presentation.favorites.FavoritesViewModel
 import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.FilterByParametersViewModel
 import com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.TypeDrinksFilters
 import com.mvasilova.cocktailrecipes.presentation.home.HomeViewModel
-import com.mvasilova.cocktailrecipes.presentation.home.searchbyname.SearchByNameViewModel
+import com.mvasilova.cocktailrecipes.presentation.searchbyname.SearchByNameViewModel
 import com.mvasilova.cocktailrecipes.presentation.recipe.RecipeInfoViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

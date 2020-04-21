@@ -66,6 +66,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AccentTextTitle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/font_22</item>
+    </style>
+
     <style name="Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/default_margin_6</item>

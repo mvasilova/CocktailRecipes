@@ -7,22 +7,43 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.FavoritesDirections
 import com.mvasilova.cocktailrecipes.R
-import com.mvasilova.cocktailrecipes.presentation.MainActivity
 import com.mvasilova.cocktailrecipes.app.ext.observe
+import com.mvasilova.cocktailrecipes.app.ext.setCustomSpanSizeLookup
+import com.mvasilova.cocktailrecipes.app.ext.setData
+import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
+import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
+import com.mvasilova.cocktailrecipes.data.db.converters.FavoriteConverter.convertFavoriteToDrink
 import com.mvasilova.cocktailrecipes.data.db.entities.Favorite
+import com.mvasilova.cocktailrecipes.presentation.MainActivity
+import com.mvasilova.cocktailrecipes.presentation.delegates.AlphabetLetter
+import com.mvasilova.cocktailrecipes.presentation.delegates.itemAlphabet
+import com.mvasilova.cocktailrecipes.presentation.delegates.itemDrinksList
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class FavoritesFragment : Fragment(R.layout.fragment_list) {
+class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
 
-    private val favoritesViewModel: FavoritesViewModel by viewModel()
-    private val favoritesAdapter by lazy { FavoritesAdapter(::onRecipeInfoFragment) }
+    override val screenViewModel by viewModel<FavoritesViewModel>()
+
+    val favoritesAdapter by lazy {
+        ListDelegationAdapter(
+            itemDrinksList({
+                val action = FavoritesDirections.actionGlobalRecipeInfoFragment(it)
+                findNavController().navigate(action)
+            }, {
+                screenViewModel.changeFavorite(it)
+            }),
+            itemAlphabet()
+        )
+    }
+
     lateinit var searchView: SearchView
     private var query: String = ""
 
@@ -38,8 +59,8 @@ class FavoritesFragment : Fragment(R.layout.fragment_list) {
         setupToolbar()
         setupRecyclerView()
 
-        observe(favoritesViewModel.favorites, ::handleFavorites)
-        observe(favoritesViewModel.mediator, {})
+        observe(screenViewModel.favorites, ::handleFavorites)
+        observe(screenViewModel.mediator, {})
 
     }
 
@@ -49,27 +70,26 @@ class FavoritesFragment : Fragment(R.layout.fragment_list) {
     }
 
     private fun handleFavorites(favorite: List<Favorite>?) {
-        if (favorite.isNullOrEmpty()) {
-            tvMessage.text = getString(R.string.not_found)
-            tvMessage.visibility = View.VISIBLE
-            favoritesAdapter.collection = favorite ?: listOf()
+        tvMessage.text = getString(R.string.not_found)
+        tvMessage.isVisible = favorite.isNullOrEmpty()
 
-        } else {
-            tvMessage.visibility = View.GONE
-            favoritesAdapter.collection = favorite
+        val list = mutableListOf<DisplayableItem>()
+        favorite?.groupBy { it.name.orEmpty().first().toUpperCase() }?.forEach {
+            list.add(AlphabetLetter(it.key.toString()))
+            it.value.forEach { favorite ->
+                val drink = convertFavoriteToDrink(favorite)
+                drink.isFavorite = true
+                list.add(drink)
+            }
         }
-    }
-
-    private fun onRecipeInfoFragment(id: String?) {
-        if (id != null) {
-            val action = FavoritesDirections.actionGlobalRecipeInfoFragment(id)
-            findNavController().navigate(action)
-
-        }
+        favoritesAdapter.setData(list)
     }
 
     private fun setupRecyclerView() {
         rvDrinks.layoutManager = GridLayoutManager(activity, 2)
+        (rvDrinks.layoutManager as? GridLayoutManager)?.setCustomSpanSizeLookup(
+            favoritesAdapter, 2, 1
+        )
         rvDrinks.adapter = favoritesAdapter
     }
 
@@ -83,7 +103,8 @@ class FavoritesFragment : Fragment(R.layout.fragment_list) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
         inflater.inflate(R.menu.menu_toolbar, menu)
-        searchView = SearchView((context as MainActivity).supportActionBar?.themedContext ?: context)
+        searchView =
+            SearchView((context as MainActivity).supportActionBar?.themedContext ?: context)
         menu.findItem(R.id.action_search).apply {
             actionView = searchView
             setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
@@ -95,19 +116,17 @@ class FavoritesFragment : Fragment(R.layout.fragment_list) {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                favoritesViewModel.filterBySearch(query)
+                screenViewModel.filterBySearch(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                favoritesViewModel.filterBySearch(newText)
-
+                screenViewModel.filterBySearch(newText)
                 return false
             }
         })
 
-        if (query.isEmpty()) {
-        } else {
+        if (query.isNotEmpty()) {
             searchView.setQuery(query, true)
             searchView.isIconified = false
         }
