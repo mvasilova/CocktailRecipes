@@ -19,7 +19,7 @@ import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.app.ext.setData
 import com.mvasilova.cocktailrecipes.app.ext.setDividerItemDecoration
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
-import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
+import com.mvasilova.cocktailrecipes.data.entity.Filter
 import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.presentation.MainActivity
 import com.mvasilova.cocktailrecipes.presentation.delegates.itemFilterName

@@ -4,11 +4,11 @@ import androidx.core.view.isVisible
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
-import com.mvasilova.cocktailrecipes.data.entity.FiltersList
+import com.mvasilova.cocktailrecipes.data.entity.Filter
 import kotlinx.android.synthetic.main.item_filters_list.view.*
 
-fun itemFilterName(itemClickedListener: (FiltersList.Filter) -> Unit) =
-    adapterDelegateLayoutContainer<FiltersList.Filter, DisplayableItem>(R.layout.item_filters_list) {
+fun itemFilterName(itemClickedListener: (Filter) -> Unit) =
+    adapterDelegateLayoutContainer<Filter, DisplayableItem>(R.layout.item_filters_list) {
 
         containerView.setOnClickListener {
             if (item.isMultiChoice) {

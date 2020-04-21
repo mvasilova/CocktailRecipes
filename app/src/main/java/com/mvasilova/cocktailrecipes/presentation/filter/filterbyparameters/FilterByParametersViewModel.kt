@@ -3,7 +3,7 @@ package com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters
 import androidx.lifecycle.MutableLiveData
 import com.mvasilova.cocktailrecipes.app.ext.handleState
 import com.mvasilova.cocktailrecipes.app.platform.BaseViewModel
-import com.mvasilova.cocktailrecipes.data.entity.FiltersList.Filter
+import com.mvasilova.cocktailrecipes.data.entity.Filter
 import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters
 import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:dist="http://schemas.android.com/apk/distribution"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.mvasilova.cocktailrecipes">
 
     <dist:module dist:instant="true" />
@@ -23,8 +24,10 @@
         </activity>
         <activity
                 android:name=".presentation.MainActivity"
+                android:screenOrientation="portrait"
                 android:theme="@style/AppTheme"
-                android:windowSoftInputMode="adjustPan" />
+                android:windowSoftInputMode="adjustPan"
+                tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>
