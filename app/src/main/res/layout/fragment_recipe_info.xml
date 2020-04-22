@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
         android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
+                android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:collapsedTitleGravity="left"
@@ -58,68 +56,14 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:clipToPadding="false"
+            android:padding="@dimen/default_margin_16"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin_10"
-                android:background="@color/colorWhite"
-                android:orientation="vertical">
-
-            <TextView
-                    android:id="@+id/tvTitleIng"
-                    style="@style/RegularTextBody.Message.InfoRecipeTitle"
-                    android:layout_gravity="center"
-                    tools:text="example" />
-
-            <TextView
-                    android:id="@+id/tvIngredients"
-                    style="@style/RegularTextBody"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    tools:text="example" />
-
-            <TextView
-                    android:id="@+id/tvTitleIns"
-                    style="@style/RegularTextBody.Message.InfoRecipeTitle"
-                    android:layout_gravity="center"
-                    tools:text="example" />
-
-            <TextView
-                    android:id="@+id/tvInstructions"
-                    style="@style/RegularTextBody"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    tools:text="example" />
-
-            <TextView
-                    android:id="@+id/tvTitleGlass"
-                    style="@style/RegularTextBody.Message.InfoRecipeTitle"
-                    android:layout_gravity="center"
-                    tools:text="example" />
-
-            <TextView
-                    android:id="@+id/tvGlass"
-                    style="@style/RegularTextBody"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    tools:text="example" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-    <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
+    <include layout="@layout/layout_progress_bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

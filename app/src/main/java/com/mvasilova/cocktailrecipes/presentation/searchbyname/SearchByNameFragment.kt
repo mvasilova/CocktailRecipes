@@ -137,7 +137,9 @@ class SearchByNameFragment : BaseFragment(R.layout.fragment_list) {
                 visibility = View.VISIBLE
                 text = getString(R.string.find_drinks)
             }
-        } else tvMessage.visibility = View.GONE
+        } else {
+            tvMessage.visibility = View.GONE
+        }
     }
 
     private fun setupRecyclerView() {
