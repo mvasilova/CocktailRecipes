@@ -31,13 +31,16 @@ fun GridLayoutManager.setCustomSpanSizeLookup(
         }
 }
 
-fun RecyclerView.setDividerItemDecoration() {
+fun RecyclerView.setDividerItemDecoration(
+    marginStart: Float = 10f.dpToPx,
+    marginEnd: Float = 10f.dpToPx
+) {
     addItemDecoration(
         DividerItemDecoration(
             ContextCompat.getColor(
                 context,
                 R.color.colorView
-            ), 1.dpToPx, 10f.dpToPx, 10f.dpToPx
+            ), 1.dpToPx, marginStart, marginEnd
         )
     )
 }

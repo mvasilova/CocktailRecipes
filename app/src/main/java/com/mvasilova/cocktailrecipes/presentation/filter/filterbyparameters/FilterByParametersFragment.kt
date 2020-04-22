@@ -19,6 +19,7 @@ import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.app.ext.setData
 import com.mvasilova.cocktailrecipes.app.ext.setDividerItemDecoration
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
+import com.mvasilova.cocktailrecipes.app.view.AlphabetItemDecoration
 import com.mvasilova.cocktailrecipes.data.entity.Filter
 import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.presentation.MainActivity
@@ -80,15 +81,36 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
         filters?.let { list ->
             tvMessage.text = getString(R.string.not_found)
             tvMessage.isVisible = list.isNullOrEmpty()
-            filtersAdapter.setData(list.sortedByDescending { it.isChecked })
+            filtersAdapter.setData(list)
         }
     }
 
     private fun setupRecyclerView() {
         rvDrinks.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvDrinks.adapter = filtersAdapter
-        rvDrinks.setDividerItemDecoration()
         rvDrinks.setPadding(0.dpToPx)
+
+        if (args.type == INGREDIENTS) {
+            rvDrinks.setDividerItemDecoration(50f.dpToPx)
+            rvDrinks.addItemDecoration(
+                AlphabetItemDecoration(
+                    requireActivity(),
+                    getGroupId = { position ->
+                        when (val item = filtersAdapter.items[position]) {
+                            is Filter -> item.name.first().toUpperCase().toLong()
+                            else -> AlphabetItemDecoration.EMPTY_ID
+                        }
+                    },
+                    getInitial = { position ->
+                        when (val item = filtersAdapter.items[position]) {
+                            is Filter -> item.name.first().toUpperCase().toString()
+                            else -> AlphabetItemDecoration.DEFAULT_INITIAL
+                        }
+                    })
+            )
+        } else {
+            rvDrinks.setDividerItemDecoration()
+        }
     }
 
     private fun setupToolbar() {

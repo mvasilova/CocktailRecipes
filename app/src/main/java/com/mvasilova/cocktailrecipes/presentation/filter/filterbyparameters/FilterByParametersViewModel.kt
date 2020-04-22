@@ -8,6 +8,7 @@ import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters
 import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.*
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
 import io.reactivex.rxjava3.core.Observable
+import java.util.*
 
 class FilterByParametersViewModel(
     val type: TypeDrinksFilters,
@@ -35,7 +36,7 @@ class FilterByParametersViewModel(
             .toList()
             .map {
                 it.apply {
-                    sortBy { it.name }
+                    sortBy { it.name.toLowerCase(Locale.getDefault()) }
                 }.filter { it.name.isNotEmpty() }
             }
             .subscribe { it ->

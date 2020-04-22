@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SearchHeader">
+        <attr name="android:fontFamily" />
+        <attr name="fontFamily" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+    </declare-styleable>
+
+</resources>

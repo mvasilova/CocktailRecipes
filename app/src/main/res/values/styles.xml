@@ -66,7 +66,9 @@
 
     <style name="Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/default_margin_6</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin_8</item>
+        <item name="android:layout_marginStart">@dimen/default_margin_8</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin_8</item>
         <item name="android:background">@drawable/bg_button</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/font_16</item>

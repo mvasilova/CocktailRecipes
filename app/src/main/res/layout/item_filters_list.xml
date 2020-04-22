@@ -12,8 +12,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/default_margin_15"
             android:drawablePadding="@dimen/default_margin_10"
+            android:padding="@dimen/default_margin_16"
             tools:text="Example" />
 
     <View
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:layout_margin="@dimen/default_margin_15"
+            android:layout_margin="@dimen/default_margin_16"
             android:visibility="gone" />
 
 </LinearLayout>
