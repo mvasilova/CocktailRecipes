@@ -27,6 +27,13 @@
         <item name="android:shadowColor">@android:color/black</item>
     </style>
 
+    <style name="TextAppearanceToolbarTitle">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Title
+        </item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/font_20</item>
+    </style>
+
     <style name="RegularTextTitle" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">@dimen/font_18</item>
@@ -91,6 +98,13 @@
         <item name="spi_dotSelectedColor">@color/colorAccent</item>
         <item name="spi_dotSelectedSize">@dimen/dot_selected_size</item>
         <item name="spi_dotSpacing">@dimen/dot_spacing</item>
+    </style>
+
+    <style name="SearchView.Custom" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/ic_search</item>
+        <item name="queryBackground">@android:color/transparent</item>
+        <item name="searchHintIcon">@null</item>
+        <item name="android:textSize">@dimen/font_16</item>
     </style>
 
     <style name="ImageViewIcon">

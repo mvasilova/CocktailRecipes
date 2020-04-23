@@ -10,6 +10,7 @@
     <dimen name="default_margin_12">10dp</dimen>
     <dimen name="default_margin_15">15dp</dimen>
     <dimen name="default_margin_16">16dp</dimen>
+    <dimen name="default_margin_32">32dp</dimen>
 
     <dimen name="search_decoration_padding">26dp</dimen>
 

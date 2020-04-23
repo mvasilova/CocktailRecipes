@@ -2,7 +2,6 @@ package com.mvasilova.cocktailrecipes.presentation.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
@@ -63,8 +62,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun setupToolbar() {
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
         ivSearch.setOnClickListener {
             val action = HomeDirections.actionGlobalSearchByNameFragment()
             findNavController().navigate(action)

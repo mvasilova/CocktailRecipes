@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,4 +44,18 @@ fun RecyclerView.setDividerItemDecoration(
             ), 1.dpToPx, marginStart, marginEnd
         )
     )
+}
+
+fun SearchView.setOnTextChangeListener(onTextChanged: (String) -> Unit) {
+    this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+            onTextChanged.invoke(query)
+            return false
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+            onTextChanged.invoke(newText)
+            return false
+        }
+    })
 }
