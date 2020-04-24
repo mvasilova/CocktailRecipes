@@ -89,6 +89,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
             rvDrinks.addItemDecoration(
                 AlphabetItemDecoration(
                     requireActivity(),
+                    resources.getDimensionPixelSize(R.dimen.search_decoration_padding_26),
                     getGroupId = { position ->
                         when (val item = filtersAdapter.items[position]) {
                             is Filter -> item.name.first().toUpperCase().toLong()

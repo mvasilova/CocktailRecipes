@@ -14,6 +14,7 @@ import com.mvasilova.cocktailrecipes.R
 
 class AlphabetItemDecoration(
     context: Context,
+    padding: Int,
     private val getGroupId: (position: Int) -> Long,
     private val getInitial: (position: Int) -> String
 ) : RecyclerView.ItemDecoration() {
@@ -23,7 +24,6 @@ class AlphabetItemDecoration(
     private val fontMetrics: Paint.FontMetrics
 
     init {
-        val resource = context.resources
 
         val attrs = context.obtainStyledAttributes(
             R.style.AccentTextTitle,
@@ -45,7 +45,7 @@ class AlphabetItemDecoration(
 
         fontMetrics = textPaint.fontMetrics
 
-        labelPadding = resource.getDimensionPixelSize(R.dimen.search_decoration_padding)
+        labelPadding = padding
     }
 
     override fun onDraw(

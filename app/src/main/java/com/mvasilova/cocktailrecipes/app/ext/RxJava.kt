@@ -31,4 +31,7 @@ fun <T> Observable<T>.handleState(state: MutableLiveData<State>): Observable<T> 
         .doOnComplete { state.value = State.Loaded }
 
 fun Completable.handleError(state: MutableLiveData<State>): Completable =
-    doOnError { state.value = State.Error(it) }
+    doOnError {
+        state.value =
+            State.Error(it)
+    }

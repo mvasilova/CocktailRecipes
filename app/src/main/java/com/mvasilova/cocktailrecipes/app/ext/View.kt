@@ -1,11 +1,13 @@
 package com.mvasilova.cocktailrecipes.app.ext
 
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
@@ -38,10 +40,7 @@ fun RecyclerView.setDividerItemDecoration(
 ) {
     addItemDecoration(
         DividerItemDecoration(
-            ContextCompat.getColor(
-                context,
-                R.color.colorView
-            ), 1.dpToPx, marginStart, marginEnd
+            context.getCompatColor(R.color.colorView), 1.dpToPx, marginStart, marginEnd
         )
     )
 }
@@ -58,4 +57,13 @@ fun SearchView.setOnTextChangeListener(onTextChanged: (String) -> Unit) {
             return false
         }
     })
+}
+
+fun TextView.setOnEnterClickListener(action: (TextView) -> Unit) {
+    setOnEditorActionListener { textView, actionId, keyEvent ->
+        if (keyEvent?.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) {
+            action(textView)
+        }
+        false
+    }
 }

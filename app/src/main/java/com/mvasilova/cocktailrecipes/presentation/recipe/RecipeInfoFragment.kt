@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.google.android.material.appbar.AppBarLayout
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
@@ -21,9 +22,16 @@ import com.mvasilova.cocktailrecipes.presentation.delegates.itemRecipeTitle
 import kotlinx.android.synthetic.main.fragment_recipe_info.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import kotlin.math.abs
 
 
 class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
+
+    override val statusBarColor: Int
+        get() = R.color.colorWhite
+
+    override val statusBarLightMode: Boolean
+        get() = true
 
     override val screenViewModel by viewModel<RecipeInfoViewModel>() {
         parametersOf(args.idDrink)
@@ -101,6 +109,17 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
     private fun setupRecipe() {
         rvRecipe.layoutManager = LinearLayoutManager(context)
         rvRecipe.adapter = recipeAdapter
+
+        appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            collapsingToolbar?.let {
+                val percentage = abs(verticalOffset) * 100 / collapsingToolbar.height
+                if (percentage > 54) {
+                    setupStatusBar(R.color.colorPrimary, false)
+                } else {
+                    setupStatusBar(R.color.colorTransparent, true)
+                }
+            }
+        })
     }
 
     private fun setupToolbar() {

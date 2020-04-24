@@ -2,44 +2,47 @@ package com.mvasilova.cocktailrecipes.presentation.searchbyname
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.HomeDirections
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.observe
-import com.mvasilova.cocktailrecipes.app.ext.setCustomSpanSizeLookup
 import com.mvasilova.cocktailrecipes.app.ext.setData
-import com.mvasilova.cocktailrecipes.app.ext.setOnTextChangeListener
+import com.mvasilova.cocktailrecipes.app.ext.setOnEnterClickListener
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
-import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
-import com.mvasilova.cocktailrecipes.data.db.entities.Favorite
+import com.mvasilova.cocktailrecipes.app.view.AlphabetItemDecoration
+import com.mvasilova.cocktailrecipes.data.db.entities.SearchHistory
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
-import com.mvasilova.cocktailrecipes.presentation.delegates.AlphabetLetter
-import com.mvasilova.cocktailrecipes.presentation.delegates.itemAlphabet
-import com.mvasilova.cocktailrecipes.presentation.delegates.itemDrinksList
-import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.layout_toolbar_search_view.*
+import com.mvasilova.cocktailrecipes.presentation.delegates.itemSearchDrinks
+import com.mvasilova.cocktailrecipes.presentation.delegates.itemSearchHistory
+import kotlinx.android.synthetic.main.fragment_search_by_name.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class SearchByNameFragment : BaseFragment(R.layout.fragment_list) {
+class SearchByNameFragment : BaseFragment(R.layout.fragment_search_by_name) {
+
+    override val statusBarColor: Int
+        get() = R.color.colorWhite
+
+    override val statusBarLightMode: Boolean
+        get() = true
 
     override val screenViewModel by viewModel<SearchByNameViewModel>()
 
-    override val setToolbar: Boolean
-        get() = true
-
     val drinksListAdapter by lazy {
         ListDelegationAdapter(
-            itemDrinksList({
+            itemSearchDrinks {
+                screenViewModel.addSearch(edSearch.text.toString())
+                resetFocus()
                 val action = HomeDirections.actionGlobalRecipeInfoFragment(it)
                 findNavController().navigate(action)
-            }, {
-                screenViewModel.changeFavorite(it)
-            }),
-            itemAlphabet()
+            },
+            itemSearchHistory {
+                edSearch.setText(it)
+                edSearch.setSelection(it.length)
+            }
         )
     }
 
@@ -50,59 +53,92 @@ class SearchByNameFragment : BaseFragment(R.layout.fragment_list) {
         setupRecyclerView()
 
         observe(screenViewModel.drinks, ::handleDrinks)
-        observe(screenViewModel.favorites, ::handleFavorites)
+        observe(screenViewModel.searchHistory, ::handleSearchHistory)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (edSearch.text.toString().isEmpty()) {
+            setFocus()
+        }
     }
 
     private fun handleDrinks(drinks: List<Drink>?) {
-        drinks?.let { list ->
-            tvMessage.text = getString(R.string.not_found)
-            tvMessage.isVisible = drinks.isNullOrEmpty()
-
-            val items = mutableListOf<DisplayableItem>()
-            list.groupBy { it.strDrink.orEmpty().first().toUpperCase() }.forEach {
-                items.add(AlphabetLetter(it.key.toString()))
-                items.addAll(it.value)
+        if (edSearch.text.toString().isNotEmpty()) {
+            drinks?.let { list ->
+                drinksListAdapter.setData(list)
             }
-            drinksListAdapter.setData(items)
         }
     }
 
-    private fun handleFavorites(list: List<Favorite>?) {
-        screenViewModel.updateItems(list)
-    }
-
-    private fun checkQuery(query: String) {
-        if (query.isEmpty()) {
-            screenViewModel.drinks.value = emptyList()
-            showText()
-        } else {
-            screenViewModel.getSearchByNameList(query)
+    private fun handleSearchHistory(searchHistory: List<SearchHistory>?) {
+        if (edSearch.text.toString().isEmpty()) {
+            searchHistory?.let { list ->
+                drinksListAdapter.setData(list.reversed())
+            }
         }
-    }
-
-    private fun showText() {
-        tvMessage.isVisible = searchView?.query.isNullOrEmpty()
-        tvMessage.text = getString(R.string.find_drinks)
     }
 
     private fun setupRecyclerView() {
-        rvDrinks.layoutManager = GridLayoutManager(activity, 2)
-        (rvDrinks.layoutManager as? GridLayoutManager)?.setCustomSpanSizeLookup(
-            drinksListAdapter, 2, 1
+        rvSearchDrinks.layoutManager = LinearLayoutManager(activity)
+        rvSearchDrinks.adapter = drinksListAdapter
+        rvSearchDrinks.addItemDecoration(
+            AlphabetItemDecoration(
+                requireActivity(),
+                resources.getDimensionPixelSize(R.dimen.search_decoration_padding_38),
+                getGroupId = { position ->
+                    when (val item = drinksListAdapter.items[position]) {
+                        is Drink -> item.strDrink.orEmpty().first().toUpperCase().toLong()
+                        else -> AlphabetItemDecoration.EMPTY_ID
+                    }
+                },
+                getInitial = { position ->
+                    when (val item = drinksListAdapter.items[position]) {
+                        is Drink -> item.strDrink.orEmpty().first().toUpperCase().toString()
+                        else -> AlphabetItemDecoration.DEFAULT_INITIAL
+                    }
+                })
         )
-        rvDrinks.adapter = drinksListAdapter
     }
 
     private fun setupSearchView() {
-        searchView.isIconified = false
-        searchView.setIconifiedByDefault(false)
 
-        searchView.queryHint = getString(R.string.search_by_name)
-
-        searchView.setOnTextChangeListener {
-            checkQuery(it)
+        ivBack.setOnClickListener {
+            findNavController().popBackStack()
+            resetFocus()
         }
-        showText()
+
+        edSearch.doAfterTextChanged { query ->
+            if (query.toString().isEmpty()) {
+                setFocus()
+                handleSearchHistory(screenViewModel.searchHistory.value)
+            }
+            screenViewModel.getSearchByNameList(query.toString())
+        }
+
+        edSearch.setOnEnterClickListener {
+            screenViewModel.addSearch(edSearch.text.toString())
+            resetFocus()
+        }
+
+        ivSearchIcon.setOnClickListener {
+            screenViewModel.addSearch(edSearch.text.toString())
+            resetFocus()
+        }
+
+        tilSearch.setEndIconOnClickListener {
+            edSearch?.setText("")
+        }
+    }
+
+    private fun resetFocus() {
+        edSearch?.clearFocus()
+        hideSoftKeyboard()
+    }
+
+    private fun setFocus() {
+        edSearch?.requestFocus()
+        showSoftKeyboard(edSearch)
     }
 
 }

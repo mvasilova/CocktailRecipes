@@ -18,7 +18,7 @@ interface Api {
     fun getRecipeInfoDrink(@Query("i") idDrink: String): Single<RecipeInfoDrink>
 
     @GET("search.php?")
-    fun getSearchByNameList(@Query("s") nameDrink: String): Single<DrinksFilter>
+    fun getSearchByNameList(@Query("s") nameDrink: String): Observable<DrinksFilter>
 
     @GET("recent.php")
     fun getRecentDrinks(): Single<DrinksFilter>
