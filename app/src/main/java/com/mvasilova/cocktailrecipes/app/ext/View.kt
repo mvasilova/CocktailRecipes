@@ -1,5 +1,6 @@
 package com.mvasilova.cocktailrecipes.app.ext
 
+import android.text.SpannableStringBuilder
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
 import com.mvasilova.cocktailrecipes.app.view.DividerItemDecoration
+import com.mvasilova.cocktailrecipes.app.view.LinkTouchMovementMethod
+import com.mvasilova.cocktailrecipes.app.view.TouchableSpan
 import com.mvasilova.cocktailrecipes.presentation.delegates.AlphabetLetter
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
@@ -66,4 +69,30 @@ fun TextView.setOnEnterClickListener(action: (TextView) -> Unit) {
         }
         false
     }
+}
+
+inline fun TextView.setupLink(
+    text: String,
+    link: String,
+    normalColor: Int,
+    pressedColor: Int,
+    crossinline func: () -> Unit
+) {
+
+    if (!text.contains(link) || text.isEmpty() || link.isEmpty()) {
+        this.text = text
+        return
+    }
+
+    val ssb = SpannableStringBuilder(text)
+
+    val startIndex = text.indexOf(link)
+    val lastIndex = startIndex + link.length
+
+    ssb.setSpan(object : TouchableSpan(normalColor, pressedColor) {
+        override fun onClick(view: View) = func.invoke()
+    }, startIndex, lastIndex, 0)
+
+    this.movementMethod = LinkTouchMovementMethod()
+    this.text = ssb
 }

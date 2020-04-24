@@ -11,6 +11,7 @@
     <string name="toast_select_ingredients">Please select one or more ingredients</string>
     <string name="favorites">Favorites</string>
     <string name="home">Home</string>
+    <string name="about">About</string>
     <string name="search_by_name">Search by name</string>
     <string name="not_found">Not found. Please try again.</string>
     <string name="find_drinks">Here you can find drinks by name.</string>
@@ -23,7 +24,7 @@
     <string name="dot">•</string>
     <string name="share">Share</string>
     <string name="intent_text">I would like to share this with you. Here you can download this app from Play Store
-        *url*
+        https://play.google.com/store/apps/details?id=com.mvasilova.cocktailrecipes
     </string>
     <string name="filter_by_alcohol">Filter by alcohol</string>
     <string name="filter_by_category">Filter by category</string>
@@ -33,4 +34,14 @@
 
     <string name="default_notification_channel_id">fcm_default_channel</string>
     <string name="default_notification_name_channel">Common notifications</string>
+
+    <string name="placeholder_version_name">Version: %1s</string>
+
+    <string name="label_about_developer">About developer:</string>
+    <string name="label_special_thanks">Special thanks:\nAuthors TheCocktailDB</string>
+    <string name="label_special_thanks_link">Authors TheCocktailDB</string>
+
+    <string name="url_cocktail_db">https://www.thecocktaildb.com/</string>
+    <string name="url_telegram">https://t.me/knapweed1</string>
+    <string name="url_instagram">https://www.instagram.com/marina_vasilova/</string>
 </resources>
