@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/home"
-            app:startDestination="@id/homeFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/home"
+        app:startDestination="@id/homeFragment">
 
-    <fragment android:id="@+id/homeFragment"
-              android:label="HomeFragment"
-              tools:layout="@layout/fragment_home"
-              android:name="com.mvasilova.cocktailrecipes.presentation.home.HomeFragment"/>
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.home.HomeFragment"
+            android:label="HomeFragment"
+            tools:layout="@layout/fragment_home" />
 
 
-    <fragment android:id="@+id/recipeInfoFragment"
-              android:name="com.mvasilova.cocktailrecipes.presentation.recipe.RecipeInfoFragment"
-              android:label="RecipeInfoFragment"
-              tools:layout="@layout/fragment_recipe_info">
+    <fragment
+            android:id="@+id/recipeInfoFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.recipe.RecipeInfoFragment"
+            android:label="RecipeInfoFragment"
+            tools:layout="@layout/fragment_recipe_info">
 
-        <argument android:name="idDrink"
-                  app:argType="string"/>
+        <argument
+                android:name="idDrink"
+                app:argType="string" />
     </fragment>
 
-    <fragment android:id="@+id/drinksListFragment"
-              android:name="com.mvasilova.cocktailrecipes.presentation.drinkslist.DrinksListFragment"
-              android:label="DrinksListFragment"
-              tools:layout="@layout/fragment_list">
+    <fragment
+            android:id="@+id/drinksListFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.drinkslist.DrinksListFragment"
+            android:label="DrinksListFragment"
+            tools:layout="@layout/fragment_list">
         <action
                 android:id="@+id/action_drinksListFragment_to_recipeInfoFragment"
                 app:destination="@id/recipeInfoFragment" />
     </fragment>
 
-    <fragment android:id="@+id/searchByNameFragment"
-              android:name="com.mvasilova.cocktailrecipes.presentation.searchbyname.SearchByNameFragment"
-              android:label="SearchByNameFragment"
-              tools:layout="@layout/fragment_list"/>
+    <fragment
+            android:id="@+id/searchByNameFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.searchbyname.SearchByNameFragment"
+            android:label="SearchByNameFragment"
+            tools:layout="@layout/fragment_list" />
 
-    <action android:id="@+id/action_global_recipeInfoFragment" app:destination="@id/recipeInfoFragment"/>
-    <action android:id="@+id/action_global_drinksListFragment" app:destination="@id/drinksListFragment"/>
-    <action android:id="@+id/action_global_searchByNameFragment" app:destination="@id/searchByNameFragment"/>
+    <action
+            android:id="@+id/action_global_recipeInfoFragment"
+            app:destination="@id/recipeInfoFragment" />
+    <action
+            android:id="@+id/action_global_drinksListFragment"
+            app:destination="@id/drinksListFragment" />
+    <action
+            android:id="@+id/action_global_searchByNameFragment"
+            app:destination="@id/searchByNameFragment"
+            app:enterAnim="@anim/search_view_enter" />
 
 
 </navigation>
