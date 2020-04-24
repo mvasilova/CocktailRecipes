@@ -30,4 +30,7 @@
     <string name="filter_by_glass">Filter by glass</string>
     <string name="multi_filter_by_ingredients">Multi-Filter by ingredients</string>
     <string name="action_search">Search</string>
+
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+    <string name="default_notification_name_channel">Common notifications</string>
 </resources>
