@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include layout="@layout/layout_toolbar_search_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDrinks"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:padding="@dimen/default_margin_6" />
+
+        <Button
+                android:id="@+id/btnSearch"
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:text="@string/action_search"
+                android:visibility="gone" />
+    </LinearLayout>
+
+    <include layout="@layout/layout_progress_bar" />
+
+    <TextView
+            android:id="@+id/tvMessage"
+            style="@style/RegularTextBody.Message.LabelNotFound"
+            android:visibility="gone" />
+</FrameLayout>

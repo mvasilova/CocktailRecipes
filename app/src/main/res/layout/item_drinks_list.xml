@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cdImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin_6"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation_2">
+
+    <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/drinks_image_height_220"
+            android:contentDescription="@string/drinks_image" />
+
+    <ImageView
+            android:id="@+id/ivFavorite"
+            style="@style/ImageViewIcon"
+            android:contentDescription="@string/drinks_image"
+            android:src="@drawable/ic_favorite_border" />
+
+    <TextView
+            android:id="@+id/tvName"
+            style="@style/RegularTextBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/colorSemiTransparent"
+            android:ellipsize="end"
+            android:padding="@dimen/default_margin_6"
+            android:textAlignment="center"
+            tools:text="Example" />
+
+</androidx.cardview.widget.CardView>

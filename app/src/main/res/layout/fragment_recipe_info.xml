@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:collapsedTitleGravity="left"
+                app:contentScrim="@color/colorPrimary"
+                app:expandedTitleGravity="bottom"
+                app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded.Shadow"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                    android:id="@+id/ivDrink"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:contentDescription="@string/drinks_image"
+                    app:layout_collapseMode="parallax" />
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/shape_toolbar"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="?homeAsUpIndicator"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <ImageView
+                        android:id="@+id/ivShare"
+                        style="@style/ImageViewIcon"
+                        android:contentDescription="@string/share"
+                        android:src="@drawable/ic_share" />
+
+                <ImageView
+                        android:id="@+id/ivFavorite"
+                        style="@style/ImageViewIcon"
+                        android:contentDescription="@string/drinks_image"
+                        android:src="@drawable/ic_favorite_border" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/default_margin_16"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <include layout="@layout/layout_progress_bar" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

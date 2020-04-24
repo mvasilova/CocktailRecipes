@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">CocktailRecipes</string>
+    <string name="drinks_image">Drink\'s Image</string>
+    <string name="button_open_list">Button open list</string>
+    <string name="title_beers">Beers</string>
+    <string name="title_cocktails">Cocktails</string>
+    <string name="title_shots">Shots</string>
+    <string name="title_recent">Recent</string>
+    <string name="title_popular">Popular</string>
+    <string name="toast_error">An error has occurred. Please try again later</string>
+    <string name="toast_select_ingredients">Please select one or more ingredients</string>
+    <string name="favorites">Favorites</string>
+    <string name="home">Home</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="not_found">Not found. Please try again.</string>
+    <string name="find_drinks">Here you can find drinks by name.</string>
+    <string name="filter">Filter by…</string>
+    <string name="filter_alcoholic">Alcoholic</string>
+    <string name="filter_category">Category</string>
+    <string name="filter_glass">Glass</string>
+    <string name="filter_ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="dot">•</string>
+    <string name="share">Share</string>
+    <string name="intent_text">I would like to share this with you. Here you can download this app from Play Store
+        *url*
+    </string>
+    <string name="filter_by_alcohol">Filter by alcohol</string>
+    <string name="filter_by_category">Filter by category</string>
+    <string name="filter_by_glass">Filter by glass</string>
+    <string name="multi_filter_by_ingredients">Multi-Filter by ingredients</string>
+    <string name="action_search">Search</string>
 </resources>

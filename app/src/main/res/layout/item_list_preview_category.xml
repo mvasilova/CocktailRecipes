@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/CardView.Custom"
+        android:layout_marginBottom="@dimen/default_margin_10">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_4"
+            android:padding="@dimen/default_margin_8">
+
+        <TextView
+                android:id="@+id/tvNameCategory"
+                style="@style/RegularTextTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_margin_4"
+                app:layout_constraintEnd_toStartOf="@id/buttonOpenList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Example" />
+
+        <ImageView
+                android:id="@+id/buttonOpenList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/button_open_list"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/default_margin_4"
+                android:src="@drawable/ic_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvNameCategory"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDrinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNameCategory" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

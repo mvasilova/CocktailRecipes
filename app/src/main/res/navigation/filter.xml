@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/filter"
+        app:startDestination="@id/filterFragment">
+
+    <fragment
+            android:id="@+id/filterFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.filter.FilterFragment"
+            android:label="FilterFragment"
+            tools:layout="@layout/fragment_filter">
+        <action
+                android:id="@+id/action_filterFragment_to_filterByParametersFragment"
+                app:destination="@id/filterByParametersFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/filterByParametersFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.filter.filterbyparameters.FilterByParametersFragment"
+            android:label="FilterByParametersFragment">
+        <argument
+                android:name="type"
+                app:argType="com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters" />
+        <action
+                android:id="@+id/action_filterByParametersFragment_to_drinksListFragment"
+                app:destination="@id/drinksListFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/drinksListFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.drinkslist.DrinksListFragment"
+            android:label="DrinksListFragment">
+
+        <argument
+                android:name="type"
+                android:defaultValue=" "
+                app:argType="string" />
+        <argument
+                android:name="name"
+                android:defaultValue=" "
+                app:argType="string" />
+
+        <action
+                android:id="@+id/action_drinksListFragment_to_recipeInfoFragment"
+                app:destination="@id/recipeInfoFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/recipeInfoFragment"
+            android:name="com.mvasilova.cocktailrecipes.presentation.recipe.RecipeInfoFragment"
+            android:label="RecipeInfoFragment"
+            tools:layout="@layout/fragment_recipe_info">
+
+        <argument
+                android:name="idDrink"
+                app:argType="string" />
+    </fragment>
+
+</navigation>

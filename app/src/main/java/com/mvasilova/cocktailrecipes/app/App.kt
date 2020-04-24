@@ -1,21 +1,23 @@
 package com.mvasilova.cocktailrecipes.app
 
 import android.app.Application
-import com.mvasilova.cocktailrecipes.app.di.module.appModule
+import com.mvasilova.cocktailrecipes.app.di.module.networkModule
+import com.mvasilova.cocktailrecipes.app.di.module.repositoryModule
+import com.mvasilova.cocktailrecipes.app.di.module.roomModule
 import com.mvasilova.cocktailrecipes.app.di.module.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class App: Application() {
+class App : Application() {
 
-   override fun onCreate() {
-    super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
         startKoin {
             androidContext(this@App)
             androidLogger()
-            modules(listOf(appModule, viewModelModule))
+            modules(listOf(networkModule, repositoryModule, roomModule, viewModelModule))
         }
     }
 }

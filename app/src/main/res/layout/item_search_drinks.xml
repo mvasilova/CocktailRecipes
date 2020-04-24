@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_60"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_margin_10"
+        tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="@dimen/drinks_image_width_60"
+            android:layout_height="@dimen/drinks_image_height_70"
+            android:contentDescription="@string/drinks_image" />
+
+    <TextView
+            android:id="@+id/tvName"
+            style="@style/RegularTextBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/default_margin_16"
+            android:padding="@dimen/default_margin_6"
+            tools:text="Example" />
+
+</LinearLayout>
