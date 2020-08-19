@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "333397060855",
+    "firebase_url": "https://cocktail-recipes-3e749.firebaseio.com",
+    "project_id": "cocktail-recipes-3e749",
+    "storage_bucket": "cocktail-recipes-3e749.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333397060855:android:4c1c42c1c1468139d8f7f2",
+        "android_client_info": {
+          "package_name": "com.mvasilova.cocktailrecipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333397060855-9ehpfp31ekd82a4d5imefrjd5hg7g5mt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkLWpF7p7V7YP31iZPfXVmxC0083esOhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333397060855-9ehpfp31ekd82a4d5imefrjd5hg7g5mt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

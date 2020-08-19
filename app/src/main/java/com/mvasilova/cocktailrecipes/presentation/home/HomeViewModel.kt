@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.handleState
 import com.mvasilova.cocktailrecipes.app.platform.BaseViewModel
+import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
 import com.mvasilova.cocktailrecipes.presentation.delegates.HorizontalPreview
 import com.mvasilova.cocktailrecipes.presentation.delegates.PreviewCategory
@@ -13,7 +14,7 @@ class HomeViewModel(
     val drinksRepository: DrinksRepository
 ) : BaseViewModel() {
 
-    val drinks = MutableLiveData<List<Any>>()
+    val drinks = MutableLiveData<List<DisplayableItem>>()
 
     init {
         loadDrinks()

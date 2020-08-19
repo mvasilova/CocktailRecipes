@@ -8,6 +8,10 @@ apply plugin: "kotlin-kapt"
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
+apply plugin: "com.google.gms.google-services"
+
+apply plugin: "com.google.firebase.crashlytics"
+
 def API_ENDPOINT = "API_ENDPOINT"
 
 android {
@@ -74,6 +78,11 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.media:media:1.2.0-alpha02"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
+
+    //Firebase
+    implementation "com.google.firebase:firebase-analytics:17.4.0"
+    implementation "com.google.firebase:firebase-crashlytics:17.0.0"
+    implementation "com.google.firebase:firebase-messaging:20.1.6"
 
     //Retrofit
     implementation "com.squareup.retrofit2:converter-gson:2.6.2"

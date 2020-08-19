@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:title="@string/about" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tvVersionName"
+                style="@style/RegularTextBody.Message.LabelNotFound"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:gravity="center"
+                tools:text="@string/placeholder_version_name" />
+
+        <TextView
+                style="@style/RegularTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_margin_10"
+                android:text="@string/label_about_developer" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:id="@+id/ivTelegram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/default_margin_10"
+                    android:src="@drawable/ic_telegram"
+                    tools:ignore="ContentDescription" />
+
+            <ImageView
+                    android:id="@+id/ivInstagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/default_margin_10"
+                    android:src="@drawable/ic_instagram"
+                    tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tvSpecialThanks"
+                style="@style/RegularTextBody.Message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_margin_16"
+                tools:text="@string/label_special_thanks" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

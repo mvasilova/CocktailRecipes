@@ -6,6 +6,7 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.setData
+import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import kotlinx.android.synthetic.main.item_list_preview_category.view.*
 import java.io.Serializable
@@ -14,7 +15,7 @@ fun homePreviewCategoryDelegate(
     itemClickedListener: (String) -> Unit,
     buttonClickListener: (PreviewCategory) -> Unit
 ) =
-    adapterDelegateLayoutContainer<PreviewCategory, Any>(R.layout.item_list_preview_category) {
+    adapterDelegateLayoutContainer<PreviewCategory, DisplayableItem>(R.layout.item_list_preview_category) {
 
         val itemPreviewCategoryAdapter by lazy {
             ListDelegationAdapter(
@@ -41,4 +42,8 @@ fun homePreviewCategoryDelegate(
         }
     }
 
-data class PreviewCategory(@StringRes val title: Int, val list: DrinksFilter) : Serializable
+data class PreviewCategory(@StringRes val title: Int, val list: DrinksFilter) : Serializable,
+    DisplayableItem {
+    override val itemId: String
+        get() = title.toString()
+}
