@@ -10,6 +10,7 @@ import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.app.ext.setData
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
+import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
 import com.mvasilova.cocktailrecipes.presentation.delegates.homeHorizontalPreviewDelegate
 import com.mvasilova.cocktailrecipes.presentation.delegates.homePreviewCategoryDelegate
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -50,7 +51,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         observe(screenViewModel.drinks, ::handleDrinks)
     }
 
-    private fun handleDrinks(drinks: List<Any>?) {
+    private fun handleDrinks(drinks: List<DisplayableItem>?) {
         drinks?.let {
             homeHorizontalPreviewAdapter.setData(drinks)
         }
