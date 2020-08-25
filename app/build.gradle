@@ -66,23 +66,23 @@ dependencies {
     //Support Libraries
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "androidx.core:core-ktx:1.3.1"
     testImplementation "junit:junit:4.12"
     androidTestImplementation "androidx.test:runner:1.2.0"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
 
-    implementation "com.google.android.material:material:1.2.0-alpha06"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+    implementation "com.google.android.material:material:1.3.0-alpha02"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-rc1"
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.media:media:1.2.0-alpha02"
+    implementation "androidx.media:media:1.2.0-alpha04"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     //Firebase
-    implementation "com.google.firebase:firebase-analytics:17.4.0"
-    implementation "com.google.firebase:firebase-crashlytics:17.0.0"
-    implementation "com.google.firebase:firebase-messaging:20.1.6"
+    implementation "com.google.firebase:firebase-analytics:17.5.0"
+    implementation "com.google.firebase:firebase-crashlytics:17.2.1"
+    implementation "com.google.firebase:firebase-messaging:20.2.4"
 
     //Retrofit
     implementation "com.squareup.retrofit2:converter-gson:2.6.2"
@@ -113,12 +113,12 @@ dependencies {
 
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0-alpha06"
 
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.2.2"
-    implementation "androidx.navigation:navigation-ui-ktx:2.2.2"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //Room
@@ -130,6 +130,6 @@ dependencies {
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"
 
     //RecyclerViewDelegates
-    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0"
-    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:4.2.0"
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.0"
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:4.3.0"
 }

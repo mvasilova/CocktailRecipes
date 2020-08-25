@@ -18,7 +18,7 @@ class FilterFragment : BaseFragment(R.layout.fragment_filter) {
 
     val categoriesAdapter by lazy {
         ListDelegationAdapter(
-            itemFilterName() {
+            itemFilterName {
                 it.type?.let { it1 -> navigateToFilterByParameters(it1) }
             })
     }

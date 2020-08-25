@@ -23,7 +23,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     val homeHorizontalPreviewAdapter by lazy {
         ListDelegationAdapter(
-            homeHorizontalPreviewDelegate() {
+            homeHorizontalPreviewDelegate {
                 val action = HomeDirections.actionGlobalRecipeInfoFragment(it)
                 findNavController().navigate(action)
             },

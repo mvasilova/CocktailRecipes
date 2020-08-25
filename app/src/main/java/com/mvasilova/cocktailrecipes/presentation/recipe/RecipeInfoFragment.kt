@@ -33,7 +33,7 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
     override val statusBarLightMode: Boolean
         get() = true
 
-    override val screenViewModel by viewModel<RecipeInfoViewModel>() {
+    override val screenViewModel by viewModel<RecipeInfoViewModel> {
         parametersOf(args.idDrink)
     }
     private val args: RecipeInfoFragmentArgs by navArgs()

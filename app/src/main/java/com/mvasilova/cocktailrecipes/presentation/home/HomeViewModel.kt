@@ -35,10 +35,10 @@ class HomeViewModel(
             drinksRepository.getFilterDrinksList(
                 "c",
                 "beer"
-            ), { drinksFilter, drinksFilter2, drinksFilter3, drinksFilter4, drinksFilter5 ->
-                listOf(drinksFilter, drinksFilter2, drinksFilter3, drinksFilter4, drinksFilter5)
-            }
-        ).handleState(state)
+            )
+        ) { drinksFilter, drinksFilter2, drinksFilter3, drinksFilter4, drinksFilter5 ->
+            listOf(drinksFilter, drinksFilter2, drinksFilter3, drinksFilter4, drinksFilter5)
+        }.handleState(state)
             .subscribe { it ->
                 drinks.value = listOf(
                     HorizontalPreview(R.string.home_title_recent, it[0]),
