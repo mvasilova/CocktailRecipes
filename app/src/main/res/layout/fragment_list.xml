@@ -23,7 +23,7 @@
                 android:id="@+id/btnSearch"
                 style="@style/Button"
                 android:layout_width="match_parent"
-                android:text="@string/action_search"
+                android:text="@string/btn_search"
                 android:visibility="gone" />
     </LinearLayout>
 

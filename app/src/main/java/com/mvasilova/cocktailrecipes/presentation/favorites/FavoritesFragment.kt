@@ -29,7 +29,7 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
     override val screenViewModel by viewModel<FavoritesViewModel>()
 
     override val toolbarTitle: String
-        get() = getString(R.string.favorites)
+        get() = getString(R.string.tab_favorites)
 
     override val setToolbar: Boolean
         get() = true
@@ -62,7 +62,7 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
 
     private fun handleFavorites(favorite: List<Favorite>?) {
         favorite?.let { list ->
-            tvMessage.text = getString(R.string.not_found)
+            tvMessage.text = getString(R.string.label_not_found)
             tvMessage.isVisible = favorite.isNullOrEmpty()
 
             val items = mutableListOf<DisplayableItem>()

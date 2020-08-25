@@ -102,7 +102,7 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                             R.string.filter_glass
                         )}:\n${drink?.strGlass}" +
                         "\n\n${getString(R.string.drinks_image)}:\n${drink?.strDrinkThumb}" +
-                        "\n\n${resources.getString(R.string.intent_text)} "
+                        "\n\n${resources.getString(R.string.share_text)} "
         }
     }
 
@@ -139,7 +139,7 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                 type = "text/plain"
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
-            startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.btn_share)))
         }
     }
 

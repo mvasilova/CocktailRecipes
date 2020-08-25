@@ -72,7 +72,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
     private fun handleFilters(filters: List<Filter>?) {
         filters?.let { list ->
-            tvMessage.text = getString(R.string.not_found)
+            tvMessage.text = getString(R.string.label_not_found)
             tvMessage.isVisible = list.isNullOrEmpty()
             filtersAdapter.setData(list)
         }

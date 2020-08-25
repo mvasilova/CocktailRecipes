@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:id="@+id/home"
-            android:contentDescription="@string/home"
+            android:contentDescription="@string/tab_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/home" />
+            android:title="@string/tab_home" />
     <item
             android:id="@+id/filter"
-            android:contentDescription="@string/filter"
+            android:contentDescription="@string/tab_filter"
             android:icon="@drawable/ic_filter"
-            android:title="@string/filter" />
+            android:title="@string/tab_filter" />
     <item
             android:id="@+id/favorites"
-            android:contentDescription="@string/favorites"
+            android:contentDescription="@string/tab_favorites"
             android:icon="@drawable/ic_favorite_fill"
-            android:title="@string/favorites" />
+            android:title="@string/tab_favorites" />
 
     <item
             android:id="@+id/about"
-            android:contentDescription="@string/about"
+            android:contentDescription="@string/tab_about"
             android:icon="@drawable/ic_about"
-            android:title="@string/about" />
+            android:title="@string/tab_about" />
 </menu>

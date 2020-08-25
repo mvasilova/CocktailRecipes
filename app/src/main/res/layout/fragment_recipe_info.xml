@@ -42,7 +42,7 @@
                 <ImageView
                         android:id="@+id/ivShare"
                         style="@style/ImageViewIcon"
-                        android:contentDescription="@string/share"
+                        android:contentDescription="@string/btn_share"
                         android:src="@drawable/ic_share" />
 
                 <ImageView

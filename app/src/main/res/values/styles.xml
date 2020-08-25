@@ -105,6 +105,7 @@
         <item name="queryBackground">@android:color/transparent</item>
         <item name="searchHintIcon">@null</item>
         <item name="android:textSize">@dimen/font_16</item>
+        <item name="queryHint">@string/search_view_hint</item>
     </style>
 
     <style name="ImageViewIcon">

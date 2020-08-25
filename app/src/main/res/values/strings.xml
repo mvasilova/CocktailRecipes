@@ -1,39 +1,45 @@
 <resources>
     <string name="app_name">CocktailRecipes</string>
     <string name="drinks_image">Drink\'s Image</string>
-    <string name="button_open_list">Button open list</string>
-    <string name="title_beers">Beers</string>
-    <string name="title_cocktails">Cocktails</string>
-    <string name="title_shots">Shots</string>
-    <string name="title_recent">Recent</string>
-    <string name="title_popular">Popular</string>
-    <string name="toast_error">An error has occurred. Please try again later</string>
-    <string name="toast_select_ingredients">Please select one or more ingredients</string>
-    <string name="favorites">Favorites</string>
-    <string name="home">Home</string>
-    <string name="about">About</string>
-    <string name="search_by_name">Search by name</string>
-    <string name="not_found">Not found. Please try again.</string>
-    <string name="find_drinks">Here you can find drinks by name.</string>
-    <string name="filter">Filter by…</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_filter">Filter by…</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_about">About</string>
+
+    <string name="home_title_beers">Beers</string>
+    <string name="home_title_cocktails">Cocktails</string>
+    <string name="home_title_shots">Shots</string>
+    <string name="home_title_recent">Recent</string>
+    <string name="home_title_popular">Popular</string>
+
     <string name="filter_alcoholic">Alcoholic</string>
     <string name="filter_category">Category</string>
     <string name="filter_glass">Glass</string>
     <string name="filter_ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="dot">•</string>
-    <string name="share">Share</string>
-    <string name="intent_text">I would like to share this with you. Here you can download this app from Play Store
+    <string name="share_text">I would like to share this with you. Here you can download this app from Play Store
         https://play.google.com/store/apps/details?id=com.mvasilova.cocktailrecipes
     </string>
+
     <string name="filter_by_alcohol">Filter by alcohol</string>
     <string name="filter_by_category">Filter by category</string>
     <string name="filter_by_glass">Filter by glass</string>
     <string name="multi_filter_by_ingredients">Multi-Filter by ingredients</string>
-    <string name="action_search">Search</string>
 
-    <string name="default_notification_channel_id">fcm_default_channel</string>
-    <string name="default_notification_name_channel">Common notifications</string>
+    <string name="search_view_hint">Search…</string>
+    <string name="search_by_name">Search by name</string>
+
+    <string name="btn_search">Search</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_open_list">Open list</string>
+    <string name="btn_share">Share recipe</string>
+
+    <string name="toast_error">An error has occurred. Please try again later</string>
+    <string name="toast_select_ingredients">Please select one or more ingredients</string>
+
+    <string name="label_not_found">Not found. Please try again.</string>
 
     <string name="placeholder_version_name">Version: %1s</string>
 
@@ -44,4 +50,7 @@
     <string name="url_cocktail_db">https://www.thecocktaildb.com/</string>
     <string name="url_telegram">https://t.me/knapweed1</string>
     <string name="url_instagram">https://www.instagram.com/marina_vasilova/</string>
+
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+    <string name="default_notification_name_channel">Common notifications</string>
 </resources>

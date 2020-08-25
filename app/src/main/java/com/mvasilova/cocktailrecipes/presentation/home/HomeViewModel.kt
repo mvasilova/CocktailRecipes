@@ -41,11 +41,11 @@ class HomeViewModel(
         ).handleState(state)
             .subscribe { it ->
                 drinks.value = listOf(
-                    HorizontalPreview(R.string.title_recent, it[0]),
-                    HorizontalPreview(R.string.title_popular, it[1]),
-                    PreviewCategory(R.string.title_cocktails, it[2]),
-                    PreviewCategory(R.string.title_shots, it[3]),
-                    PreviewCategory(R.string.title_beers, it[4])
+                    HorizontalPreview(R.string.home_title_recent, it[0]),
+                    HorizontalPreview(R.string.home_title_popular, it[1]),
+                    PreviewCategory(R.string.home_title_cocktails, it[2]),
+                    PreviewCategory(R.string.home_title_shots, it[3]),
+                    PreviewCategory(R.string.home_title_beers, it[4])
                 )
             }.addToDisposables()
     }
