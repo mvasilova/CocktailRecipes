@@ -12,4 +12,5 @@
     <color name="colorSemiTransparent">#B3FFFFFF</color>
     <color name="colorBackground">#F5F5F5</color>
     <color name="colorView">#80CCCCCC</color>
+    <color name="colorLightGray">#33ACACAC</color>
 </resources>

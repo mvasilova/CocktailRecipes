@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -28,10 +29,10 @@ import kotlin.math.abs
 class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
 
     override val statusBarColor: Int
-        get() = R.color.colorWhite
+        get() = R.color.colorLightGray
 
     override val statusBarLightMode: Boolean
-        get() = true
+        get() = false
 
     override val screenViewModel by viewModel<RecipeInfoViewModel> {
         parametersOf(args.idDrink)
@@ -115,8 +116,10 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                 val percentage = abs(verticalOffset) * 100 / collapsingToolbar.height
                 if (percentage > 54) {
                     setupStatusBar(R.color.colorPrimary, false)
+                    toolbar.background = getDrawable(requireActivity(), R.color.colorPrimary)
                 } else {
-                    setupStatusBar(R.color.colorTransparent, true)
+                    setupStatusBar(R.color.colorLightGray, false)
+                    toolbar.background = getDrawable(requireActivity(), R.drawable.shape_toolbar)
                 }
             }
         })
