@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -28,12 +29,12 @@ import kotlin.math.abs
 class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
 
     override val statusBarColor: Int
-        get() = R.color.colorWhite
+        get() = R.color.colorLightGray
 
     override val statusBarLightMode: Boolean
-        get() = true
+        get() = false
 
-    override val screenViewModel by viewModel<RecipeInfoViewModel>() {
+    override val screenViewModel by viewModel<RecipeInfoViewModel> {
         parametersOf(args.idDrink)
     }
     private val args: RecipeInfoFragmentArgs by navArgs()
@@ -102,7 +103,7 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                             R.string.filter_glass
                         )}:\n${drink?.strGlass}" +
                         "\n\n${getString(R.string.drinks_image)}:\n${drink?.strDrinkThumb}" +
-                        "\n\n${resources.getString(R.string.intent_text)} "
+                        "\n\n${resources.getString(R.string.share_text)} "
         }
     }
 
@@ -115,8 +116,10 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                 val percentage = abs(verticalOffset) * 100 / collapsingToolbar.height
                 if (percentage > 54) {
                     setupStatusBar(R.color.colorPrimary, false)
+                    toolbar.background = getDrawable(requireActivity(), R.color.colorPrimary)
                 } else {
-                    setupStatusBar(R.color.colorTransparent, true)
+                    setupStatusBar(R.color.colorLightGray, false)
+                    toolbar.background = getDrawable(requireActivity(), R.drawable.shape_toolbar)
                 }
             }
         })
@@ -139,7 +142,7 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                 type = "text/plain"
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
-            startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.btn_share)))
         }
     }
 

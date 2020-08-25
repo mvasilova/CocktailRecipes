@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -15,6 +16,10 @@ import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.presentation.MainActivity
 
 class FirebaseMessagingService : FirebaseMessagingService() {
+
+    override fun onNewToken(token: String) {
+        Log.d(FIREBASE_TAG, token)
+    }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         sendNotification(remoteMessage.notification?.title, remoteMessage.notification?.body)

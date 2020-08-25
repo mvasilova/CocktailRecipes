@@ -27,7 +27,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/default_margin_8"
                     android:layout_marginEnd="@dimen/default_margin_8"
-                    android:contentDescription="@string/action_search"
+                    android:contentDescription="@string/btn_back"
                     android:rotation="180"
                     android:src="@drawable/ic_arrow"
                     android:tint="@color/colorLightHint" />
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/default_margin_8"
-                    android:contentDescription="@string/action_search"
+                    android:contentDescription="@string/btn_search"
                     android:src="@drawable/ic_search"
                     android:tint="@color/colorLightHint" />
 

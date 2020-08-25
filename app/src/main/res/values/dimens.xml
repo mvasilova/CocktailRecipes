@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_margin_0">0dp</dimen>
-    <dimen name="default_margin_1">1dp</dimen>
-    <dimen name="default_margin_2">2dp</dimen>
     <dimen name="default_margin_4">4dp</dimen>
     <dimen name="default_margin_6">6dp</dimen>
     <dimen name="default_margin_8">8dp</dimen>
     <dimen name="default_margin_10">10dp</dimen>
-    <dimen name="default_margin_12">10dp</dimen>
-    <dimen name="default_margin_15">15dp</dimen>
     <dimen name="default_margin_16">16dp</dimen>
     <dimen name="default_margin_32">32dp</dimen>
     <dimen name="default_margin_60">60dp</dimen>
@@ -19,8 +14,6 @@
     <dimen name="search_radius">10dp</dimen>
 
     <dimen name="app_bar_height">350dp</dimen>
-
-    <dimen name="view_height">1dp</dimen>
 
     <dimen name="card_min_height">300dp</dimen>
     <dimen name="card_min_height_scroll">150dp</dimen>

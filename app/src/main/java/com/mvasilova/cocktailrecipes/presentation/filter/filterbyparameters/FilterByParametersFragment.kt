@@ -37,7 +37,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
     override val setToolbar: Boolean
         get() = true
 
-    override val screenViewModel by viewModel<FilterByParametersViewModel>() {
+    override val screenViewModel by viewModel<FilterByParametersViewModel> {
         parametersOf(args.type)
     }
 
@@ -45,7 +45,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
     val filtersAdapter by lazy {
         ListDelegationAdapter(
-            itemFilterName() {
+            itemFilterName {
                 onDrinksListFragment(it.name)
             })
     }
@@ -72,7 +72,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
     private fun handleFilters(filters: List<Filter>?) {
         filters?.let { list ->
-            tvMessage.text = getString(R.string.not_found)
+            tvMessage.text = getString(R.string.label_not_found)
             tvMessage.isVisible = list.isNullOrEmpty()
             filtersAdapter.setData(list)
         }

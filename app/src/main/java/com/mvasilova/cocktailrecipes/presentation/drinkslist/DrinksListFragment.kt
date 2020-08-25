@@ -35,7 +35,7 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
     override val toolbarTitle: String
         get() = previewCategory?.title?.let { getString(it) } ?: args.name
 
-    override val screenViewModel by viewModel<DrinksListViewModel>() {
+    override val screenViewModel by viewModel<DrinksListViewModel> {
         parametersOf(previewCategory?.list?.drinks, args.type, args.name)
     }
 
@@ -67,7 +67,7 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
 
     private fun handleDrinks(drinks: List<Drink>?) {
         drinks?.let { list ->
-            tvMessage.text = getString(R.string.not_found)
+            tvMessage.text = getString(R.string.label_not_found)
             tvMessage.isVisible = list.isNullOrEmpty()
 
             val items = mutableListOf<DisplayableItem>()
