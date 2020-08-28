@@ -35,6 +35,7 @@
     <string name="btn_back">Back</string>
     <string name="btn_open_list">Open list</string>
     <string name="btn_share">Share recipe</string>
+    <string name="btn_choose_theme">Choose theme</string>
 
     <string name="toast_error">An error has occurred. Please try again later</string>
     <string name="toast_select_ingredients">Please select one or more ingredients</string>

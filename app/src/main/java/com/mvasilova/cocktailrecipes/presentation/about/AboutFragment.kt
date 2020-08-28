@@ -44,6 +44,9 @@ class AboutFragment : BaseFragment(R.layout.fragment_about) {
             openUrl(getString(R.string.url_instagram))
         }
 
+        btnChooseTheme.setOnClickListener {
+
+        }
     }
 
     private fun openUrl(url: String) {

@@ -63,6 +63,13 @@
                 android:padding="@dimen/default_margin_16"
                 tools:text="@string/label_special_thanks" />
 
+        <Button
+                android:id="@+id/btnChooseTheme"
+                style="@style/Button"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_32"
+                android:text="@string/btn_choose_theme" />
+
     </LinearLayout>
 
 </LinearLayout>
