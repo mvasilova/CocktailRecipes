@@ -3,5 +3,5 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/tvRecipeTitle"
         style="@style/RegularTextBody.Message.InfoRecipeTitle"
-        android:background="@color/colorWhite"
+        android:background="@color/colorTextBackground"
         tools:text="example" />

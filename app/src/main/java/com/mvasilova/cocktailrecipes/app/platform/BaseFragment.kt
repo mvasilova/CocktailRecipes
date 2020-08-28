@@ -21,7 +21,7 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     open val screenViewModel: BaseViewModel? = null
 
-    open val statusBarColor = R.color.colorPrimary
+    open val statusBarColor = R.color.colorStatusBarBackground
     open val statusBarLightMode = false
 
     open val setToolbar = false

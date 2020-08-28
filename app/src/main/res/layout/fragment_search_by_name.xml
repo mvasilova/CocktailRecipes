@@ -20,7 +20,7 @@
                 android:background="@drawable/bg_search_text"
                 android:orientation="horizontal">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                     android:contentDescription="@string/btn_back"
                     android:rotation="180"
                     android:src="@drawable/ic_arrow"
-                    android:tint="@color/colorLightHint" />
+                    app:tint="@color/colorLightHint" />
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilSearch"
@@ -54,7 +54,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivSearchIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                     android:layout_marginEnd="@dimen/default_margin_8"
                     android:contentDescription="@string/btn_search"
                     android:src="@drawable/ic_search"
-                    android:tint="@color/colorLightHint" />
+                    app:tint="@color/colorLightHint" />
 
         </LinearLayout>
 

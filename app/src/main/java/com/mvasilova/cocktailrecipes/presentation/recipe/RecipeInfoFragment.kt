@@ -115,8 +115,9 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
             collapsingToolbar?.let {
                 val percentage = abs(verticalOffset) * 100 / collapsingToolbar.height
                 if (percentage > 54) {
-                    setupStatusBar(R.color.colorPrimary, false)
-                    toolbar.background = getDrawable(requireActivity(), R.color.colorPrimary)
+                    setupStatusBar(R.color.colorStatusBarBackground, false)
+                    toolbar.background =
+                        getDrawable(requireActivity(), R.color.colorToolbarBackground)
                 } else {
                     setupStatusBar(R.color.colorLightGray, false)
                     toolbar.background = getDrawable(requireActivity(), R.drawable.shape_toolbar)

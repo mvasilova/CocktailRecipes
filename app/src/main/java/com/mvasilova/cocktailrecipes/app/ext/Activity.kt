@@ -1,6 +1,7 @@
 package com.mvasilova.cocktailrecipes.app.ext
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.view.View
 import androidx.annotation.ColorInt
 
@@ -19,4 +20,15 @@ fun Activity.setStatusBarLightMode(
         vis and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
     }
     decorView.systemUiVisibility = vis
+}
+
+
+fun Activity.isUsingNightModeResources(): Boolean {
+    return when (resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK) {
+        Configuration.UI_MODE_NIGHT_YES -> true
+        Configuration.UI_MODE_NIGHT_NO -> false
+        Configuration.UI_MODE_NIGHT_UNDEFINED -> false
+        else -> false
+    }
 }

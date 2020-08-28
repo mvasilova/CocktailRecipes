@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -9,14 +9,14 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <item name="android:statusBarColor">@color/colorWhite</item>
+        <item name="android:statusBarColor">@color/colorAppBackground</item>
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
     <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorToolbarBackground</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
@@ -28,12 +28,12 @@
     </style>
 
     <style name="RegularTextTitle" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorRegularText</item>
         <item name="android:textSize">@dimen/font_18</item>
     </style>
 
     <style name="RegularTextBody" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorRegularText</item>
         <item name="android:textSize">@dimen/font_16</item>
     </style>
 
@@ -78,7 +78,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">@dimen/card_min_height</item>
-        <item name="cardBackgroundColor">@color/colorWhite</item>
+        <item name="cardBackgroundColor">@color/colorCardViewBackground</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">@dimen/card_elevation_5</item>
     </style>
