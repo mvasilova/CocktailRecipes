@@ -36,14 +36,20 @@
     <string name="btn_open_list">Open list</string>
     <string name="btn_share">Share recipe</string>
     <string name="btn_choose_theme">Choose theme</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <string name="rg_mode_day">Day mode</string>
+    <string name="rg_mode_night">Night mode</string>
+    <string name="rg_mode_system">System</string>
 
     <string name="toast_error">An error has occurred. Please try again later</string>
     <string name="toast_select_ingredients">Please select one or more ingredients</string>
 
-    <string name="label_not_found">Not found. Please try again.</string>
-
     <string name="placeholder_version_name">Version: %1s</string>
 
+    <string name="label_not_found">Not found. Please try again.</string>
+    <string name="label_choose_theme">Choose theme…</string>
     <string name="label_about_developer">About developer:</string>
     <string name="label_special_thanks">Special thanks:\nAuthors TheCocktailDB</string>
     <string name="label_special_thanks_link">Authors TheCocktailDB</string>

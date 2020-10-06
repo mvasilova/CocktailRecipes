@@ -19,6 +19,9 @@ import org.jetbrains.anko.support.v4.longToast
 
 abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
+    open val supportFragmentManager
+        get() = requireActivity().supportFragmentManager
+
     open val screenViewModel: BaseViewModel? = null
 
     open val statusBarColor = R.color.colorStatusBarBackground
@@ -78,4 +81,7 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
             imm?.hideSoftInputFromWindow(it.windowToken, 0)
         }
     }
+
+    internal fun dialogNotAlreadyShown(tag: String) =
+        supportFragmentManager.findFragmentByTag(tag) == null
 }
