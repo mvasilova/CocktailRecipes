@@ -26,5 +26,9 @@ In the app you can find drink's recipes by name, categories, glasses, ingredient
 <img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-121907.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-121946.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-121950.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-121959.jpg" width="25%"/>
 
 
-<img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122004.jpg" width="20%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122022.jpg" width="20%"/><img
-src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122027.jpg" width="20%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122101.jpg" width="20%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122136.jpg" width="20%"/>
+<img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122004.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122022.jpg" width="25%"/><img
+src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122027.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20200825-122101.jpg" width="25%"/>
+
+<img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20201006-120613.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20201006-120618.jpg" width="25%"/><img src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20201006-120633.jpg" width="25%"/><img
+src="https://github.com/mvasilova/CocktailRecipes/blob/master/Screenshots/Screenshot_20201006-120642.jpg" width="25%"/>
+
