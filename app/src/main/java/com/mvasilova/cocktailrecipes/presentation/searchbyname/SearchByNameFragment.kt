@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.HomeDirections
 import com.mvasilova.cocktailrecipes.R
+import com.mvasilova.cocktailrecipes.app.ext.isUsingNightModeResources
 import com.mvasilova.cocktailrecipes.app.ext.observe
 import com.mvasilova.cocktailrecipes.app.ext.setData
 import com.mvasilova.cocktailrecipes.app.ext.setOnEnterClickListener
@@ -24,10 +25,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SearchByNameFragment : BaseFragment(R.layout.fragment_search_by_name) {
 
     override val statusBarColor: Int
-        get() = R.color.colorWhite
+        get() = R.color.colorLightStatusBarBackground
 
     override val statusBarLightMode: Boolean
-        get() = true
+        get() = !requireActivity().isUsingNightModeResources()
 
     override val screenViewModel by viewModel<SearchByNameViewModel>()
 

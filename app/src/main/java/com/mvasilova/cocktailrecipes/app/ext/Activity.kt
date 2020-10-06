@@ -1,6 +1,8 @@
 package com.mvasilova.cocktailrecipes.app.ext
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
 import android.view.View
 import androidx.annotation.ColorInt
 

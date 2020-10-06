@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#80CCCCCC</color>
+    <color name="colorPrimaryLight">#689D0E</color>
+    <color name="colorAccent">#F18A24</color>
+    <color name="colorPaleAccent">#80F18A24</color>
+    <color name="colorLightHint">#9E9E9E</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorView">#80CCCCCC</color>
+    <color name="colorLightGray">#33ACACAC</color>
+
+    <color name="colorAppBackground">#222222</color>
+    <color name="colorBackground">#222222</color>
+    <color name="colorStatusBarBackground">#2E2E32</color>
+    <color name="colorLightStatusBarBackground">#222222</color>
+    <color name="colorToolbarBackground">#2E2E32</color>
+    <color name="colorCardViewBackground">#2E2E32</color>
+    <color name="colorBottomBarBackground">#2E2E32</color>
+    <color name="colorBottomBarText">#B9B9B9</color>
+
+    <color name="colorTextBackground">#2E2E32</color>
+    <color name="colorTextSemiTransparentBackground">#B3858585</color>
+    <color name="colorRegularText">#FFFFFF</color>
+    <color name="colorPaleText">#9E9E9E</color>
+
+
+</resources>

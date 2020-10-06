@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_margin_24">
+
+    <TextView
+            android:id="@+id/tvTitle"
+            style="@style/RegularTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_8"
+            android:text="@string/label_choose_theme" />
+
+    <RadioGroup
+            android:id="@+id/rgChooseTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RadioButton
+                android:id="@+id/rbThemeLight"
+                style="@style/RegularTextBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rg_mode_day" />
+
+        <RadioButton
+                android:id="@+id/rbThemeDark"
+                style="@style/RegularTextBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rg_mode_night" />
+
+        <RadioButton
+                android:id="@+id/rbThemeSystem"
+                style="@style/RegularTextBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rg_mode_system" />
+
+    </RadioGroup>
+
+</LinearLayout>
+
