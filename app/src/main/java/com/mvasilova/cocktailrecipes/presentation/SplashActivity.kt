@@ -12,17 +12,19 @@ import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
 
+    private val runnable = Runnable {
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Handler(Looper.getMainLooper()).postDelayed(runnable, SPLASH_SHOW_TIME)
+    }
 
-        Handler(Looper.getMainLooper()).postDelayed(
-            {
-                startActivity(Intent(this, MainActivity::class.java))
-                finishAffinity()
-            },
-            SPLASH_SHOW_TIME
-        )
+    override fun onPause() {
+        super.onPause()
+        Handler(Looper.getMainLooper()).removeCallbacks(runnable)
     }
 
 
