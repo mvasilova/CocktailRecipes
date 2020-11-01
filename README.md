@@ -1,5 +1,6 @@
-# CocktailRecipes
-
+# CocktailRecipes [<img src="https://www.gstatic.com/android/market_images/web/play_prism_hlock_2x.png" width="20%" align="right">](https://play.google.com/store/apps/details?id=com.mvasilova.cocktailrecipes)
+                                
+ 
 In the app you can find drink's recipes by name, categories, glasses, ingredients. You can add liked drink in your favorites and share the recipe with your friends. The database is taken from [TheCocktailDB](https://www.thecocktaildb.com/).
 
 [Last release here](https://github.com/mvasilova/CocktailRecipes/releases).
