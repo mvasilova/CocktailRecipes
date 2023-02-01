@@ -98,11 +98,11 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
 
             text =
                 "${drink?.strDrink}\n${getString(R.string.filter_ingredients)}:\n$ingredients\n\n" +
-                        "${getString(R.string.instructions)}:\n${drink?.strInstructions}\n\n${
-                            getString(R.string.filter_glass)
-                        }:\n${drink?.strGlass}" +
-                        "\n\n${getString(R.string.drinks_image)}:\n${drink?.strDrinkThumb}" +
-                        "\n\n${resources.getString(R.string.share_text)} "
+                "${getString(R.string.instructions)}:\n${drink?.strInstructions}\n\n${
+                getString(R.string.filter_glass)
+                }:\n${drink?.strGlass}" +
+                "\n\n${getString(R.string.drinks_image)}:\n${drink?.strDrinkThumb}" +
+                "\n\n${resources.getString(R.string.share_text)} "
         }
     }
 
