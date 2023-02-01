@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.layout_toolbar_search_view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
 
     override val screenViewModel by viewModel<FavoritesViewModel>()
@@ -57,16 +56,15 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
 
         observe(screenViewModel.favorites, ::handleFavorites)
         observe(screenViewModel.mediator, {})
-
     }
 
     private fun handleFavorites(favorite: List<Favorite>?) {
         favorite?.let { list ->
             tvMessage.text = getString(R.string.label_not_found)
-            tvMessage.isVisible = favorite.isNullOrEmpty()
+            tvMessage.isVisible = favorite.isEmpty()
 
             val items = mutableListOf<DisplayableItem>()
-            list.groupBy { it.name.orEmpty().first().toUpperCase() }.forEach {
+            list.groupBy { it.name.orEmpty().first().uppercaseChar() }.forEach {
                 items.add(AlphabetLetter(it.key.toString()))
                 it.value.forEach { favorite ->
                     val drink = convertFavoriteToDrink(favorite)
@@ -92,4 +90,3 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_list) {
         }
     }
 }
-

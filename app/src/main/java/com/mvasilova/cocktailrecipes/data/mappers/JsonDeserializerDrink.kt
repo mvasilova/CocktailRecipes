@@ -6,7 +6,6 @@ import com.google.gson.JsonElement
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
 import java.lang.reflect.Type
 
-
 class JsonDeserializerDrink : JsonDeserializer<RecipeInfoDrink.Drink> {
     override fun deserialize(
         json: JsonElement?,
@@ -30,29 +29,30 @@ class JsonDeserializerDrink : JsonDeserializer<RecipeInfoDrink.Drink> {
 
         jsonObject.keySet().forEach { key ->
             when {
-                key.startsWith("strIngredient") && jsonObject[key] != null && jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
+                key.startsWith("strIngredient") && jsonObject[key] != null &&
+                        jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
                     ingredients.add(jsonObject[key].asString)
                 }
-                key.startsWith("strMeasure") && jsonObject[key] != null && jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
+                key.startsWith("strMeasure") && jsonObject[key] != null &&
+                        jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
                     measure.add(jsonObject[key].asString)
                 }
             }
         }
         return RecipeInfoDrink.Drink(
-            dateModified,
-            idDrink,
-            strAlcoholic,
-            strCategory,
-            strDrink,
-            strDrinkThumb,
-            strGlass,
-            strIBA,
-            strInstructions,
-            ingredients,
-            measure
+            dateModified = dateModified,
+            idDrink = idDrink,
+            strAlcoholic = strAlcoholic,
+            strCategory = strCategory,
+            strDrink = strDrink,
+            strDrinkThumb = strDrinkThumb,
+            strGlass = strGlass,
+            strIBA = strIBA,
+            strInstructions = strInstructions,
+            ingredients = ingredients,
+            measure = measure
         )
     }
 
     private fun JsonElement.getNullAsEmptyString() = if (this.isJsonNull) "" else this.asString
-
 }

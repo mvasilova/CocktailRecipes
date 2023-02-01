@@ -39,7 +39,7 @@
     <string name="btn_ok">OK</string>
     <string name="btn_cancel">Cancel</string>
 
-    <string name="rg_mode_day">Day mode</string>
+    <string name="rg_mode_light">Light mode</string>
     <string name="rg_mode_night">Night mode</string>
     <string name="rg_mode_system">System</string>
 

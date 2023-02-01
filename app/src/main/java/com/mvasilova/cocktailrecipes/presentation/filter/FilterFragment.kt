@@ -16,11 +16,12 @@ import kotlinx.android.synthetic.main.fragment_filter.*
 
 class FilterFragment : BaseFragment(R.layout.fragment_filter) {
 
-    val categoriesAdapter by lazy {
+    private val categoriesAdapter by lazy {
         ListDelegationAdapter(
             itemFilterName {
                 it.type?.let { it1 -> navigateToFilterByParameters(it1) }
-            })
+            }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -1,15 +1,18 @@
 package com.mvasilova.cocktailrecipes.presentation.delegates
 
-import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
-import com.mvasilova.cocktailrecipes.R
+import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
-import kotlinx.android.synthetic.main.item_alphabet_letter.view.*
+import com.mvasilova.cocktailrecipes.databinding.ItemAlphabetLetterBinding
 
 fun itemAlphabet() =
-    adapterDelegateLayoutContainer<AlphabetLetter, DisplayableItem>(R.layout.item_alphabet_letter) {
+    adapterDelegateViewBinding<AlphabetLetter, DisplayableItem, ItemAlphabetLetterBinding>(
+        { layoutInflater, root ->
+            ItemAlphabetLetterBinding.inflate(layoutInflater, root, false)
+        }
+    ) {
 
         bind {
-            with(containerView) {
+            binding.apply {
                 tvAlphabetLetter.text = item.letter
             }
         }

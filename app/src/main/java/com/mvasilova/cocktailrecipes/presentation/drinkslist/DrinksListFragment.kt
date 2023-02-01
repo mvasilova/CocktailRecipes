@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.layout_toolbar_search_view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-
 class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
 
     override val setToolbar: Boolean
@@ -42,7 +41,7 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
     private val args: DrinksListFragmentArgs by navArgs()
     private val previewCategory by lazy { arguments?.getSerializable(PREVIEW_CATEGORY_KEY) as? PreviewCategory }
 
-    val drinksListAdapter by lazy {
+    private val drinksListAdapter by lazy {
         ListDelegationAdapter(
             itemDrinksList({
                 val action =
@@ -68,10 +67,10 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
     private fun handleDrinks(drinks: List<Drink>?) {
         drinks?.let { list ->
             tvMessage.text = getString(R.string.label_not_found)
-            tvMessage.isVisible = list.isNullOrEmpty()
+            tvMessage.isVisible = list.isEmpty()
 
             val items = mutableListOf<DisplayableItem>()
-            list.groupBy { it.strDrink.orEmpty().first().toUpperCase() }.forEach {
+            list.groupBy { it.strDrink.orEmpty().first().uppercaseChar() }.forEach {
                 items.add(AlphabetLetter(it.key.toString()))
                 items.addAll(it.value)
             }
@@ -98,4 +97,3 @@ class DrinksListFragment : BaseFragment(R.layout.fragment_list) {
         }
     }
 }
-
