@@ -12,7 +12,7 @@ import java.util.*
 
 class FilterByParametersViewModel(
     val type: TypeDrinksFilters,
-    val drinksRepository: DrinksRepository
+    private val drinksRepository: DrinksRepository
 ) : BaseViewModel() {
 
     val filters = MutableLiveData<List<Filter>>()
@@ -22,7 +22,7 @@ class FilterByParametersViewModel(
         loadFilters()
     }
 
-    fun loadFilters() {
+    private fun loadFilters() {
         drinksRepository.getFiltersList(type.param).handleState(state)
             .flatMap { Observable.fromIterable(it.drinks) }
             .map {
@@ -36,7 +36,7 @@ class FilterByParametersViewModel(
             .toList()
             .map {
                 it.apply {
-                    sortBy { it.name.toLowerCase(Locale.getDefault()) }
+                    sortBy { it.name.lowercase(Locale.getDefault()) }
                 }.filter { it.name.isNotEmpty() }
             }
             .subscribe { it ->
@@ -46,11 +46,8 @@ class FilterByParametersViewModel(
     }
 
     fun filterBySearch(query: String) {
-        val list = sourceList
-            .filter {
-                it.name.contains(query, true)
-            }
-        filters.value = list
+        sourceList
+            .filter { it.name.contains(query, true) }
+            .let{ filters.value = it }
     }
-
 }

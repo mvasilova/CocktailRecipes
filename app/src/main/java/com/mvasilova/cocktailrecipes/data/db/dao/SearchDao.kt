@@ -26,5 +26,4 @@ interface SearchDao {
         }
         insertSearch(searchHistory)
     }
-
 }

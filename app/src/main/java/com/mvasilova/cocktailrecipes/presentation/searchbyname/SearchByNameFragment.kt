@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.HomeDirections
 import com.mvasilova.cocktailrecipes.R
-import com.mvasilova.cocktailrecipes.app.ext.isUsingNightModeResources
-import com.mvasilova.cocktailrecipes.app.ext.observe
-import com.mvasilova.cocktailrecipes.app.ext.setData
-import com.mvasilova.cocktailrecipes.app.ext.setOnEnterClickListener
+import com.mvasilova.cocktailrecipes.app.ext.*
 import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
 import com.mvasilova.cocktailrecipes.app.view.AlphabetItemDecoration
 import com.mvasilova.cocktailrecipes.data.db.entities.SearchHistory
@@ -20,7 +17,6 @@ import com.mvasilova.cocktailrecipes.presentation.delegates.itemSearchDrinks
 import com.mvasilova.cocktailrecipes.presentation.delegates.itemSearchHistory
 import kotlinx.android.synthetic.main.fragment_search_by_name.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class SearchByNameFragment : BaseFragment(R.layout.fragment_search_by_name) {
 
@@ -32,7 +28,7 @@ class SearchByNameFragment : BaseFragment(R.layout.fragment_search_by_name) {
 
     override val screenViewModel by viewModel<SearchByNameViewModel>()
 
-    val drinksListAdapter by lazy {
+    private val drinksListAdapter by lazy {
         ListDelegationAdapter(
             itemSearchDrinks {
                 screenViewModel.addSearch(edSearch.text.toString())
@@ -89,16 +85,17 @@ class SearchByNameFragment : BaseFragment(R.layout.fragment_search_by_name) {
                 resources.getDimensionPixelSize(R.dimen.search_decoration_padding_38),
                 getGroupId = { position ->
                     when (val item = drinksListAdapter.items[position]) {
-                        is Drink -> item.strDrink.orEmpty().first().toUpperCase().toLong()
+                        is Drink -> item.strDrink.orEmpty().first().uppercaseChar().code.toLong()
                         else -> AlphabetItemDecoration.EMPTY_ID
                     }
                 },
                 getInitial = { position ->
                     when (val item = drinksListAdapter.items[position]) {
-                        is Drink -> item.strDrink.orEmpty().first().toUpperCase().toString()
+                        is Drink -> item.strDrink.orEmpty().first().uppercaseChar().toString()
                         else -> AlphabetItemDecoration.DEFAULT_INITIAL
                     }
-                })
+                }
+            )
         )
     }
 
@@ -133,14 +130,10 @@ class SearchByNameFragment : BaseFragment(R.layout.fragment_search_by_name) {
     }
 
     private fun resetFocus() {
-        edSearch?.clearFocus()
-        hideSoftKeyboard()
+        edSearch?.hideSoftKeyboard()
     }
 
     private fun setFocus() {
-        edSearch?.requestFocus()
-        showSoftKeyboard(edSearch)
+        edSearch?.showSoftKeyboard()
     }
-
 }
-

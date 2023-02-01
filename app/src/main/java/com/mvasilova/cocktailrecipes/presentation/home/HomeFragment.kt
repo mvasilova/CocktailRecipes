@@ -16,7 +16,6 @@ import com.mvasilova.cocktailrecipes.presentation.delegates.homePreviewCategoryD
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     override val screenViewModel by viewModel<HomeViewModel>()

@@ -1,19 +1,23 @@
 package com.mvasilova.cocktailrecipes.presentation.delegates
 
-import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
-import com.mvasilova.cocktailrecipes.R
+import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
 import com.mvasilova.cocktailrecipes.data.db.entities.SearchHistory
-import kotlinx.android.synthetic.main.item_search_history.view.*
+import com.mvasilova.cocktailrecipes.databinding.ItemSearchHistoryBinding
 
-fun itemSearchHistory(itemClickListener: (String) -> Unit) =
-    adapterDelegateLayoutContainer<SearchHistory, DisplayableItem>(R.layout.item_search_history) {
+fun itemSearchHistory(
+    itemClickListener: (String) -> Unit
+) = adapterDelegateViewBinding<SearchHistory, DisplayableItem, ItemSearchHistoryBinding>(
+    { layoutInflater, root ->
+        ItemSearchHistoryBinding.inflate(layoutInflater, root, false)
+    }
+) {
 
-        containerView.setOnClickListener { itemClickListener.invoke(item.name.toString()) }
+    binding.root.setOnClickListener { itemClickListener.invoke(item.name.toString()) }
 
-        bind {
-            with(containerView) {
-                tvName.text = item.name
-            }
+    bind {
+        binding.apply {
+            tvName.text = item.name
         }
     }
+}

@@ -15,7 +15,6 @@ import com.mvasilova.cocktailrecipes.app.ext.setStatusBarColor
 import com.mvasilova.cocktailrecipes.app.ext.setStatusBarLightMode
 import kotlinx.android.synthetic.main.layout_progress_bar.*
 import kotlinx.android.synthetic.main.layout_toolbar_search_view.*
-import org.jetbrains.anko.support.v4.longToast
 
 abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
@@ -47,13 +46,14 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
         when (state) {
             State.Loading -> progressBar?.isVisible = true
             State.Loaded -> progressBar?.isVisible = false
-            is State.Error -> longToast(getString(R.string.toast_error))
+            is State.Error -> Unit // todo handle error on UI
+            else -> Unit
         }
     }
 
     protected fun setupStatusBar(statusBarColor: Int, statusBarLightMode: Boolean) {
-        activity?.setStatusBarColor(requireActivity().getCompatColor(statusBarColor))
-        activity?.setStatusBarLightMode(statusBarLightMode)
+        requireActivity().setStatusBarColor(requireActivity().getCompatColor(statusBarColor))
+        requireActivity().setStatusBarLightMode(statusBarLightMode)
     }
 
     private fun setupToolbar() {
@@ -64,22 +64,6 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.title = toolbarTitle
         searchView?.maxWidth = Int.MAX_VALUE
-    }
-
-    fun showSoftKeyboard(field: View?) {
-        field?.let {
-            val imm =
-                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm?.showSoftInput(it, InputMethodManager.SHOW_IMPLICIT)
-        }
-    }
-
-    fun hideSoftKeyboard() {
-        view?.let {
-            val imm =
-                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm?.hideSoftInputFromWindow(it.windowToken, 0)
-        }
     }
 
     internal fun dialogNotAlreadyShown(tag: String) =

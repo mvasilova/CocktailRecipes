@@ -14,11 +14,9 @@ import com.mvasilova.cocktailrecipes.app.platform.BaseFragment
 import com.mvasilova.cocktailrecipes.app.view.AlphabetItemDecoration
 import com.mvasilova.cocktailrecipes.data.entity.Filter
 import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters
-import com.mvasilova.cocktailrecipes.data.enums.TypeDrinksFilters.INGREDIENTS
 import com.mvasilova.cocktailrecipes.presentation.delegates.itemFilterName
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.layout_toolbar_search_view.*
-import org.jetbrains.anko.support.v4.longToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -29,9 +27,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
             TypeDrinksFilters.ALCOHOL -> getString(R.string.filter_by_alcohol)
             TypeDrinksFilters.CATEGORY -> getString(R.string.filter_by_category)
             TypeDrinksFilters.GLASS -> getString(R.string.filter_by_glass)
-            INGREDIENTS -> {
-                getString(R.string.multi_filter_by_ingredients)
-            }
+            TypeDrinksFilters.INGREDIENTS -> getString(R.string.multi_filter_by_ingredients)
         }
 
     override val setToolbar: Boolean
@@ -43,11 +39,12 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
 
     private val args: FilterByParametersFragmentArgs by navArgs()
 
-    val filtersAdapter by lazy {
+    private val filtersAdapter by lazy {
         ListDelegationAdapter(
             itemFilterName {
                 onDrinksListFragment(it.name)
-            })
+            }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,10 +59,13 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
             val items = filtersAdapter.items as? List<Filter>
 
             if (items?.any { it.isChecked } == true) {
-                onDrinksListFragment(items.filter { it.isChecked }
-                    .joinToString(separator = ",") { it.name })
+                onDrinksListFragment(
+                    items.filter { it.isChecked }
+                        .joinToString(separator = ",") { it.name }
+                )
             } else {
-                longToast(getString(R.string.toast_select_ingredients))
+                // longToast(getString(R.string.toast_select_ingredients))
+                // todo change toast to another custom view
             }
         }
     }
@@ -73,7 +73,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
     private fun handleFilters(filters: List<Filter>?) {
         filters?.let { list ->
             tvMessage.text = getString(R.string.label_not_found)
-            tvMessage.isVisible = list.isNullOrEmpty()
+            tvMessage.isVisible = list.isEmpty()
             filtersAdapter.setData(list)
         }
     }
@@ -83,7 +83,7 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
         rvDrinks.adapter = filtersAdapter
         rvDrinks.setPadding(0.dpToPx)
 
-        if (args.type == INGREDIENTS) {
+        if (args.type == TypeDrinksFilters.INGREDIENTS) {
             btnSearch.visibility = View.VISIBLE
             rvDrinks.setDividerItemDecoration(50f.dpToPx)
             rvDrinks.addItemDecoration(
@@ -92,16 +92,17 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
                     resources.getDimensionPixelSize(R.dimen.search_decoration_padding_26),
                     getGroupId = { position ->
                         when (val item = filtersAdapter.items[position]) {
-                            is Filter -> item.name.first().toUpperCase().toLong()
+                            is Filter -> item.name.first().uppercaseChar().code.toLong()
                             else -> AlphabetItemDecoration.EMPTY_ID
                         }
                     },
                     getInitial = { position ->
                         when (val item = filtersAdapter.items[position]) {
-                            is Filter -> item.name.first().toUpperCase().toString()
+                            is Filter -> item.name.first().uppercaseChar().toString()
                             else -> AlphabetItemDecoration.DEFAULT_INITIAL
                         }
-                    })
+                    }
+                )
             )
         } else {
             rvDrinks.setDividerItemDecoration()
@@ -123,4 +124,3 @@ class FilterByParametersFragment : BaseFragment(R.layout.fragment_list) {
         }
     }
 }
-

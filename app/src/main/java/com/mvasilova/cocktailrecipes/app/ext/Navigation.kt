@@ -3,7 +3,6 @@ package com.mvasilova.cocktailrecipes.app.ext
 import android.content.Intent
 import android.util.SparseArray
 import androidx.core.util.forEach
-import androidx.core.util.set
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,7 +45,7 @@ fun BottomNavigationView.setupBottomWithNavController(
         }
 
         // Save to the map
-        graphIdToTagMap[graphId] = fragmentTag
+        graphIdToTagMap.put(graphId, fragmentTag)
 
         // Attach or detach nav host fragment depending on whether it's the selected item.
         if (this.selectedItemId == graphId) {
@@ -76,8 +75,8 @@ fun BottomNavigationView.setupBottomWithNavController(
                     firstFragmentTag,
                     FragmentManager.POP_BACK_STACK_INCLUSIVE
                 )
-                val selectedFragment = fragmentManager.findFragmentByTag(newlySelectedItemTag)
-                        as NavHostFragment
+                val selectedFragment =
+                    fragmentManager.findFragmentByTag(newlySelectedItemTag) as NavHostFragment
 
                 // Exclude the first fragment tag because it's always in the back stack.
                 if (firstFragmentTag != newlySelectedItemTag) {
@@ -154,8 +153,8 @@ private fun BottomNavigationView.setupDeepLinks(
             containerId
         )
         // Handle Intent
-        if (navHostFragment.navController.handleDeepLink(intent)
-            && selectedItemId != navHostFragment.navController.graph.id
+        if (navHostFragment.navController.handleDeepLink(intent) &&
+            selectedItemId != navHostFragment.navController.graph.id
         ) {
             this.selectedItemId = navHostFragment.navController.graph.id
         }
@@ -173,7 +172,7 @@ private fun BottomNavigationView.setupItemReselected(
         val navController = selectedFragment.navController
         // Pop the back stack to the start destination of the current navController graph
         navController.popBackStack(
-            navController.graph.startDestination, false
+            navController.graph.startDestinationId, false
         )
     }
 }
@@ -200,7 +199,6 @@ private fun attachNavHostFragment(
             }
         }
         .commitNow()
-
 }
 
 private fun obtainNavHostFragment(
