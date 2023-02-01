@@ -30,11 +30,11 @@ class JsonDeserializerDrink : JsonDeserializer<RecipeInfoDrink.Drink> {
         jsonObject.keySet().forEach { key ->
             when {
                 key.startsWith("strIngredient") && jsonObject[key] != null &&
-                        jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
+                    jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
                     ingredients.add(jsonObject[key].asString)
                 }
                 key.startsWith("strMeasure") && jsonObject[key] != null &&
-                        jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
+                    jsonObject[key].getNullAsEmptyString().isNotEmpty() -> {
                     measure.add(jsonObject[key].asString)
                 }
             }

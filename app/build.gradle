@@ -138,3 +138,7 @@ dependencies {
     implementation "io.mockk:mockk:1.12.2"
     implementation "androidx.lifecycle:lifecycle-runtime-testing:2.5.1"
 }
+
+ktlint {
+    disabledRules = ["no-wildcard-imports"]
+}
