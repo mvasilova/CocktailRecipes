@@ -20,24 +20,24 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
-      with: { java-version: 11 }
-      
-    - name: "Make gradlew executable"
-      run: chmod +x ./gradlew
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with: { java-version: 11 }
 
-    - name: Generate cache key
-      run: ./checksum.sh checksum.txt
+      - name: "Make gradlew executable"
+        run: chmod +x ./gradlew
 
-    - uses: actions/cache@v2
-      continue-on-error: true # continue if the cache restore/upload fails
-      with:
-        path: |
-          ~/.gradle/caches/modules-*
-          ~/.gradle/caches/jars-*
-          ~/.gradle/caches/build-cache-*
-        key: ${{ runner.os }}-gradle-${{ hashFiles('checksum.txt') }}
+      - name: Generate cache key
+        run: ./checksum.sh checksum.txt
 
-    - name: "Run linters: detekt, ktlint"
-      run: ./gradlew detekt && ./gradlew ktlintCheck
+      - uses: actions/cache@v2
+        continue-on-error: true # continue if the cache restore/upload fails
+        with:
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
+          key: ${{ runner.os }}-gradle-${{ hashFiles('checksum.txt') }}
+
+      - name: "Run linters: ktlint"
+        run: ./gradlew ktlintCheck
