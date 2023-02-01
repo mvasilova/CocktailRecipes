@@ -3,20 +3,21 @@ package com.mvasilova.cocktailrecipes.presentation.delegates
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
-import com.mvasilova.cocktailrecipes.R
+import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
-import kotlinx.android.synthetic.main.item_search_drinks.view.*
+import com.mvasilova.cocktailrecipes.databinding.ItemSearchDrinksBinding
 
 fun itemSearchDrinks(itemClickListener: (String) -> Unit) =
-    adapterDelegateLayoutContainer<Drink, DisplayableItem>(R.layout.item_search_drinks) {
+    adapterDelegateViewBinding<Drink, DisplayableItem, ItemSearchDrinksBinding>({ layoutInflater, root ->
+        ItemSearchDrinksBinding.inflate(layoutInflater, root, false)
+    }) {
 
-        containerView.setOnClickListener { itemClickListener.invoke(item.idDrink.toString()) }
+        binding.root.setOnClickListener { itemClickListener.invoke(item.idDrink.toString()) }
 
         bind {
-            with(containerView) {
+            binding.apply {
                 GlideApp.with(context)
                     .load(item.strDrinkThumb)
                     .transition(DrawableTransitionOptions.withCrossFade())

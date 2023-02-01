@@ -20,8 +20,7 @@ class DrinksRepositoryImp(
     private val api: Api,
     private val favoriteDao: FavoriteDao,
     private val searchDao: SearchDao
-) :
-    DrinksRepository {
+) : DrinksRepository {
 
     override fun getFilterDrinksList(type: String, name: String): Single<DrinksFilter> =
         api.getFilterDrinksList(mapOf(type to name))

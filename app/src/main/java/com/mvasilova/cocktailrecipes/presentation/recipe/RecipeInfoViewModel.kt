@@ -8,9 +8,8 @@ import com.mvasilova.cocktailrecipes.data.db.converters.FavoriteConverter
 import com.mvasilova.cocktailrecipes.data.entity.RecipeInfoDrink
 import com.mvasilova.cocktailrecipes.domain.repository.DrinksRepository
 
-
 class RecipeInfoViewModel(
-    val drinksRepository: DrinksRepository,
+    private val drinksRepository: DrinksRepository,
     val idDrink: String
 ) : BaseViewModel() {
 

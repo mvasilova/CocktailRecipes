@@ -1,16 +1,18 @@
 package com.mvasilova.cocktailrecipes.presentation.delegates
 
-import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
-import com.mvasilova.cocktailrecipes.R
+import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.mvasilova.cocktailrecipes.app.platform.DisplayableItem
-import kotlinx.android.synthetic.main.item_drink_recipe_info.view.*
+import com.mvasilova.cocktailrecipes.databinding.ItemDrinkRecipeInfoBinding
 
 fun itemRecipeInfo() =
-    adapterDelegateLayoutContainer<RecipeInfo, DisplayableItem>(R.layout.item_drink_recipe_info) {
-
+    adapterDelegateViewBinding<RecipeInfo, DisplayableItem, ItemDrinkRecipeInfoBinding>(
+        { layoutInflater, root ->
+            ItemDrinkRecipeInfoBinding.inflate(layoutInflater, root, false)
+        }
+    ) {
 
         bind {
-            with(containerView) {
+            binding.apply {
                 tvRecipeInfo.text = item.name
             }
         }

@@ -29,5 +29,4 @@ interface FavoriteDao {
             insertDrink(favorite)
         }
     }
-
 }

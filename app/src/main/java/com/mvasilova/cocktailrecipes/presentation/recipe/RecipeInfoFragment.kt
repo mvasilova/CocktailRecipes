@@ -8,7 +8,6 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.google.android.material.appbar.AppBarLayout
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.app.di.module.GlideApp
@@ -24,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_recipe_info.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import kotlin.math.abs
-
 
 class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
 
@@ -84,7 +82,8 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
             val ingredients = newList.mapIndexed { index, s -> Pair(index, s) }
                 .joinToString(
                     separator = "\n",
-                    transform = { "${resources.getString(R.string.dot)} ${it.second}" })
+                    transform = { "${resources.getString(R.string.dot)} ${it.second}" }
+                )
 
             val itemRecipe = listOf(
                 RecipeTitle(getString(R.string.filter_ingredients)),
@@ -99,9 +98,9 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
 
             text =
                 "${drink?.strDrink}\n${getString(R.string.filter_ingredients)}:\n$ingredients\n\n" +
-                        "${getString(R.string.instructions)}:\n${drink?.strInstructions}\n\n${getString(
-                            R.string.filter_glass
-                        )}:\n${drink?.strGlass}" +
+                        "${getString(R.string.instructions)}:\n${drink?.strInstructions}\n\n${
+                            getString(R.string.filter_glass)
+                        }:\n${drink?.strGlass}" +
                         "\n\n${getString(R.string.drinks_image)}:\n${drink?.strDrinkThumb}" +
                         "\n\n${resources.getString(R.string.share_text)} "
         }
@@ -111,7 +110,7 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
         rvRecipe.layoutManager = LinearLayoutManager(context)
         rvRecipe.adapter = recipeAdapter
 
-        appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+        appBarLayout.addOnOffsetChangedListener { _, verticalOffset ->
             collapsingToolbar?.let {
                 val percentage = abs(verticalOffset) * 100 / collapsingToolbar.height
                 if (percentage > 54) {
@@ -120,10 +119,11 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
                         getDrawable(requireActivity(), R.color.colorToolbarBackground)
                 } else {
                     setupStatusBar(R.color.colorLightGray, false)
-                    toolbar.background = getDrawable(requireActivity(), R.drawable.shape_toolbar)
+                    toolbar.background =
+                        getDrawable(requireActivity(), R.drawable.shape_toolbar)
                 }
             }
-        })
+        }
     }
 
     private fun setupToolbar() {
@@ -146,5 +146,4 @@ class RecipeInfoFragment : BaseFragment(R.layout.fragment_recipe_info) {
             startActivity(Intent.createChooser(shareIntent, getString(R.string.btn_share)))
         }
     }
-
 }

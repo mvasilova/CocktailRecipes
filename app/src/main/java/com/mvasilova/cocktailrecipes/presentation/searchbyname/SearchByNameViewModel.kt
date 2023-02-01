@@ -21,7 +21,7 @@ class SearchByNameViewModel(val drinksRepository: DrinksRepository) : BaseViewMo
                 .handleState(state)
                 .subscribe { it ->
                     drinks.value =
-                        it.drinks.sortedBy { it.strDrink?.toLowerCase(Locale.getDefault()) }
+                        it.drinks.sortedBy { it.strDrink?.lowercase(Locale.getDefault()) }
                 }.addToDisposables()
         } else {
             disposables.clear()

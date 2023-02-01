@@ -2,7 +2,6 @@ package com.mvasilova.cocktailrecipes.app.view
 
 import android.app.Dialog
 import android.os.Bundle
-import java.io.Serializable
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -10,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.mvasilova.cocktailrecipes.R
 import com.mvasilova.cocktailrecipes.data.enums.AppTheme
 import kotlinx.android.synthetic.main.dialog_choose_theme.view.*
+import java.io.Serializable
 
 class ChooseThemeDialog : DialogFragment() {
 
@@ -36,7 +36,6 @@ class ChooseThemeDialog : DialogFragment() {
 
         val positiveButton = R.string.btn_ok
         val negativeButton = R.string.btn_cancel
-
 
         builder.setPositiveButton(positiveButton) { _, _ -> positiveAction(view, tag) }
 
@@ -96,7 +95,6 @@ class ChooseThemeDialog : DialogFragment() {
             instance.arguments = args
             return instance
         }
-
     }
 
     companion object {
@@ -106,9 +104,7 @@ class ChooseThemeDialog : DialogFragment() {
         const val TAG_KEY = "TagKey"
         const val PAYLOAD_KEY = "PayloadKey"
     }
-
 }
-
 
 class DialogEvent(
     val button: DialogButton,

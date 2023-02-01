@@ -90,4 +90,3 @@ class AboutFragment : BaseFragment(R.layout.fragment_about), ChooseThemeDialogLi
         private const val DIALOG_CHOOSE_THEME = "DialogChooseTheme"
     }
 }
-

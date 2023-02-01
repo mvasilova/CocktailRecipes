@@ -9,7 +9,6 @@ import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter
 import com.mvasilova.cocktailrecipes.data.entity.DrinksFilter.Drink
 import java.lang.reflect.Type
 
-
 class JsonDeserializerListDrink : JsonDeserializer<Any> {
     private val gson = Gson()
 
@@ -22,11 +21,9 @@ class JsonDeserializerListDrink : JsonDeserializer<Any> {
         val drinks = try {
             val drinksRaw = jsonObject.getAsJsonArray("drinks").toString()
             gson.fromJson<List<Drink>>(drinksRaw)
-
         } catch (e: Exception) {
-            listOf<Drink>()
+            listOf()
         }
         return DrinksFilter(drinks)
     }
-
 }
