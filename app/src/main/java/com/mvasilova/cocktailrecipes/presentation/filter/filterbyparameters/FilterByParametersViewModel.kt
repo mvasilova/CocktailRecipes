@@ -48,6 +48,6 @@ class FilterByParametersViewModel(
     fun filterBySearch(query: String) {
         sourceList
             .filter { it.name.contains(query, true) }
-            .let{ filters.value = it }
+            .let { filters.value = it }
     }
 }

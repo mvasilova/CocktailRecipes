@@ -1,9 +1,7 @@
 package com.mvasilova.cocktailrecipes.app.platform
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
